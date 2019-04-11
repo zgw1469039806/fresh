@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.auth.client.mapper.GdTakedeliveryMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="org.auth.client.entity.GdTakedelivery">
+        <id column="takedeliveryidid" property="takedeliveryidid" />
+        <result column="userid" property="userid" />
+        <result column="address" property="address" />
+        <result column="UPDATED_BY" property="updatedBy" />
+        <result column="UPDATED_TIME" property="updatedTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        takedeliveryidid, userid, address, UPDATED_BY, UPDATED_TIME
+    </sql>
+
+</mapper>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="authorizationcenter" />
+        <module name="authorizationservice" />
+        <module name="commons" />
+        <module name="eureka" />
+        <module name="goshoppingservice" />
+        <module name="managementservice" />
+        <module name="orderservice" />
+        <module name="unification" />
+        <module name="vipservice" />
+        <module name="zuul" />
+      </profile>
+    </annotationProcessing>
+  </component>
+</project>

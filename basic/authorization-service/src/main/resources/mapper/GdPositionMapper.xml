@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.auth.server.mapper.GdPositionMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="org.auth.client.entity.GdPosition">
+        <result column="userId" property="userId" />
+        <result column="rolename" property="rolename" />
+        <result column="roleid" property="roleid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        userId, rolename, roleid
+    </sql>
+
+</mapper>
