@@ -1,16 +1,24 @@
 # fresh-GD
-张国伟初始化项目
 
+```
+~~~~格调生鲜项目 本项目技术栈
 
-格调生鲜项目
-本项目技术栈
+注册中心 SpringCloud eureka
 
-SpringCloud eureka
+认证框架 Spring security Oauth2
 
-Spring security Oauth2
+服务调用 SpringCloud fegin
 
-SpringCloud zuul
+服务容错  Hystrix
 
-Mybatis-plus
+网关 SpringCloud zuul
 
-Swagger构建API
+持久化框架 Mybatis-plus
+
+缓存框架 redis
+
+消息服务 rabbitmq 
+
+Swagger构建API~~~~```
+
+项目参与： 张国伟 郭家恒 夏乾航 贾一飞 位刘报
