@@ -1,11 +1,6 @@
 package org.fresh.gd.commons.consts.consts;
 
-/**
- * 常量类
- *
- * @author chen.nie
- * @date 2019-01-09
- **/
+
 public class Consts {
     /**
      * 基于毫秒的换算单位

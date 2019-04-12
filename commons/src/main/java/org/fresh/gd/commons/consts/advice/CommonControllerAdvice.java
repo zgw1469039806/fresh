@@ -9,11 +9,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-/**
- * @ClassName CommonControllerAdvice
- * @Author alan.wang   QQ:3103484396
- * @Description TODO
- */
+
 @Slf4j
 @ControllerAdvice
 public class CommonControllerAdvice
