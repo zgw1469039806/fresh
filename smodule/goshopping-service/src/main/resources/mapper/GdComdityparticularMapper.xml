@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.gw.shoping.mapper.GdComdityparticularMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="org.gw.shoping.entity.GdComdityparticular">
+        <id column="comdityId" property="comdityId" />
+        <result column="isnodiscount" property="isnodiscount" />
+        <result column="stock" property="stock" />
+        <result column="corresponding" property="corresponding" />
+        <result column="ssdp" property="ssdp" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        comdityId, isnodiscount, stock, corresponding, ssdp
+    </sql>
+
+</mapper>

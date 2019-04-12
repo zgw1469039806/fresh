@@ -12,6 +12,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  * @Author 张国伟  WeChat:17630376104
  * @Description 用户中心
  */
+
 @EnableDiscoveryClient
 @SpringBootApplication
 @EnableSwagger2Doc

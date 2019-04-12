@@ -9,7 +9,7 @@
 
 服务调用 SpringCloud fegin
 
-服务容错  Hystrix
+服务容错  SpringCloud  Hystrix
 
 网关 SpringCloud zuul
 

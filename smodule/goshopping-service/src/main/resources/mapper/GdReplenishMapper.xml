@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.gw.shoping.mapper.GdReplenishMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="org.gw.shoping.entity.GdReplenish">
+        <id column="replenishId" property="replenishId" />
+        <result column="replenishTime" property="replenishTime" />
+        <result column="userId" property="userId" />
+        <result column="storeid" property="storeid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        replenishId, replenishTime, userId, storeid
+    </sql>
+
+</mapper>

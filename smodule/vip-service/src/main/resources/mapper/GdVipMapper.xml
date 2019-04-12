@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.gd.vip.mapper.GdVipMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="org.gd.vip.entity.GdVip">
+        <id column="vipId" property="vipId" />
+        <result column="userId" property="userId" />
+        <result column="viplv" property="viplv" />
+        <result column="vipintegral" property="vipintegral" />
+        <result column="vipbalance" property="vipbalance" />
+        <result column="vipStartTime" property="vipStartTime" />
+        <result column="vipreport" property="vipreport" />
+        <result column="vipeportTime" property="vipeportTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        vipId, userId, viplv, vipintegral, vipbalance, vipStartTime, vipreport, vipeportTime
+    </sql>
+
+</mapper>

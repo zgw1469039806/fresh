@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.gw.shoping.mapper.GdCommodityMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="org.gw.shoping.entity.GdCommodity">
+        <id column="comdityId" property="comdityId" />
+        <result column="comdityname" property="comdityname" />
+        <result column="comditytypeId" property="comditytypeId" />
+        <result column="comditydw" property="comditydw" />
+        <result column="comditydescribe" property="comditydescribe" />
+        <result column="comdityprice" property="comdityprice" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        comdityId, comdityname, comditytypeId, comditydw, comditydescribe, comdityprice
+    </sql>
+
+</mapper>
