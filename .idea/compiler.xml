@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="api-gateway" />
         <module name="authorizationcenter" />
         <module name="authorizationservice" />
         <module name="commons" />
@@ -15,7 +16,6 @@
         <module name="orderservice" />
         <module name="unification" />
         <module name="vipservice" />
-        <module name="zuul" />
       </profile>
     </annotationProcessing>
   </component>
