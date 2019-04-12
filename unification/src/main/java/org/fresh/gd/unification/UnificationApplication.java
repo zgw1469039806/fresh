@@ -31,7 +31,7 @@ import java.util.Arrays;
 public class UnificationApplication extends WebSecurityConfigurerAdapter {
 
     @Bean
-    public CsrfTokenRepository tokenRepository(){
+    public CsrfTokenRepository tokenRepository() {
         return new CookieCsrfTokenRepository();
     }
 
@@ -41,17 +41,16 @@ public class UnificationApplication extends WebSecurityConfigurerAdapter {
         http.csrf().csrfTokenRepository(tokenRepository()).requireCsrfProtectionMatcher(request -> request.getRequestURI().contains("/supermall/store/order/create")).and().cors().configurationSource(new CorsConfigurationSource() {
             @Override
             public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
-                CorsConfiguration corsConfiguration =new CorsConfiguration();
+                CorsConfiguration corsConfiguration = new CorsConfiguration();
                 corsConfiguration.setAllowCredentials(true);
-           //     corsConfiguration.setAllowedOrigins(Arrays.asList(allowedOrigins));
-//                corsConfiguration.addAllowedOrigin("http://localhost:8080");
+                //corsConfiguration.setAllowedOrigins(Arrays.asList(allowedOrigins));
+                 //corsConfiguration.addAllowedOrigin("http://localhost:8080");
                 corsConfiguration.addAllowedHeader("*");
                 corsConfiguration.addAllowedMethod("*");
                 return corsConfiguration;
             }
         }).and().authorizeRequests().anyRequest().authenticated();
     }
-
 
 
     @Bean
@@ -68,6 +67,6 @@ public class UnificationApplication extends WebSecurityConfigurerAdapter {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(UnificationApplication.class,args);
+        SpringApplication.run(UnificationApplication.class, args);
     }
 }
