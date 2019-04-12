@@ -1,6 +1,7 @@
 package org.fresh.gd.unification;
 
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.cloud.client.SpringCloudApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
@@ -23,7 +24,7 @@ import java.util.Arrays;
  * @Author 张国伟  WeChat:17630376104
  * @Description
  */
-@EnableWebSecurity
+@EnableOAuth2Sso
 @EnableDiscoveryClient
 @EnableFeignClients
 @SpringCloudApplication
