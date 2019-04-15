@@ -46,7 +46,7 @@ public class Consts {
         private String code;
         private String name;
 
-        public String getCode() {
+        public String   getCode() {
             return code;
         }
 

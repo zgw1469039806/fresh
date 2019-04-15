@@ -1,5 +1,4 @@
 package org.fresh.gd.unification.controller;
-
 import org.fresh.gd.commons.consts.consts.Consts;
 import org.fresh.gd.commons.consts.pojo.dto.oauth.AuthSysRoleDTO;
 import org.fresh.gd.commons.consts.utils.AuthPrincipalUtils;
@@ -15,22 +14,19 @@ import java.util.List;
  * @Description 登录
  */
 @Controller
-public class LoginController
-{
+public class LoginController {
     @RequestMapping("/login")
-    public String login(Authentication authentication)
-    {
+    public String login(Authentication authentication) {
         return allReq(authentication);
     }
 
     @RequestMapping("/")
-    public String allReq(Authentication authentication)
-    {
+    public String allReq(Authentication authentication) {
         return "redirect:http://localhost:8080/#/base";
 //        List<AuthSysRoleDTO> roleDTOList = AuthPrincipalUtils.parseRole(authentication);
 //        for (AuthSysRoleDTO roleDTO : roleDTOList)
 //        {
-//            if(roleDTO.getRoleCode().equals(Consts.Role.CASHIER.getCode()))
+        //           if(roleDTO.getRoleCode().equals(Consts.Role.CASHIER.getCode()))
 //            {
 //                return "redirect:";
 //            }

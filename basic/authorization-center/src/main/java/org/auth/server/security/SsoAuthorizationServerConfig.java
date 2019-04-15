@@ -3,13 +3,13 @@ package org.auth.server.security;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
-import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
+import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
-import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
+import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 
 /**
  * @DATA 2019-04-08 17:22
@@ -20,19 +20,15 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 public class SsoAuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
     /**
-     * 功能描述 能给那些应用发令牌
+     * 功能描述  认证服务安全配置
      *
-     * @param clients
+     * @param security
      * @return void
      * @author zgw
      */
     @Override
-    public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        clients.inMemory()
-                .withClient("GDSX")
-                .secret("zxcv")
-                .authorizedGrantTypes("authorization_code", "refresh_token")
-                .scopes("all");
+    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
+        security.tokenKeyAccess("isAuthenticated()");//当访问的时候 需要身份认证
     }
 
     /**
@@ -48,15 +44,19 @@ public class SsoAuthorizationServerConfig extends AuthorizationServerConfigurerA
     }
 
     /**
-     * 功能描述  认证服务安全配置
+     * 功能描述 能给那些应用发令牌
      *
-     * @param security
+     * @param clients
      * @return void
      * @author zgw
      */
     @Override
-    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-        security.tokenKeyAccess("isAuthenticated()");//当访问的时候 需要身份认证
+    public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
+        clients.inMemory()
+                .withClient("GDSX")
+                .secret("zxcv")
+                .authorizedGrantTypes("authorization_code", "refresh_token")
+                .scopes("all");
     }
 
     /**

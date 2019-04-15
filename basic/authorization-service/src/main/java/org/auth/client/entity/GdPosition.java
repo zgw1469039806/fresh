@@ -21,7 +21,7 @@ public class GdPosition implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    /**
+       /**
      * 用户ID
      */
     @TableField("userId")
@@ -30,7 +30,7 @@ public class GdPosition implements Serializable {
     /**
      * 角色名称
      */
-    private Integer rolename;
+    private String pname;
 
     /**
      * 权限id
