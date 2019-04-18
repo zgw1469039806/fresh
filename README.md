@@ -23,7 +23,6 @@ Swagger构建API~~~~```
 
 项目参与： 张国伟 郭家恒 夏乾航 贾一飞 位刘报
 
-
 次项目大致分为6大模块 暂时没引入zipkin 
 
 1、basic 认证模块
@@ -55,4 +54,3 @@ utils MybatisPlusCodeGenerator 反向工程生成目录结构
  项目主入口  统一controller 统一fegin 也是认证服务器对应的资源服务器之一
 6、网关
 网关后期进行统一认证 目前暂不做处理
-  

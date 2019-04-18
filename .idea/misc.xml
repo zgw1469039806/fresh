@@ -9,6 +9,7 @@
     </option>
     <option name="ignoredFiles">
       <set>
+        <option value="$PROJECT_DIR$/monitoring-center/pom.xml" />
         <option value="$PROJECT_DIR$/service-module/pom.xml" />
       </set>
     </option>

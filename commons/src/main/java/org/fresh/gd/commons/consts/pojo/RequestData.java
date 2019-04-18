@@ -4,17 +4,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
-/**
- * 请求的DTO,在这里都需要统一的请求格式
- * {
- * "version":"1.0"
- * <p>
- * <p>
- * }
- *
- * @author chen.nie
- * @date 2018-12-28
- **/
+
 @ApiModel("请求服务的最基本参数")
 @Data
 public class RequestData<T> {

@@ -66,4 +66,17 @@ public class GdUser implements Serializable {
     private Integer takedelivery;
 
 
+    @Override
+    public String toString() {
+        return "GdUser{" +
+                "userId=" + userId +
+                ", username='" + username + '\'' +
+                ", useraccount='" + useraccount + '\'' +
+                ", password='" + password + '\'' +
+                ", phone='" + phone + '\'' +
+                ", isnoVip='" + isnoVip + '\'' +
+                ", isnoYg='" + isnoYg + '\'' +
+                ", takedelivery=" + takedelivery +
+                '}';
+    }
 }

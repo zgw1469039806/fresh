@@ -18,5 +18,8 @@
         <module name="vipservice" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="monitoringcenter" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

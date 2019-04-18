@@ -6,6 +6,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -15,22 +17,11 @@ import java.util.List;
  */
 @Controller
 public class LoginController {
-    @RequestMapping("/login")
-    public String login(Authentication authentication) {
-        return allReq(authentication);
-    }
 
     @RequestMapping("/")
-    public String allReq(Authentication authentication) {
+    public String allReq(Authentication authentication, HttpServletResponse reps) {
+
         return "redirect:http://localhost:8080/#/base";
-//        List<AuthSysRoleDTO> roleDTOList = AuthPrincipalUtils.parseRole(authentication);
-//        for (AuthSysRoleDTO roleDTO : roleDTOList)
-//        {
-        //           if(roleDTO.getRoleCode().equals(Consts.Role.CASHIER.getCode()))
-//            {
-//                return "redirect:";
-//            }
-//        }
-//        return "redirect:";
+
     }
 }

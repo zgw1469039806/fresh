@@ -45,7 +45,6 @@ public class SsoAuthorizationServerConfig extends AuthorizationServerConfigurerA
 
     /**
      * 功能描述 能给那些应用发令牌
-     *
      * @param clients
      * @return void
      * @author zgw
@@ -56,13 +55,13 @@ public class SsoAuthorizationServerConfig extends AuthorizationServerConfigurerA
                 .withClient("GDSX")
                 .secret("zxcv")
                 .authorizedGrantTypes("authorization_code", "refresh_token")
-                .scopes("all");
+                .scopes("all")
+                .autoApprove(true);
     }
 
     /**
      * 功能描述
      * 配置JWT令牌
-     *
      * @param
      * @return org.springframework.security.oauth2.provider.token.TokenStore
      * @author zgw
@@ -74,7 +73,6 @@ public class SsoAuthorizationServerConfig extends AuthorizationServerConfigurerA
 
     /**
      * 功能描述
-     *
      * @param
      * @return org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter
      * @author zgw

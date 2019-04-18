@@ -19,6 +19,6 @@ import org.fresh.gd.commons.consts.pojo.dto.user.RoleAndUserDTO;
 public interface GdUserMapper extends BaseMapper<GdUser> {
 
     @Select("select * from gd_user g,gd_role r,gd_position p where g.userId=p.userId and p.roleid=r.roleid and g.useraccount=#{useraccount}")
-   public RoleAndUserDTO selUserAndRole(@Param("useraccount") String useraccount);
+     RoleAndUserDTO selUserAndRole(@Param("useraccount") String useraccount);
 
 }

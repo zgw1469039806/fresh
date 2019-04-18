@@ -1,9 +1,11 @@
 package org.auth.server.impl;
 
 import lombok.extern.slf4j.Slf4j;
+import org.auth.server.entity.GdUser;
 import org.auth.server.mapper.GdUserMapper;
 import org.fresh.gd.commons.consts.exceptions.BizException;
 import org.fresh.gd.commons.consts.pojo.dto.user.RoleAndUserDTO;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
@@ -37,4 +39,7 @@ public class UserDetilsService implements UserDetailsService {
         }
         return new User(usernmae,roleAndUserDTO.getPassword(), AuthorityUtils.commaSeparatedStringToAuthorityList(roleAndUserDTO.getRolename()));
     }
+
+
+
 }

@@ -1,0 +1,30 @@
+server:
+  port: 8999
+security:
+  user:
+    password: user  # 直接登录时的密码
+  ignored: /
+  sessions: never   # session策略
+  oauth2:
+    sso:
+      loginPath: /login   # 登录路径
+    client:
+      clientId: 861c1de1cf866702f571
+      clientSecret: 5a0c878aa92a5ae55c5a19ec9f723553f2c8134f
+      accessTokenUri: https://github.com/login/oauth/access_token
+      userAuthorizationUri: https://github.com/login/oauth/authorize
+    resource:
+      userInfoUri: https://api.github.com/user
+      preferTokenInfo: false
+
+
+spring:
+  application:
+    name: zuul
+
+
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8888/eureka/

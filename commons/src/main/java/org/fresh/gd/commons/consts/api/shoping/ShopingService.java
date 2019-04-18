@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/shop")
 public interface ShopingService {
 
-    @GetMapping("/shop")
-    public String shop();
+    @RequestMapping("/shopto")
+     String shop();
 
 }
