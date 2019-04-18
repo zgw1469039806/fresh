@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @Author 张国伟  WeChat:17630376104
  * @Description
  */
-@FeignClient("management-service")
+@FeignClient("MANAGEMENT-SERVICE")
 public interface ManaFeginService  extends ManageService{
 
 

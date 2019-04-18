@@ -9,8 +9,11 @@
     </option>
     <option name="ignoredFiles">
       <set>
+        <option value="$PROJECT_DIR$/admin-center/pom.xml" />
+        <option value="$PROJECT_DIR$/basic/admin-center/pom.xml" />
         <option value="$PROJECT_DIR$/monitoring-center/pom.xml" />
         <option value="$PROJECT_DIR$/service-module/pom.xml" />
+        <option value="$PROJECT_DIR$/smodule/monitoring-center/pom.xml" />
       </set>
     </option>
   </component>

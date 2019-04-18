@@ -18,7 +18,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 @Mapper
 public interface GdStoreMapper extends BaseMapper<GdStore> {
 
-    @Insert("inster into gd_store value(?,?)")
+    @Insert("INSERT into gd_store(storename,storeaddress) value(#{storename},#{storeaddress})")
     Integer save(GdStore gdStore);
 
     @Select("select storeid,storename,storeaddress from gd_store where storename=#{storename}")

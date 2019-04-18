@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * @DATA 2019-04-17 14:42
@@ -31,7 +32,6 @@ public class ManageStoreDTO {
 
     @ApiModelProperty("图片链接")
     private String storeImages;
-
 
 
 }

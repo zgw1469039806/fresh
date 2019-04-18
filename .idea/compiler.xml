@@ -19,6 +19,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="admincenter" target="1.8" />
       <module name="monitoringcenter" target="1.8" />
     </bytecodeTargetLevel>
   </component>

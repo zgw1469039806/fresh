@@ -16,15 +16,13 @@ public interface ManageService {
     /**
      * 功能描述
      * 添加门店信息
-     *
      * @param
      * @return org.fresh.gd.commons.consts.pojo.ResponseData<java.lang.Integer>
      * @author zgw
      */
     @RequestMapping(value = "/inserStore", method = RequestMethod.POST)
-    ResponseData<Integer> inserStore(RequestData<ManageStoreDTO> requestData);
+    ResponseData<Integer> inserStore(ManageStoreDTO manageStoreDTO);
 
-    @RequestMapping("/test")
-    String test();
+
 
 }

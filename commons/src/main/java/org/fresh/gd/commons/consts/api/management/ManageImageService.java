@@ -3,6 +3,8 @@ package org.fresh.gd.commons.consts.api.management;
 import org.fresh.gd.commons.consts.pojo.RequestData;
 import org.fresh.gd.commons.consts.pojo.ResponseData;
 import org.fresh.gd.commons.consts.pojo.dto.management.ManageStoreDTO;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 
 /**
@@ -10,14 +12,16 @@ import org.fresh.gd.commons.consts.pojo.dto.management.ManageStoreDTO;
  * @Author 张国伟  WeChat:17630376104
  * @Description TODO
  */
+@RequestMapping("/ManageImageService")
 public interface ManageImageService {
 
     /**
      * 功能描述
      * 添加门店图片
-     * @param requestData
+     * @param manageStoreDTO
      * @return org.fresh.gd.commons.consts.pojo.ResponseData<java.lang.Integer>
      * @author zgw
      */
-    ResponseData<Integer> inserImagesStore(RequestData<ManageStoreDTO> requestData);
+    @RequestMapping(value = "/inserImagesStore", method = RequestMethod.POST)
+    ResponseData<Integer> inserImagesStore(ManageStoreDTO manageStoreDTO);
 }

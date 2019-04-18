@@ -7,6 +7,8 @@ import org.springframework.cloud.client.SpringCloudApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ComponentScans;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -28,7 +30,7 @@ import java.util.Arrays;
  * @Author 张国伟  WeChat:17630376104
  * @Description
  */
-
+@ComponentScan({"org.fresh.gd.commons.consts.advice","org.fresh.gd.unification"})
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableOAuth2Sso
 @EnableDiscoveryClient
@@ -48,8 +50,6 @@ public class UnificationApplication extends WebSecurityConfigurerAdapter  {
     @Override
     public void configure(HttpSecurity http) throws Exception
     {
-
-
         http.csrf().csrfTokenRepository(tokenRepository()).requireCsrfProtectionMatcher(request -> request.getRequestURI().contains("http://localhost:8080")).and().cors().configurationSource(new CorsConfigurationSource() {
             @Override
             public CorsConfiguration getCorsConfiguration(HttpServletRequest request)

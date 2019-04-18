@@ -13,6 +13,7 @@ import org.managment.service.mapper.GdStoreMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,14 +29,14 @@ public class ManageServiceImpl implements ManageService {
     @Autowired
     GdStoreMapper gdStoreMapper;
 
+    @Autowired
+    ManageImageServiceImpl manageImageService;
 
+    @Transactional
     @Override
-    public ResponseData<Integer> inserStore(@RequestParam @RequestBody RequestData<ManageStoreDTO> requestData) {
-        System.err.println("-------------"+requestData);
+    public ResponseData<Integer> inserStore(@RequestBody ManageStoreDTO requestData) {
         ResponseData<Integer> responseData = new ResponseData<>();
-        ManageStoreDTO data = requestData.getData();
-
-        String storename = data.getStorename();
+        String storename = requestData.getStorename();
         if (StringUtils.isEmpty(storename))
         {
             throw new BizException("门店名称不能为空");
@@ -46,22 +47,22 @@ public class ManageServiceImpl implements ManageService {
             throw new BizException("门店名称不能重复");
         }
         GdStore gdStore = new GdStore();
-        BeanUtils.copyProperties(gdStore, data);
+        gdStore.setStorename(requestData.getStorename());
+        gdStore.setStoreaddress(requestData.getStoreaddress());
+//        BeanUtils.copyProperties(gdStore, data);
         Integer save = gdStoreMapper.save(gdStore);
         responseData.setCode(Consts.Result.SUCCESS.getCode());
         if (save > 0)
         {
-            return responseData;
+            requestData.setStoreid(gdStore.getStoreid());
+            manageImageService.inserImagesStore(requestData);
+
         }
         responseData.setCode(Consts.Result.ERROR_PARAM.getCode());
         return responseData;
 
     }
 
-    @Override
-    public String test() {
-        return "测试";
-    }
 
 
 }
