@@ -73,8 +73,8 @@
             <artifactId>spring-boot-starter-freemarker</artifactId>
         </dependency>
 
-    </dependencies>
 
+    </dependencies>
 
 
     <dependencyManagement>

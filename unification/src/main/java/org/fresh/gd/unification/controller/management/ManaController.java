@@ -5,12 +5,16 @@ import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.fresh.gd.commons.consts.pojo.RequestData;
 import org.fresh.gd.commons.consts.pojo.ResponseData;
+import org.fresh.gd.commons.consts.pojo.dto.management.GdStoreDTO;
 import org.fresh.gd.commons.consts.pojo.dto.management.ManageStoreDTO;
 import org.fresh.gd.commons.consts.utils.OSSClientUtil;
 import org.fresh.gd.unification.fegin.management.ManaFeginService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 /**
  * @DATA 2019-04-17 15:15
@@ -27,7 +31,7 @@ public class ManaController {
 
 
     @PostMapping("/imageAdd")
-    public ResponseData<Integer> imageAdd(@RequestBody ManageStoreDTO requestData, MultipartFile multipartFile)
+    public ResponseData<Integer> imageAdd(@RequestBody GdStoreDTO requestData, MultipartFile multipartFile)
     {
         OSSClientUtil ossClient = new OSSClientUtil();
         try {
@@ -36,7 +40,7 @@ public class ManaController {
             }
             String name = ossClient.uploadImg2Oss(multipartFile);
             String imgUrl = ossClient.getImgUrl(name);
-            requestData.setStoreImages(imgUrl);
+            requestData.setStoreImagesUri(imgUrl);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -44,6 +48,15 @@ public class ManaController {
         return manaFeginService.inserStore(requestData);
     }
 
+    @PostMapping("/selStorAndImage")
+    public ResponseData<List<GdStoreDTO>> selStorAndImage(@RequestBody GdStoreDTO manageStoreDTO)
+    {
+
+        ResponseData<List<GdStoreDTO>> listResponseData=manaFeginService.selStroreByName(manageStoreDTO);
+        List<GdStoreDTO> data = listResponseData.getData();
+
+        return listResponseData;
+    }
 
 
 

@@ -6,8 +6,6 @@ import org.fresh.gd.commons.consts.pojo.ResponseData;
 import org.fresh.gd.commons.consts.pojo.dto.oauth.AuthSysOrganizationDTO;
 import org.fresh.gd.commons.consts.pojo.dto.oauth.AuthSysUserDTO;
 import org.fresh.gd.commons.consts.utils.AuthPrincipalUtils;
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -49,7 +47,6 @@ public class UserController {
         return responseData;
     }
 
-
     @PreAuthorize("hasRole('USER')")
     @RequestMapping("/sq")
     public String sq() {
@@ -59,8 +56,6 @@ public class UserController {
     @RequestMapping("/getPrinciple")
     public Object getPrinciple(OAuth2Authentication oAuth2Authentication,
                                Principal principal, Authentication authentication) {
-
-
         log.info(oAuth2Authentication.getUserAuthentication().getAuthorities().toString());
         log.info(oAuth2Authentication.toString());
         log.info("--------------------" + authentication.getDetails().toString());

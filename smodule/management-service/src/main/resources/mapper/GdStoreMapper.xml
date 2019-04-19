@@ -4,9 +4,19 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="org.managment.service.entity.GdStore">
-        <id column="storeid" property="storeid" />
-        <result column="storename" property="storename" />
-        <result column="storeaddress" property="storeaddress" />
+        <id column="storeid" property="storeid"/>
+        <result column="storename" property="storename"/>
+        <result column="storeaddress" property="storeaddress"/>
+    </resultMap>
+
+
+    <resultMap id="ImagesMap" type="org.fresh.gd.commons.consts.pojo.dto.management.GdStoreDTO">
+        <id column="storeid" property="storeid"/>
+        <result column="storename" property="storename"/>
+        <result column="storeaddress" property="storeaddress"/>
+        <collection property="manageStoreDTOList" ofType="org.fresh.gd.commons.consts.pojo.dto.management.ManageStoreDTO">
+            <result column="storeImages" property="storeImages"/>
+        </collection>
     </resultMap>
 
     <!-- 通用查询结果列 -->
@@ -14,6 +24,22 @@
         storeid, storename, storeaddress
     </sql>
 
+
+    <select id="selStoreAndImageByName" resultMap="ImagesMap">
+        select * from gd_store g
+        LEFT OUTER JOIN gd_storeImage m
+        ON g.storeid=m.storeid
+        <if test="storename !=null and storename !=''">
+            WHERE g.storename=#{storename}
+        </if>
+    </select>
+
+    <select id="selStoreAndImageByList" resultType="org.fresh.gd.commons.consts.pojo.dto.management.GdStoreDTO" parameterType="list">
+       select * from gd_store where storeid in
+        <foreach collection="list" open="(" item="item" separator="," close=")">
+            #{item.isnoYg}
+        </foreach>
+    </select>
 
 
 </mapper>

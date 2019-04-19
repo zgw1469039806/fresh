@@ -1,11 +1,15 @@
 package org.managment.service.mapper;
 
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import io.swagger.models.auth.In;
+import org.apache.ibatis.annotations.*;
+import org.fresh.gd.commons.consts.pojo.ResponseData;
+import org.fresh.gd.commons.consts.pojo.dto.management.GdStoreDTO;
 import org.fresh.gd.commons.consts.pojo.dto.management.ManageStoreDTO;
+import org.fresh.gd.commons.consts.pojo.dto.oauth.UserDTO;
 import org.managment.service.entity.GdStore;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+
+import java.util.List;
 
 /**
  * <p>
@@ -22,6 +26,14 @@ public interface GdStoreMapper extends BaseMapper<GdStore> {
     Integer save(GdStore gdStore);
 
     @Select("select storeid,storename,storeaddress from gd_store where storename=#{storename}")
-    ManageStoreDTO selByName(String storename);
+    ManageStoreDTO selByName(@Param("storename") String storename);
+
+
+    List<GdStoreDTO> selStoreAndImageByName(@Param("storename") String storename);
+
+    @Delete(" delete from  gd_store  where storeid=#{storeid}")
+    Integer deleteByIdStro(@Param("storeid") Integer storeid);
+
+    List<GdStoreDTO> selStoreAndImageByList(List<UserDTO> list);
 
 }

@@ -13,8 +13,6 @@
     <artifactId>management-service</artifactId>
     <dependencies>
 
-
-
         <dependency>
             <groupId>org.gw.fr</groupId>
             <artifactId>commons</artifactId>

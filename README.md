@@ -54,3 +54,5 @@ utils MybatisPlusCodeGenerator 反向工程生成目录结构
  项目主入口  统一controller 统一fegin 也是认证服务器对应的资源服务器之一
 6、网关
 网关后期进行统一认证 目前暂不做处理
+7.请求参一律为 RequestData<T>
+  返回参数一律为 ResponseData<T>
