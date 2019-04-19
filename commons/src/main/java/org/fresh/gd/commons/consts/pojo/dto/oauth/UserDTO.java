@@ -70,6 +70,10 @@ public class UserDTO {
     @ApiModelProperty("员工所在门店")
     private GdStoreDTO gdStoreDTO;
 
-
+    /**
+     * 员工所在门店名称
+     */
+    @ApiModelProperty("员工所在门店名称")
+    private String gdStoreName;
 
 }

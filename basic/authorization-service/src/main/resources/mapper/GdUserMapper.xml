@@ -4,14 +4,14 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="org.auth.client.entity.GdUser">
-        <id column="userId" property="userId" />
-        <result column="username" property="username" />
-        <result column="useraccount" property="useraccount" />
-        <result column="password" property="password" />
-        <result column="phone" property="phone" />
-        <result column="isnoVip" property="isnoVip" />
-        <result column="isnoYg" property="isnoYg" />
-        <result column="takedelivery" property="takedelivery" />
+        <id column="userId" property="userId"/>
+        <result column="username" property="username"/>
+        <result column="useraccount" property="useraccount"/>
+        <result column="password" property="password"/>
+        <result column="phone" property="phone"/>
+        <result column="isnoVip" property="isnoVip"/>
+        <result column="isnoYg" property="isnoYg"/>
+        <result column="takedelivery" property="takedelivery"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->
@@ -19,4 +19,11 @@
         userId, username, useraccount, password, phone, isnoVip, isnoYg, takedelivery
     </sql>
 
+    <select id="selYgByMd" parameterType="String" resultType="org.fresh.gd.commons.consts.pojo.dto.oauth.UserDTO">
+        select * from gd_user where isnoYg>0
+        <if test="username!=null and username != '' ">
+            and username=#{username}
+        </if>
+
+    </select>
 </mapper>

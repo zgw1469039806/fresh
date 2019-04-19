@@ -16,8 +16,6 @@ import java.util.List;
  */
 @RequestMapping("/UserService")
 public interface UserService {
-
-
     /**
      * 功能描述
      * 添加员工信息

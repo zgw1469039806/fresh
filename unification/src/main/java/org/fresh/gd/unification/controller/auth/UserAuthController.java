@@ -39,12 +39,14 @@ public class UserAuthController {
     @PostMapping("/savaUser")
     public ResponseData<Integer> savaUser(@RequestBody RequestData<UserDTO> requestData)
     {
+        System.out.println("00000000000000000000000000000"+requestData);
         return userFeignService.saveUser(requestData);
     }
 
     /**
      * 功能描述
-     *   查询所有员工信息，还要员工所在的门店名称
+     * 查询所有员工信息，还要员工所在的门店名称
+     *
      * @param requestData
      * @return org.fresh.gd.commons.consts.pojo.ResponseData<java.util.List < org.fresh.gd.commons.consts.pojo.dto.oauth.UserDTO>>
      * @author zgw
@@ -52,6 +54,7 @@ public class UserAuthController {
     @PostMapping("/selAllAndByUsername")
     public ResponseData<List<UserDTO>> selAllAndByUsername(@RequestBody RequestData<UserDTO> requestData)
     {
+        System.err.println("-----------------------------------------------------------------"+requestData);
         return userFeignService.selAllAndByUsername(requestData);
     }
 }

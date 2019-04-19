@@ -10,6 +10,7 @@ import org.fresh.gd.commons.consts.exceptions.BizException;
 import org.fresh.gd.commons.consts.pojo.RequestData;
 import org.fresh.gd.commons.consts.pojo.ResponseData;
 import org.fresh.gd.commons.consts.pojo.dto.management.GdStoreDTO;
+import org.fresh.gd.commons.consts.pojo.dto.oauth.GdPositionDTO;
 import org.fresh.gd.commons.consts.pojo.dto.oauth.UserDTO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,9 @@ import java.util.List;
  */
 @RestController
 public class UserServiceImpl implements UserService {
+
+    @Autowired
+    GdPositionServiceImpl gdPositionService;
 
     @Autowired
     GdUserMapper gdUserMapper;
@@ -54,8 +58,13 @@ public class UserServiceImpl implements UserService {
         GdUser gdUser=new GdUser();
         BeanUtils.copyProperties(userDTO,gdUser);
         Integer usersave = gdUserMapper.saveUserYg(gdUser);
+        RequestData<GdPositionDTO> requestDataPson=new RequestData<>();
+
         if (usersave>0)
         {
+            requestDataPson.getData().setUserId(gdUser.getUserId());
+            requestDataPson.getData().setPname(requestData.getData().getUsername());
+            gdPositionService.savaPosn(requestDataPson);
             responseData.setMsg(Consts.Result.SUCCESS.getMsg());
             return responseData;
         }
@@ -76,8 +85,10 @@ public class UserServiceImpl implements UserService {
     {
         RequestData<List<UserDTO>> listRequestData=new RequestData<>();
         ResponseData<List<UserDTO>> listResponseData=new ResponseData<>();
-        List<UserDTO> userDTOS = gdUserMapper.selYgByMd();
-        System.out.println("--------员工"+userDTOS);
+
+
+        List<UserDTO> userDTOS = gdUserMapper.selYgByMd(requestData.getData().getUsername());
+
         listRequestData.setData(userDTOS);
         ResponseData<List<GdStoreDTO>> gdStoreDTOResponseData = manageFeignService.selByYg(listRequestData);
 
@@ -87,8 +98,9 @@ public class UserServiceImpl implements UserService {
           for (GdStoreDTO gdStoreDTO:data)
           {
             if (userDTO.getIsnoYg().equals(gdStoreDTO.getStoreid().toString())){
-                userDTO.getGdStoreDTO().setStorename(gdStoreDTO.getStorename());
-                continue;
+                System.out.println(gdStoreDTO.getStorename());
+                userDTO.setGdStoreName(gdStoreDTO.getStorename());
+                break;
             }
           }
         }
