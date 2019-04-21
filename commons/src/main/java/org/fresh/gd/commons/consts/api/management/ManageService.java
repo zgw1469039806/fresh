@@ -6,6 +6,7 @@ import org.fresh.gd.commons.consts.pojo.dto.management.GdStoreDTO;
 import org.fresh.gd.commons.consts.pojo.dto.management.ManageStoreDTO;
 
 import org.fresh.gd.commons.consts.pojo.dto.oauth.UserDTO;
+import org.fresh.gd.commons.consts.pojo.dto.shoping.GdCommodityDTO;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -52,8 +53,24 @@ public interface ManageService {
     ResponseData<Integer> delByIdStro(Integer storeid);
 
 
-    @RequestMapping(value = "/selByYg",method = RequestMethod.POST)
+    /**
+     * 功能描述
+     * 根据员工ID集合 查询门店
+     *
+     * @param requestData
+     * @return org.fresh.gd.commons.consts.pojo.ResponseData<java.util.List < org.fresh.gd.commons.consts.pojo.dto.management.GdStoreDTO>>
+     * @author zgw
+     */
+    @RequestMapping(value = "/selByYg", method = RequestMethod.POST)
     ResponseData<List<GdStoreDTO>> selByYg(RequestData<List<UserDTO>> requestData);
 
-
+    /**
+     * 功能描述
+     *  根据商品门店ID集合
+     * @param gdCommodityDTOList
+     * @return org.fresh.gd.commons.consts.pojo.ResponseData<java.util.List < org.fresh.gd.commons.consts.pojo.dto.management.GdStoreDTO>>
+     * @author zgw
+     */
+    @RequestMapping(value = "/selByssmd", method = RequestMethod.POST)
+    ResponseData<List<GdStoreDTO>> selByssmd(RequestData<List<GdCommodityDTO>> gdCommodityDTOList);
 }

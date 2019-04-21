@@ -1,8 +1,11 @@
 package org.fresh.gd.commons.consts.api.shoping;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.fresh.gd.commons.consts.pojo.RequestData;
 import org.fresh.gd.commons.consts.pojo.ResponseData;
 import org.fresh.gd.commons.consts.pojo.dto.shoping.GdCommodityDTO;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -25,5 +28,16 @@ public interface GdCommodityService {
      */
     @GetMapping("/selShopingAll")
     public ResponseData<List<GdCommodityDTO>> selShopingAll();
+
+
+    /**
+     * 功能描述
+     * 查询商品信息 商品详情带分页
+     * @param
+     * @return org.fresh.gd.commons.consts.pojo.ResponseData<com.baomidou.mybatisplus.extension.plugins.pagination.Page < org.fresh.gd.commons.consts.pojo.dto.shoping.GdCommodityDTO>>
+     * @author zgw
+     */
+    @PostMapping("/selPageShop")
+    ResponseData<Page<GdCommodityDTO>> selPageShop(RequestData<GdCommodityDTO> gdCommodityDTORequestData);
 
 }

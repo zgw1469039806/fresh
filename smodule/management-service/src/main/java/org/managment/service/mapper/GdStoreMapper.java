@@ -6,6 +6,7 @@ import org.fresh.gd.commons.consts.pojo.ResponseData;
 import org.fresh.gd.commons.consts.pojo.dto.management.GdStoreDTO;
 import org.fresh.gd.commons.consts.pojo.dto.management.ManageStoreDTO;
 import org.fresh.gd.commons.consts.pojo.dto.oauth.UserDTO;
+import org.fresh.gd.commons.consts.pojo.dto.shoping.GdCommodityDTO;
 import org.managment.service.entity.GdStore;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
@@ -35,5 +36,7 @@ public interface GdStoreMapper extends BaseMapper<GdStore> {
     Integer deleteByIdStro(@Param("storeid") Integer storeid);
 
     List<GdStoreDTO> selStoreAndImageByList(List<UserDTO> list);
+
+    List<GdStoreDTO> selSSDPById(List<GdCommodityDTO> list);
 
 }

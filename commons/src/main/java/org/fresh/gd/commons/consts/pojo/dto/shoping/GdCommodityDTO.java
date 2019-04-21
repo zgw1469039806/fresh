@@ -51,4 +51,36 @@ public class GdCommodityDTO {
     @ApiModelProperty("商品单价")
     private String comdityprice;
 
+
+    /**
+     * 是否打折;0为false,2为true
+     */
+    @ApiModelProperty("是否打折")
+    private Integer isnodiscount;
+
+    /**
+     * 库存数量
+     */
+    @ApiModelProperty("库存数量")
+    private String stock;
+
+    /**
+     * 对应积分
+     */
+    @ApiModelProperty("对应积分")
+    private String corresponding;
+
+    /**
+     * 所属店铺ID
+     */
+    @ApiModelProperty("所属店铺ID")
+    private Integer storeid;
+
+
+    @ApiModelProperty("页码")
+    private Integer pageNo;
+
+    @ApiModelProperty("所属门店名")
+    private String ssmdName;
+
 }

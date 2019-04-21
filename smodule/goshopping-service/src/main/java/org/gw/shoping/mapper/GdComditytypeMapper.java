@@ -26,6 +26,9 @@ public interface GdComditytypeMapper extends BaseMapper<GdComditytype> {
     List<GdComditytypeDTO> selTypeAll();
 
     @Insert("insert into gd_comditytype(typename,parent) value(#{typename},#{parent})")
-    Integer savaType(GdComditytypeDTO GdComditytypeDTO);
+    Integer savaType(GdComditytypeDTO gdComditytypeDTO);
+
+    @Insert("UPDATE gd_comditytype SET typename=#{typename} WHERE comditytypeId=#{comditytypeId}")
+    Integer updateType(GdComditytypeDTO gdComditytypeDTO);
 
 }

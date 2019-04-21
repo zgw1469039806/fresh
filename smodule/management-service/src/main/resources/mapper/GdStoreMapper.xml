@@ -42,4 +42,12 @@
     </select>
 
 
+    <select id="selSSDPById" resultType="org.fresh.gd.commons.consts.pojo.dto.management.GdStoreDTO" parameterType="list">
+         select * from gd_store where storeid in
+         <foreach collection="list" open="(" item="comm" separator="," close=")">
+             #{comm.storeid}
+         </foreach>
+    </select>
+
+
 </mapper>

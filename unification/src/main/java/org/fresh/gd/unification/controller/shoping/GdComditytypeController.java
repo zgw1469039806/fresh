@@ -8,10 +8,7 @@ import org.fresh.gd.commons.consts.pojo.ResponseData;
 import org.fresh.gd.commons.consts.pojo.dto.shoping.GdComditytypeDTO;
 import org.fresh.gd.unification.fegin.shoping.GdComditytypeFeignService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -37,12 +34,24 @@ public class GdComditytypeController {
 
 
     @PostMapping("/sevaType")
-    public ResponseData<Integer> sevaType(RequestData<GdComditytypeDTO> requestData)
+    public ResponseData<Integer> sevaType(@RequestBody RequestData<GdComditytypeDTO> requestData)
     {
         ResponseData<Integer> responseData=new ResponseData<>();
         if (requestData.getData()!=null)
         {
             return gdComditytypeFeignService.sevaType(requestData);
+        }
+        responseData.setCode(Consts.Result.ERROR_PARAM.getCode());
+        return responseData;
+    }
+
+    @PostMapping("/updateType")
+    public ResponseData<Integer> updateType(@RequestBody RequestData<GdComditytypeDTO> requestData)
+    {
+        ResponseData<Integer> responseData=new ResponseData<>();
+        if (requestData.getData()!=null)
+        {
+            return gdComditytypeFeignService.updateType(requestData);
         }
         responseData.setCode(Consts.Result.ERROR_PARAM.getCode());
         return responseData;

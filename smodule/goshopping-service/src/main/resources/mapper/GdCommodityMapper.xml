@@ -17,4 +17,20 @@
         comdityId, comdityname, comditytypeId, comditydw, comditydescribe, comdityprice
     </sql>
 
+    <select id="selShopAllAdmin" resultType="org.fresh.gd.commons.consts.pojo.dto.shoping.GdCommodityDTO">
+        SELECT * FROM gd_commodity g
+         RIGHT OUTER JOIN  gd_comdityparticular c
+         ON g.comdityId=c.comdityId
+         <where>
+         <if test="comdityname!='' and comdityname != null">
+             g.comdityname=#{comdityname}
+         </if>
+          <if test="storeid!=0 and storeid != null">
+               AND c.storeid=#{storeid}
+          </if>
+
+         </where>
+
+    </select>
+
 </mapper>

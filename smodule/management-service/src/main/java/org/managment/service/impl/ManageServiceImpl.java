@@ -12,6 +12,7 @@ import org.fresh.gd.commons.consts.pojo.ResponseData;
 import org.fresh.gd.commons.consts.pojo.dto.management.GdStoreDTO;
 import org.fresh.gd.commons.consts.pojo.dto.management.ManageStoreDTO;
 import org.fresh.gd.commons.consts.pojo.dto.oauth.UserDTO;
+import org.fresh.gd.commons.consts.pojo.dto.shoping.GdCommodityDTO;
 import org.managment.service.entity.GdStore;
 import org.managment.service.mapper.GdStoreMapper;
 import org.springframework.beans.BeanUtils;
@@ -95,11 +96,23 @@ public class ManageServiceImpl implements ManageService {
     public ResponseData<List<GdStoreDTO>> selByYg(@RequestBody RequestData<List<UserDTO>> requestData) {
         ResponseData<List<GdStoreDTO>> responseData=new ResponseData<>();
         List<UserDTO> data = requestData.getData();
-
         List<GdStoreDTO> gdStoreDTOS = gdStoreMapper.selStoreAndImageByList(data);
         responseData.setData(gdStoreDTOS);
-
         return responseData;
+    }
+
+    /**
+     * 功能描述
+     * 根据商品门店ID集合
+     * @param gdCommodityDTOList
+     * @return org.fresh.gd.commons.consts.pojo.ResponseData<java.util.List < org.fresh.gd.commons.consts.pojo.dto.management.GdStoreDTO>>
+     * @author zgw
+     */
+    @Override
+    public ResponseData<List<GdStoreDTO>> selByssmd(@RequestBody RequestData<List<GdCommodityDTO>> gdCommodityDTOList) {
+        ResponseData<List<GdStoreDTO>> listResponseData=new ResponseData<>();
+        listResponseData.setData(gdStoreMapper.selSSDPById(gdCommodityDTOList.getData())) ;
+        return listResponseData;
     }
 
 

@@ -1,6 +1,7 @@
 package org.gw.shoping;
 
 
+import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.SpringBootConfiguration;
@@ -33,13 +34,28 @@ import java.util.Arrays;
 @SpringBootApplication
 public class ShoppingApplication extends WebSecurityConfigurerAdapter {
 
+    /**
+     * 功能描述
+     * 分页插件，自动识别数据库类型
+     * @param
+     * @return com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor
+     * @author zgw
+     */
+    @Bean
+    public PaginationInterceptor paginationInterceptor()
+    {
+        return new PaginationInterceptor();
+    }
+
     @Override
-    public void configure(HttpSecurity http) throws Exception {
+    public void configure(HttpSecurity http) throws Exception
+    {
         http.csrf().disable();
 
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         SpringApplication.run(ShoppingApplication.class, args);
     }
 }
