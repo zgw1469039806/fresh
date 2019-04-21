@@ -26,17 +26,14 @@ public class GdPositionServiceImpl implements GdPositionService {
     GdPositionMapper  gdPositionMapper;
 
     @Override
-    public ResponseData<Integer> savaPosn(@RequestBody RequestData<GdPositionDTO> requestData)
+    public ResponseData<Integer> savaPosn(@RequestBody GdPositionDTO gdPositionDTO)
     {
         ResponseData<Integer> responseData=new ResponseData<>();
-        if (StringUtils.isEmpty(requestData.getData().getUserId().toString()))
+        if (StringUtils.isEmpty(gdPositionDTO.getUserId().toString()))
         {
             throw new BizException("用户ID不能为空");
         }
-        GdPositionDTO gdPositionDTO=requestData.getData();
-        GdPosition gdPosition=new GdPosition();
-        BeanUtils.copyProperties(gdPositionDTO,gdPosition);
-        Integer savePosn = gdPositionMapper.savaPoson(gdPosition);
+        Integer savePosn = gdPositionMapper.savaPoson(gdPositionDTO);
         if (savePosn>0)
         {
             responseData.setCode(Consts.Result.SUCCESS.getCode());

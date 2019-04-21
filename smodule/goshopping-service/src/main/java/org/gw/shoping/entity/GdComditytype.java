@@ -1,7 +1,9 @@
 package org.gw.shoping.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
+
 import java.io.Serializable;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -31,6 +33,11 @@ public class GdComditytype implements Serializable {
      * 类型名称
      */
     private String typename;
+
+    /**
+     * 父级ID
+     */
+    private Integer parent;
 
 
 }

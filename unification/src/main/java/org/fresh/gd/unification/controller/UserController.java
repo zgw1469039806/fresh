@@ -30,8 +30,6 @@ import java.util.List;
 @RequestMapping("/unification")
 public class UserController {
 
-
-
     @RequestMapping("/userinfo")
     public ResponseData<Object> userinfo(Authentication authentication) {
         AuthSysUserDTO authSysUserDTO = AuthPrincipalUtils.parseUserinfo(authentication);

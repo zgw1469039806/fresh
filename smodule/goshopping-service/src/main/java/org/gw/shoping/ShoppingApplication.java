@@ -31,47 +31,12 @@ import java.util.Arrays;
 @MapperScan("org.gw.shoping.mapper")
 @EnableDiscoveryClient
 @SpringBootApplication
-@EnableOAuth2Sso
 public class ShoppingApplication extends WebSecurityConfigurerAdapter {
-    //    @Override
-//    public void configure(HttpSecurity http) throws Exception {
-//        http.csrf().disable().requestMatchers().anyRequest();
-//    }
-    @Bean
-    public CsrfTokenRepository tokenRepository() {
-        return new CookieCsrfTokenRepository();
-    }
-
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
-        http.csrf().csrfTokenRepository(tokenRepository()).requireCsrfProtectionMatcher(request -> request.getRequestURI().contains("/supermall/store/order/create")).and().cors().configurationSource(new CorsConfigurationSource() {
-            @Override
-            public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
-                CorsConfiguration corsConfiguration = new CorsConfiguration();
-                corsConfiguration.setAllowCredentials(true);
-                corsConfiguration.setAllowedOrigins(Arrays.asList("*"));
-                corsConfiguration.addAllowedOrigin("http://localhost:8080");
-                corsConfiguration.addAllowedHeader("*");
-                corsConfiguration.addAllowedMethod("*");
-                return corsConfiguration;
-            }
-        }).and().authorizeRequests().anyRequest().authenticated();
-    }
 
-
-    @Bean
-    public CorsFilter corsFilter() {
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        CorsConfiguration config = new CorsConfiguration();
-        config.setAllowCredentials(true);
-        config.addAllowedOrigin("http://localhost:8080");
-        config.setAllowedOrigins(Arrays.asList("*"));
-        config.addAllowedHeader("*");
-        config.addAllowedMethod("*");
-        source.registerCorsConfiguration("/**", config);
-        return new CorsFilter(source);
     }
 
     public static void main(String[] args) {

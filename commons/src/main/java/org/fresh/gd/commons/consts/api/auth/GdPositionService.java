@@ -16,7 +16,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/GdPositionService")
 public interface GdPositionService {
 
+    /**
+     * 功能描述
+     * 添加员工职位
+     *
+     * @param gdPositionDTO
+     * @return org.fresh.gd.commons.consts.pojo.ResponseData<java.lang.Integer>
+     * @author zgw
+     */
     @PostMapping("/savaPosn")
-    public ResponseData<Integer> savaPosn(RequestData<GdPositionDTO> requestData);
+    public ResponseData<Integer> savaPosn(GdPositionDTO gdPositionDTO);
 
 }

@@ -58,13 +58,15 @@ public class UserServiceImpl implements UserService {
         GdUser gdUser=new GdUser();
         BeanUtils.copyProperties(userDTO,gdUser);
         Integer usersave = gdUserMapper.saveUserYg(gdUser);
-        RequestData<GdPositionDTO> requestDataPson=new RequestData<>();
+        System.err.println("---------------------------"+gdUser.getUserId());
+
 
         if (usersave>0)
         {
-            requestDataPson.getData().setUserId(gdUser.getUserId());
-            requestDataPson.getData().setPname(requestData.getData().getUsername());
-            gdPositionService.savaPosn(requestDataPson);
+            GdPositionDTO gdPositionDTO=new GdPositionDTO();
+            gdPositionDTO.setUserId(gdUser.getUserId());
+            gdPositionDTO.setPname(requestData.getData().getUsername());
+            gdPositionService.savaPosn(gdPositionDTO);
             responseData.setMsg(Consts.Result.SUCCESS.getMsg());
             return responseData;
         }

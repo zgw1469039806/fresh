@@ -19,7 +19,7 @@ import java.util.List;
 public interface GdUserMapper extends BaseMapper<GdUser> {
 
     @Insert("INSERT INTO gd_user(username,useraccount,password,phone,isnoVip,isnoYg,takedelivery) VALUES(#{username},#{useraccount},#{password},#{phone},#{isnoVip},#{isnoYg},#{takedelivery})")
-    @Options(useGeneratedKeys=true, keyProperty="userId", keyColumn="id")
+    @Options(useGeneratedKeys=true, keyProperty="userId", keyColumn="userId")
     Integer saveUserYg(GdUser gdUser);
 
     @Select("select * from gd_user where useraccount=#{useraccount}")
