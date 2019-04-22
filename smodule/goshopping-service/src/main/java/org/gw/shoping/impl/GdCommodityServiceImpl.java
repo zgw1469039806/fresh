@@ -6,6 +6,7 @@ import org.fresh.gd.commons.consts.pojo.RequestData;
 import org.fresh.gd.commons.consts.pojo.ResponseData;
 import org.fresh.gd.commons.consts.pojo.dto.management.GdStoreDTO;
 import org.fresh.gd.commons.consts.pojo.dto.shoping.GdCommodityDTO;
+import org.fresh.gd.commons.consts.pojo.dto.shoping.GdCommodityListDTO;
 import org.gw.shoping.fegin.ManageFeginService;
 import org.gw.shoping.mapper.GdCommodityMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,6 +78,21 @@ public class GdCommodityServiceImpl  implements GdCommodityService {
 
         page.setRecords(gdCommodityDTOS);
         responseData.setData(page);
+        return responseData;
+    }
+
+    @Override
+    public ResponseData<List<GdCommodityListDTO>> selheadlineAll() {
+        ResponseData<List<GdCommodityListDTO>> responseData= new ResponseData<>();
+        responseData.setData( gdCommodityMapper.selheadlineAll());
+
+        return responseData;
+    }
+
+    @Override
+    public ResponseData<GdCommodityListDTO> selOne(Integer comdityId) {
+        ResponseData<GdCommodityListDTO> responseData =new ResponseData<>();
+        responseData.setData(gdCommodityMapper.selOne(comdityId));
         return responseData;
     }
 

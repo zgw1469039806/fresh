@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.fresh.gd.commons.consts.pojo.dto.shoping.GdCommodityDTO;
+import org.fresh.gd.commons.consts.pojo.dto.shoping.GdCommodityListDTO;
 import org.gw.shoping.entity.GdCommodity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
@@ -31,15 +32,22 @@ public interface GdCommodityMapper extends BaseMapper<GdCommodity> {
      * @author zgw
      */
     @Select("select * from gd_commodity")
-     List<GdCommodityDTO> selShopAllUser();
+    List<GdCommodityDTO> selShopAllUser();
 
     /**
      * 功能描述
      * Admin管理 商品信息 带分页
+     *
      * @param page
      * @return java.util.List<org.fresh.gd.commons.consts.pojo.dto.shoping.GdCommodityDTO>
      * @author zgw
      */
 
-     List<GdCommodityDTO> selShopAllAdmin(Page<GdCommodityDTO> page, @Param("comdityname") String comdityname,@Param("storeid") Integer storeid);
+    List<GdCommodityDTO> selShopAllAdmin(Page<GdCommodityDTO> page, @Param("comdityname") String comdityname, @Param("storeid") Integer storeid);
+
+
+    List<GdCommodityListDTO> selheadlineAll();
+
+    GdCommodityListDTO selOne(@Param("comdityId") Integer comdityId);
+
 }
