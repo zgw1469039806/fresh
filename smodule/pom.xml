@@ -16,6 +16,7 @@
         <module>goshopping-service</module>
         <module>management-service</module>
         <module>order-service</module>
+        <module>message-center</module>
 
     </modules>
 

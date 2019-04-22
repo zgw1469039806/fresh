@@ -17,7 +17,7 @@ public class CommonControllerAdvice
     @ExceptionHandler({Exception.class})
     @ResponseBody
     public ResponseData<Void> errorHandle(Exception e) {
-        log.error("" , e);
+        log.error("-------" , e);
         if(e instanceof BizException)
         {
             ResponseData<Void> responseData = new ResponseData<>();

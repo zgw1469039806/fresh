@@ -32,12 +32,11 @@ public interface GdCommodityMapper extends BaseMapper<GdCommodity> {
      * @author zgw
      */
     @Select("select * from gd_commodity")
-    List<GdCommodityDTO> selShopAllUser();
+     List<GdCommodityDTO> selShopAllUser();
 
     /**
      * 功能描述
      * Admin管理 商品信息 带分页
-     *
      * @param page
      * @return java.util.List<org.fresh.gd.commons.consts.pojo.dto.shoping.GdCommodityDTO>
      * @author zgw

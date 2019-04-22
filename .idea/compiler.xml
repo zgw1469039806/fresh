@@ -13,6 +13,7 @@
         <module name="eureka" />
         <module name="goshoppingservice" />
         <module name="managementservice" />
+        <module name="messagecenter" />
         <module name="orderservice" />
         <module name="unification" />
         <module name="vipservice" />

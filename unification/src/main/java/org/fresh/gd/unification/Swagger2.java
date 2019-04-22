@@ -26,7 +26,7 @@ public class Swagger2 {
                 .apiInfo(apiInfo())
                 .select()
                 //为当前包路径
-                .apis(RequestHandlerSelectors.basePackage("org.fresh.gd.unification"))
+                .apis(RequestHandlerSelectors.basePackage("org.fresh.gd.unification.controller"))
                 .paths(PathSelectors.any())
                 .build();
 }
@@ -34,9 +34,9 @@ public class Swagger2 {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 //页面标题
-                .title("SpringBoot使用 Swagger2 构建RESTful API")
+                .title("SpringCloud使用 Swagger2 构建RESTful API")
                 //创建人
-               // .contact(new Contact("1"))
+                 //.contact(new Contact("1"))
                 //版本号
                 .version("1.0")
                 //描述
