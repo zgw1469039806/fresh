@@ -41,5 +41,5 @@ public interface GdCommodityMapper extends BaseMapper<GdCommodity> {
      * @author zgw
      */
 
-     List<GdCommodityDTO> selShopAllAdmin(Page<GdCommodityDTO> page, @Param("comdityname") String comdityname,@Param("storeid") Integer storeid);
+     List<GdCommodityDTO> selShopAllAdmin(Page<GdCommodityDTO> page, @Param("comdityname") String comdityname,@Param("storeid") Integer storeid,@Param("comditytypeId") Integer comditytypeId);
 }

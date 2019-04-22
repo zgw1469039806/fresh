@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.lang.reflect.Proxy;
 import java.util.List;
 
 /**
@@ -35,7 +36,11 @@ public class GdCommodityServiceImpl  implements GdCommodityService {
      * @author zgw
      */
     @Override
-    public ResponseData<List<GdCommodityDTO>> selShopingAll() {
+    public ResponseData<List<GdCommodityDTO>> selShopingAll()
+
+    {
+
+
         ResponseData<List<GdCommodityDTO>> responseData=new ResponseData<>();
 
         List<GdCommodityDTO> gdCommodityDTOS = gdCommodityMapper.selShopAllUser();
@@ -53,13 +58,18 @@ public class GdCommodityServiceImpl  implements GdCommodityService {
      * @author zgw
      */
     @Override
-    public ResponseData<Page<GdCommodityDTO>> selPageShop(@RequestBody RequestData<GdCommodityDTO> gdCommodityDTORequestData) {
+    public ResponseData<Page<GdCommodityDTO>> selPageShop(@RequestBody RequestData<GdCommodityDTO> gdCommodityDTORequestData)
+    {
       RequestData<List<GdCommodityDTO>> listRequestData=new RequestData<>();
 
         ResponseData<Page<GdCommodityDTO>> responseData=new ResponseData<>();
         GdCommodityDTO gdCommodityDTO=gdCommodityDTORequestData.getData();
         Page<GdCommodityDTO> page=new Page<>(gdCommodityDTO.getPageNo(),6);
-        List<GdCommodityDTO> gdCommodityDTOS = gdCommodityMapper.selShopAllAdmin(page, gdCommodityDTO.getComdityname(), gdCommodityDTO.getStoreid());
+        List<GdCommodityDTO> gdCommodityDTOS = gdCommodityMapper.selShopAllAdmin(page, gdCommodityDTO.getComdityname(), gdCommodityDTO.getStoreid(),gdCommodityDTO.getComditytypeId());
+        if(gdCommodityDTOS==null)
+        {
+            return responseData;
+        }
         listRequestData.setData(gdCommodityDTOS);
         ResponseData<List<GdStoreDTO>> listResponseData = manageFeginService.selByssmd(listRequestData);
         for (GdCommodityDTO commodity:gdCommodityDTOS)
@@ -73,8 +83,6 @@ public class GdCommodityServiceImpl  implements GdCommodityService {
                 }
             }
         }
-
-
         page.setRecords(gdCommodityDTOS);
         responseData.setData(page);
         return responseData;

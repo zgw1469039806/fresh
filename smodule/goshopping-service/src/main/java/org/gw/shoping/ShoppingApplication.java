@@ -13,15 +13,7 @@ import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
-import org.springframework.security.web.csrf.CsrfTokenRepository;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.filter.CorsFilter;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.Arrays;
 
 /**
  * @DATA 2019-04-11 15:37
@@ -33,7 +25,6 @@ import java.util.Arrays;
 @EnableDiscoveryClient
 @SpringBootApplication
 public class ShoppingApplication extends WebSecurityConfigurerAdapter {
-
     /**
      * 功能描述
      * 分页插件，自动识别数据库类型
@@ -51,7 +42,6 @@ public class ShoppingApplication extends WebSecurityConfigurerAdapter {
     public void configure(HttpSecurity http) throws Exception
     {
         http.csrf().disable();
-
     }
 
     public static void main(String[] args)

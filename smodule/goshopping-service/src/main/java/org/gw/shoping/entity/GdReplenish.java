@@ -2,7 +2,9 @@ package org.gw.shoping.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableField;
+
 import java.io.Serializable;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -37,13 +39,29 @@ public class GdReplenish implements Serializable {
     /**
      * 采购人员id
      */
-    @TableField("userId")
-    private Integer userId;
+    @TableField("username")
+    private String username;
 
     /**
      * 店铺ID
      */
     private Integer storeid;
+
+    /**
+     * 提供商id
+     */
+    private Integer supplierID;
+
+    /**
+     * 是否入库
+     */
+    private Integer isnostorage;
+
+    /**
+     * 进货编号
+     */
+    private String receiptNo;
+
 
 
 }

@@ -32,7 +32,6 @@ public class UserDetilsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String usernmae) throws UsernameNotFoundException {
-        System.err.println("usernmae = " + usernmae);
         RoleAndUserDTO roleAndUserDTO=gdUserMapper.selUserAndRole(usernmae);
         if (roleAndUserDTO == null){
             throw new BizException("用户不存在");

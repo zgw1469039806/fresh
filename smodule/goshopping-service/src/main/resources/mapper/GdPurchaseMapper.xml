@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.gw.shoping.mapper.GdPurchaseMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="org.gw.shoping.entity.GdPurchase">
+        <result column="replenishId" property="replenishId" />
+        <result column="shopId" property="shopId" />
+        <result column="shopNumber" property="shopNumber" />
+        <result column="Purchase" property="Purchase" />
+        <result column="GiveNumber" property="GiveNumber" />
+        <result column="purchasingPrice" property="purchasingPrice" />
+        <result column="subtotal" property="subtotal" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        replenishId, shopId, shopNumber, Purchase, GiveNumber, purchasingPrice, subtotal
+    </sql>
+    <insert id="savePurchase" parameterType="list">
+        insert into gd_Purchase(replenishId,shopId,shopNumber,purchase,giveNumber,purchasingPrice,subtotal)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.replenishId},#{item.shopId},#{item.shopNumber},#{item.purchase},#{item.giveNumber},#{item.purchasingPrice},#{item.subtotal})
+        </foreach>
+
+    </insert>
+
+</mapper>
