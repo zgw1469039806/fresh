@@ -17,7 +17,7 @@ import org.fresh.gd.commons.consts.pojo.dto.management.GdStoreDTO;
 @Data
 public class UserDTO {
     /**
-     * 用户姓名
+            * 用户姓名
      */
     @ApiModelProperty("用户姓名")
     private String username;

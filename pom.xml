@@ -10,12 +10,12 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>basic</module>
-        <module>smodule</module>
-        <module>smodule</module>
         <module>commons</module>
         <module>eureka</module>
         <module>unification</module>
         <module>zuul</module>
+        <module>smodule</module>
+
     </modules>
 <dependencies>
     <dependency>

@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.fresh.gd.commons.consts.pojo.dto.shoping.GdCommodityDTO;
+import org.fresh.gd.commons.consts.pojo.dto.shoping.GdCommodityListDTO;
 import org.gw.shoping.entity.GdCommodity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
@@ -41,5 +42,12 @@ public interface GdCommodityMapper extends BaseMapper<GdCommodity> {
      * @author zgw
      */
 
-     List<GdCommodityDTO> selShopAllAdmin(Page<GdCommodityDTO> page, @Param("comdityname") String comdityname,@Param("storeid") Integer storeid,@Param("comditytypeId") Integer comditytypeId);
+    List<GdCommodityDTO> selShopAllAdmin(Page<GdCommodityDTO> page, @Param("comdityname") String comdityname, @Param
+            ("storeid") Integer storeid,@Param("")Integer comditytypeId);
+
+
+    List<GdCommodityListDTO> selheadlineAll();
+
+    GdCommodityListDTO selOne(@Param("comdityId") Integer comdityId);
+
 }

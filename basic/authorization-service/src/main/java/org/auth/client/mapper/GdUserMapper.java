@@ -25,5 +25,16 @@ public interface GdUserMapper extends BaseMapper<GdUser> {
     @Select("select * from gd_user where useraccount=#{useraccount}")
     GdUser selUserAcc(@Param("useraccount") String useraccount);
 
+    @Select("select * from gd_user where useraccount=#{useraccount}")
+    UserDTO sellwxUserAcc(@Param("useraccount") String useraccount);
+
     List<UserDTO> selYgByMd(@Param("username") String username);
+
+
+
+    @Insert("INSERT INTO gd_user(username,useraccount,password) VALUES(#{username},#{useraccount},#{password})")
+    Integer wxsaveUser(GdUser gdUser);
+
+
+    Integer wxupdateUser(GdUser gdUser);
 }
