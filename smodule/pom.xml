@@ -17,6 +17,7 @@
         <module>management-service</module>
         <module>order-service</module>
         <module>message-center</module>
+        <module>wx-service</module>
 
     </modules>
 

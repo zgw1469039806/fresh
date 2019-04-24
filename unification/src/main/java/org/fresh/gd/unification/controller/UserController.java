@@ -32,6 +32,7 @@ public class UserController {
 
     @RequestMapping("/userinfo")
     public ResponseData<Object> userinfo(Authentication authentication) {
+        System.out.println(authentication);
         AuthSysUserDTO authSysUserDTO = AuthPrincipalUtils.parseUserinfo(authentication);
         ResponseData<Object> responseData = new ResponseData<>();
         responseData.setData(authSysUserDTO);

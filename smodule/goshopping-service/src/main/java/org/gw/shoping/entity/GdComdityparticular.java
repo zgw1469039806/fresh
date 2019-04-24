@@ -35,7 +35,7 @@ public class GdComdityparticular implements Serializable {
     /**
      * 库存数量
      */
-    private String stock;
+    private Integer stock;
 
     /**
      * 对应积分

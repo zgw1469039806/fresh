@@ -35,5 +35,13 @@
          </where>
 
     </select>
+    
+    <select id="selheadlineAll" resultType="org.fresh.gd.commons.consts.pojo.dto.shoping.GdCommodityListDTO">
+        select * from gd_commodity c,gd_images i where c.comdityId=i.comdityId LIMIT 4
 
+    </select>
+
+    <select id="selOne" resultType="org.fresh.gd.commons.consts.pojo.dto.shoping.GdCommodityListDTO">
+        select * from gd_commodity c,gd_images i where c.comdityId=i.comdityId and c.comdityId=#{comdityId}
+    </select>
 </mapper>

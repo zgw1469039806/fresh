@@ -2,6 +2,8 @@ package org.gd.order.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
+
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -24,6 +26,7 @@ public class GdOrder implements Serializable {
     /**
      * 订单ID
      */
+    @TableId
     private Integer orderid;
 
     /**
@@ -63,5 +66,14 @@ public class GdOrder implements Serializable {
      */
     private Integer storeid;
 
+    /**
+     * 订单状态
+     */
+    private Integer orderStat;
+
+    /**
+     *  门店名称
+     */
+    private String belongStoreNam;
 
 }

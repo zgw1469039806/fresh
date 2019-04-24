@@ -21,7 +21,6 @@ import java.util.List;
 @Mapper
 public interface GdComditytypeMapper extends BaseMapper<GdComditytype> {
 
-
     @Select("select * from gd_comditytype")
     List<GdComditytypeDTO> selTypeAll();
 

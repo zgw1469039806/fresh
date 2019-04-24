@@ -1,9 +1,13 @@
 package org.fresh.gd.commons.consts.pojo.dto.order;
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import org.fresh.gd.commons.consts.pojo.dto.shoping.GdComdityparticularDTO;
+
+import java.util.List;
 
 /**
  * @DATA 2019-04-22 09:07
@@ -12,8 +16,7 @@ import lombok.Data;
  */
 @ApiModel("订单数据模型")
 @Data
-public class GdOrderDTO
-{
+public class GdOrderDTO {
     /**
      * 订单ID
      */
@@ -61,4 +64,19 @@ public class GdOrderDTO
      */
     @ApiModelProperty("收款方(店铺ID)")
     private Integer storeid;
+
+    /**
+     * 订单状态
+     */
+    @ApiModelProperty("订单状态")
+    private Integer orderStat;
+
+    /**
+     * 门店名称
+     */
+    @ApiModelProperty("门店名称")
+    private String belongStoreNam;
+
+    @ApiModelProperty("订单商品详细")
+    private List<GdComdityparticularDTO> comdityparticularDTOS;
 }
