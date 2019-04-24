@@ -21,7 +21,7 @@ public class GdComdityparticularDTO {
     private Integer isnodiscount;
 
     @ApiModelProperty("库存数量")
-    private String stock;
+    private Integer stock;
 
     @ApiModelProperty("对应积分")
     private String corresponding;

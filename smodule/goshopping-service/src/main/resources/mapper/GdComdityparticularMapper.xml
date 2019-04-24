@@ -16,4 +16,14 @@
         comdityId, isnodiscount, stock, corresponding, ssdp
     </sql>
 
+    <select id="QueryStock" resultType="org.gw.shoping.entity.GdComdityparticular" parameterType="list">
+        select * from goshopping.gd_comdityparticular where comdityId in
+        <foreach collection="list" open="(" item="item" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <update id="reduceStock" parameterType="String">
+        update goshopping.gd_comdityparticular set stock=stock-#{stock} where comdityId=#{cid} for update;
+    </update>
 </mapper>
