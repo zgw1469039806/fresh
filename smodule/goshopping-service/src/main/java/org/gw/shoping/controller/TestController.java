@@ -63,6 +63,7 @@ public class TestController {
         userVo.setUsername("张牟牟");
         userVo.setGoodsId(1);
         mqSender.Enoughtobuy(userVo);
+        System.out.println("12331");
         return "排队中";
     }
 }
