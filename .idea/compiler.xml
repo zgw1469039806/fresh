@@ -7,16 +7,24 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="api-gateway" />
+        <module name="authorization-center" />
+        <module name="authorization-service" />
         <module name="authorizationcenter" />
         <module name="authorizationservice" />
         <module name="commons" />
         <module name="eureka" />
+        <module name="goshopping-service" />
         <module name="goshoppingservice" />
+        <module name="management-service" />
         <module name="managementservice" />
+        <module name="message-center" />
         <module name="messagecenter" />
+        <module name="order-service" />
         <module name="orderservice" />
         <module name="unification" />
+        <module name="vip-service" />
         <module name="vipservice" />
+        <module name="zuul" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

@@ -28,7 +28,6 @@ import java.util.Arrays;
 @EnableFeignClients
 @EnableDiscoveryClient
 @SpringBootApplication
-
 @EnableAuthorizationServer
 public class AuthApplication {
 
@@ -37,4 +36,8 @@ public class AuthApplication {
     public static void main(String[] args) {
         SpringApplication.run(AuthApplication.class, args);
     }
+
+
+
+
 }

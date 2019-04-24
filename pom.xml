@@ -16,8 +16,6 @@
         <module>eureka</module>
         <module>unification</module>
         <module>zuul</module>
-        <module>admin-center</module>
-        <module>admin-center</module>
     </modules>
 <dependencies>
     <dependency>
