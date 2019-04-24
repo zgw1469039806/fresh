@@ -14,6 +14,7 @@
         <option value="$PROJECT_DIR$/monitoring-center/pom.xml" />
         <option value="$PROJECT_DIR$/service-module/pom.xml" />
         <option value="$PROJECT_DIR$/smodule/monitoring-center/pom.xml" />
+        <option value="$PROJECT_DIR$/smodule/wx-service/pom.xml" />
       </set>
     </option>
   </component>
