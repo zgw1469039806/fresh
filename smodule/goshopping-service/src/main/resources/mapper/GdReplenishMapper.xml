@@ -14,5 +14,24 @@
     <sql id="Base_Column_List">
         replenishId, replenishTime, userId, storeid
     </sql>
+<select id="selGdShopAllByBh" parameterType="org.fresh.gd.commons.consts.pojo.dto.shoping.ReplenishInDTO" resultType="org.fresh.gd.commons.consts.pojo.dto.shoping.GdShopAllDTO">
+    select g.receiptNo ,g.username,g.replenishTime,g.isnostorage,s.supplierBM,s.supplierName,c.comdityname,
+    p.shopNumber,p.purchase,p.giveNumber,p.purchasingPrice,p.subtotal
+    from gd_replenish g
+    inner join gd_Purchase p on  g.replenishId=p.replenishId
+    inner join gd_commodity c on p.shopId=c.comdityId
+    inner join gd_comdityparticular r on c.comdityId=r.comdityId and g.storeid=r.storeid
+    inner join gd_supplier s on s.supplierId=g.supplierID
+    <if test="startTime !=null and startTime !=''">
+        and g.replenishTime &gt;= #{startTime}
+    </if>
+    <if test="endTime !=null and endTime !=''">
+        and  g.replenishTime &lt;= #{endTime}
+    </if>
+    <if test="receiptNo != null and receiptNo != 0">
+        and g.receiptNo=#{receiptNo};
+    </if>
 
+
+</select>
 </mapper>

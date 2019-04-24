@@ -1,6 +1,7 @@
 package org.gw.shoping.impl;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.codingapi.tx.annotation.TxTransaction;
 import org.fresh.gd.commons.consts.api.shoping.GdCommodityService;
 import org.fresh.gd.commons.consts.pojo.RequestData;
 import org.fresh.gd.commons.consts.pojo.ResponseData;
@@ -9,6 +10,7 @@ import org.fresh.gd.commons.consts.pojo.dto.shoping.GdCommodityDTO;
 import org.gw.shoping.fegin.ManageFeginService;
 import org.gw.shoping.mapper.GdCommodityMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 

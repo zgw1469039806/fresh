@@ -6,9 +6,7 @@ import org.fresh.gd.commons.consts.consts.Consts;
 import org.fresh.gd.commons.consts.exceptions.BizException;
 import org.fresh.gd.commons.consts.pojo.RequestData;
 import org.fresh.gd.commons.consts.pojo.ResponseData;
-import org.fresh.gd.commons.consts.pojo.dto.shoping.GdPurchaseDTO;
-import org.fresh.gd.commons.consts.pojo.dto.shoping.GdReplenishAndPurchaseDTO;
-import org.fresh.gd.commons.consts.pojo.dto.shoping.GdReplenishDTO;
+import org.fresh.gd.commons.consts.pojo.dto.shoping.*;
 import org.fresh.gd.commons.consts.utils.VeDate;
 import org.gw.shoping.mapper.GdReplenishMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,5 +81,23 @@ public class GdReplenishServiceImpl implements GdReplenishService {
         List<GdReplenishAndPurchaseDTO> gdReplenishAndPurchaseDTOS = gdReplenishMapper.selReAndPuAll();
         responseData.setData(gdReplenishAndPurchaseDTOS);
         return responseData;
+    }
+
+    /**
+     * 功能描述
+     * 查询入库前综合信息
+     *
+     * @param replenishInDTORequestData
+     * @return org.fresh.gd.commons.consts.pojo.ResponseData<java.util.List < org.fresh.gd.commons.consts.pojo.dto.shoping.GdShopAllDTO>>
+     * @author zgw
+     */
+    @Override
+    public ResponseData<List<GdShopAllDTO>> selGdShopAll(@RequestBody RequestData<ReplenishInDTO> replenishInDTORequestData)
+    {
+     ResponseData<List<GdShopAllDTO>> responseData=new ResponseData<>();
+     ReplenishInDTO replenishInDTO=replenishInDTORequestData.getData();
+     List<GdShopAllDTO> gdShopAllDTOS = gdReplenishMapper.selGdShopAllByBh(replenishInDTO);
+     responseData.setData(gdShopAllDTOS);
+     return responseData;
     }
 }

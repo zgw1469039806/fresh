@@ -4,8 +4,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
-import org.fresh.gd.commons.consts.pojo.dto.shoping.GdReplenishAndPurchaseDTO;
-import org.fresh.gd.commons.consts.pojo.dto.shoping.GdReplenishDTO;
+import org.fresh.gd.commons.consts.pojo.dto.shoping.*;
 import org.gw.shoping.entity.GdReplenish;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
@@ -28,5 +27,8 @@ public interface GdReplenishMapper extends BaseMapper<GdReplenish> {
 
     @Select("select * from gd_replenish g,gd_Purchase p where g.replenishId=p.replenishId")
     List<GdReplenishAndPurchaseDTO> selReAndPuAll();
+
+
+    List<GdShopAllDTO> selGdShopAllByBh(ReplenishInDTO replenishInDTO);
 
 }
