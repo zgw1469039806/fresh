@@ -14,7 +14,6 @@
     <modules>
         <module>authorization-center</module>
         <module>authorization-service</module>
-        <module>admin-center</module>
     </modules>
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test -->

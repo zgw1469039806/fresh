@@ -1,6 +1,8 @@
 package org.gd.vip.entity;
 
 import java.io.Serializable;
+
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -23,17 +25,18 @@ public class GdViplv implements Serializable {
     /**
      * 会员等级
      */
+    @TableId("viplv")
     private Integer viplv;
 
     /**
      * 会员折扣;1为9折，2为8
      */
-    private String vipdiscount;
+    private Integer vipdiscount;
 
     /**
      * 所需积分
      */
-    private String vipintegration;
+    private Integer vipintegration;
 
 
 }

@@ -26,4 +26,18 @@
         </if>
 
     </select>
+
+     <!--用户修改-->
+    <update id="wxupdateUser" parameterType="Integer">
+        UPDATE  gd_user
+        <set >
+            <if test="username != null and username !=''">username=#{username}</if>
+            <if test="password != null and password !=''">password=#{password}</if>
+            <if test="isnoYg != null and isnoYg !=''">isnoYg=#{isnoYg}</if>
+            <if test="takedelivery != null and takedelivery !=''">takedelivery=#{takedelivery}</if>
+            <if test="phone != null and phone !=''">phone=#{phone}</if>
+            <if test="isnoVip != null and isnoVip !=''">isnoVip=#{isnoVip}</if>
+        </set>
+         WHERE useraccount=#{useraccount}
+    </update>
 </mapper>
