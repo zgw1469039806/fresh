@@ -23,7 +23,7 @@
         </foreach>
     </select>
 
-    <update id="reduceStock" parameterType="String">
-        update goshopping.gd_comdityparticular set stock=stock-#{stock} where comdityId=#{cid} for update;
+    <update id="reduceStock" parameterType="Integer">
+        update goshopping.gd_comdityparticular set stock=stock-#{stock} where comdityId=#{cid};
     </update>
 </mapper>

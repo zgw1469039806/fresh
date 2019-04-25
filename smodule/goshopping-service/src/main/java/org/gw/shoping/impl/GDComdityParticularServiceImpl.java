@@ -8,6 +8,7 @@ import org.fresh.gd.commons.consts.pojo.dto.shoping.GdComdityparticularDTO;
 import org.gw.shoping.entity.GdComdityparticular;
 import org.gw.shoping.mapper.GdComdityparticularMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
@@ -67,15 +68,16 @@ public class GDComdityParticularServiceImpl implements GDComdityParticularServic
      * @auther: 郭家恒
      * @date: 2019/4/24 17:24
      */
+    @Transactional
     @Override
     public ResponseData<Integer> reduceStock(@RequestBody RequestData<List<GdComdityparticularDTO>> requestData) {
         ResponseData<Integer> responseData = new ResponseData<>();
         List<Integer> comdityIds = new ArrayList<>();
         List<GdComdityparticular> errorlist = new ArrayList<>();
         for (GdComdityparticularDTO dto: requestData.getData()){
-            gdComdityparticularMapper.reduceStock(requestData.getData().get(0).getComdityId(),dto.getStock());
+            gdComdityparticularMapper.reduceStock(dto.getComdityId(),dto.getStock());
         }
-        responseData.setMsg("插入成功");
+        responseData.setMsg("修改成功");
         return responseData;
     }
 }

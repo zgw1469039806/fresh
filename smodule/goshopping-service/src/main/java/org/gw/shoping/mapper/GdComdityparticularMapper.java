@@ -1,7 +1,7 @@
 package org.gw.shoping.mapper;
 
-import feign.Param;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.gw.shoping.entity.GdComdityparticular;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 

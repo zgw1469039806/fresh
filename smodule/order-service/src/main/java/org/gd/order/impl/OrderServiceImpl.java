@@ -10,6 +10,7 @@ import org.gd.order.fegin.OrderFeginToShopping;
 import org.gd.order.mapper.GdOrderMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,6 +29,7 @@ public class OrderServiceImpl implements GDOrderService {
 
     @Autowired
     private OrderFeginToShopping orderFeginToShopping;
+
     /**
      * 功能描述:
      *
@@ -37,22 +39,20 @@ public class OrderServiceImpl implements GDOrderService {
      * @auther: 郭家恒
      * @date: 2019/4/24 13:53
      */
+    @Transactional
     @Override
     public ResponseData<List> insertOrder(@RequestBody RequestData<GdOrderDTO> gdOrderDTORequestData) {
         RequestData<List<GdComdityparticularDTO>> requestData = new RequestData<>();
         requestData.setData(gdOrderDTORequestData.getData().getComdityparticularDTOS());
         ResponseData<List> responseData = orderFeginToShopping.editStock(requestData);
-        if (responseData.getMsg().equals("库存不足")){
+        if (responseData.getMsg().equals("库存不足")) {
             return responseData;
-        }else{
+        } else {
             GdOrder gdOrder = new GdOrder();
-            BeanUtils.copyProperties(gdOrderDTORequestData.getData(),gdOrder);
+            BeanUtils.copyProperties(gdOrderDTORequestData.getData(), gdOrder);
             int save = gdOrderMapper.insertOrder(gdOrder);
-            if (save>0){
-                System.out.println("自增id为："+gdOrder.getOrderid());
-                requestData.getData().get(0).setComdityId(gdOrder.getOrderid());
-               ResponseData responseData1 = orderFeginToShopping.reduceStock(requestData);
-            }
+            System.out.println("自增id为：" + gdOrder.getOrderid());
+            ResponseData responseData1 = orderFeginToShopping.reduceStock(requestData);
         }
         return responseData;
     }
