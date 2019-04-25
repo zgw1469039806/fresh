@@ -5,12 +5,15 @@ import lombok.extern.slf4j.Slf4j;
 import org.fresh.gd.commons.consts.pojo.RequestData;
 import org.fresh.gd.commons.consts.pojo.ResponseData;
 import org.fresh.gd.commons.consts.pojo.dto.order.GdOrderDTO;
+import org.fresh.gd.commons.consts.utils.CloudMdSms;
 import org.fresh.gd.unification.fegin.order.OrderFeginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * @DATA 2019/4/24 14:58
@@ -26,8 +29,8 @@ public class OrderController {
     OrderFeginService orderFeginService;
 
     @PostMapping("/insertOrder")
-    public ResponseData<Object> insertOrder(@RequestBody RequestData<GdOrderDTO> requestData) {
-        orderFeginService.insertOrder(requestData);
-        return null;
+    public ResponseData<List> insertOrder(@RequestBody RequestData<GdOrderDTO> requestData) {
+        ResponseData<List> responseData = orderFeginService.insertOrder(requestData);
+        return responseData;
     }
 }

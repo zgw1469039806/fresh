@@ -2,48 +2,50 @@ package org.fresh.gd.commons.consts.consts;
 
 
 import com.alibaba.fastjson.JSON;
-
 import java.util.Random;
+
 
 public class Consts {
 
 
-
     /**
      * 将任意类型转换成字符串
+     *
      * @param value
      * @param <T>
      * @return
      */
     public static <T> String beanToString(T value) {
         Class<?> clazz = value.getClass();
-        if(clazz == int.class || clazz == Integer.class) {
+        if (clazz == int.class || clazz == Integer.class) {
             return value + "";
-        }else if(clazz == String.class) {
-            return (String)value;
-        }else if(clazz == long.class || clazz == Long.class) {
+        } else if (clazz == String.class) {
+            return (String) value;
+        } else if (clazz == long.class || clazz == Long.class) {
             return value + "";
-        }else {
+        } else {
             return JSON.toJSONString(value);
         }
     }
+
     /**
      * 把一个字符串转换成bean对象
+     *
      * @param str
      * @param <T>
      * @return
      */
     public static <T> T stringToBean(String str, Class<T> clazz) {
-        if(str == null || str.length() <= 0 || clazz == null) {
+        if (str == null || str.length() <= 0 || clazz == null) {
             return null;
         }
-        if(clazz == int.class || clazz == Integer.class) {
-            return (T)Integer.valueOf(str);
-        }else if(clazz == String.class) {
-            return (T)str;
-        }else if(clazz == long.class || clazz == Long.class) {
-            return  (T)Long.valueOf(str);
-        }else {
+        if (clazz == int.class || clazz == Integer.class) {
+            return (T) Integer.valueOf(str);
+        } else if (clazz == String.class) {
+            return (T) str;
+        } else if (clazz == long.class || clazz == Long.class) {
+            return (T) Long.valueOf(str);
+        } else {
             return JSON.toJavaObject(JSON.parseObject(str), clazz);
         }
     }
@@ -55,22 +57,20 @@ public class Consts {
         Random random = new Random();
 
         //参数length，表示生成几位随机数
-        for(int i = 0; i < length; i++) {
+        for (int i = 0; i < length; i++) {
 
             String charOrNum = random.nextInt(2) % 2 == 0 ? "char" : "num";
             //输出字母还是数字
-            if( "char".equalsIgnoreCase(charOrNum) ) {
+            if ("char".equalsIgnoreCase(charOrNum)) {
                 //输出是大写字母还是小写字母
                 int temp = random.nextInt(2) % 2 == 0 ? 65 : 97;
-                val += (char)(random.nextInt(26) + temp);
-            } else if( "num".equalsIgnoreCase(charOrNum) ) {
+                val += (char) (random.nextInt(26) + temp);
+            } else if ("num".equalsIgnoreCase(charOrNum)) {
                 val += String.valueOf(random.nextInt(10));
             }
         }
         return val;
     }
-
-
 
     /**
      * 基于毫秒的换算单位
@@ -116,7 +116,7 @@ public class Consts {
         private String code;
         private String name;
 
-        public String   getCode() {
+        public String getCode() {
             return code;
         }
 
@@ -237,7 +237,8 @@ public class Consts {
 
     /**
      * 功能描述
-     *    前缀 表名：属性：ID
+     * 前缀 表名：属性：ID
+     *
      * @param
      * @author zgw
      * @return
@@ -426,7 +427,6 @@ public class Consts {
         ERROR_PARAM(100, "请求参数错误");
 
 
-
         private int code;
         private String msg;
 
@@ -442,6 +442,67 @@ public class Consts {
             this.code = code;
             this.msg = msg;
         }
+
+    }
+
+    /**
+     * 功能描述:
+     * 短信接口所需常量
+     *
+     * @param:
+     * @return:
+     * @auther: 郭家恒
+     * @date: 2019/4/25 16:59
+     */
+    public static class QCloudSms {
+        /**
+         * APPID
+         * 短信应用 SDK AppID
+         */
+        public final static int APPID = 1400203906;
+
+        /**
+         * APPKEY
+         * 短信应用 SDK AppKey
+         */
+        public static final String APPKEY = "9bc697c8f003b6eae2ab76270533b3a6";
+        /**
+         * TEMPLATEID
+         * 短信模板 ID，需要在短信应用中申请
+         */
+        public static final int TEMPLATEID = 0;
+
+        /**
+         * 签名
+         */
+        public static final String SMSSIGN = "格调生鲜";
+
+    }
+
+    /**
+     * 功能描述:
+     * 秒地短信接口所需常量
+     *
+     * @param:
+     * @return:
+     * @auther: 郭家恒
+     * @date: 2019/4/25 18:10
+     */
+    public static class MdSms {
+        /**
+         * 开发者ID
+         */
+        public static final String ACCOUNT_SID = "b27718c8f2da489f9bf90f30ce78338a";//SID
+        /**
+         * 密匙
+         */
+        public static final String TOKEN = "643417d1f64f4d36862d59d6b02ff3d9"; //pwd
+        /**
+         * 请求地址
+         */
+        public static final String path = "https://api.miaodiyun.com/20150822/industrySMS/sendSMS";
+
+
 
     }
 

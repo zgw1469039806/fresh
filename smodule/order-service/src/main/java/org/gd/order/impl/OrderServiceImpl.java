@@ -1,6 +1,7 @@
 package org.gd.order.impl;
 
 import org.fresh.gd.commons.consts.api.order.GDOrderService;
+import org.fresh.gd.commons.consts.consts.Consts;
 import org.fresh.gd.commons.consts.pojo.RequestData;
 import org.fresh.gd.commons.consts.pojo.ResponseData;
 import org.fresh.gd.commons.consts.pojo.dto.order.GdOrderDTO;
@@ -8,6 +9,7 @@ import org.fresh.gd.commons.consts.pojo.dto.shoping.GdComdityparticularDTO;
 import org.gd.order.entity.GdOrder;
 import org.gd.order.fegin.OrderFeginToShopping;
 import org.gd.order.mapper.GdOrderMapper;
+import org.gd.order.mapper.GdOrdershopMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,10 +30,14 @@ public class OrderServiceImpl implements GDOrderService {
     private GdOrderMapper gdOrderMapper;
 
     @Autowired
+    private GdOrdershopMapper gdOrdershopMapper;
+
+    @Autowired
     private OrderFeginToShopping orderFeginToShopping;
 
     /**
      * 功能描述:
+     * 下订单。订单插入后减库存。
      *
      * @param gdOrderDTORequestData
      * @param: [gdOrderDTO]
@@ -51,8 +57,15 @@ public class OrderServiceImpl implements GDOrderService {
             GdOrder gdOrder = new GdOrder();
             BeanUtils.copyProperties(gdOrderDTORequestData.getData(), gdOrder);
             int save = gdOrderMapper.insertOrder(gdOrder);
-            System.out.println("自增id为：" + gdOrder.getOrderid());
-            ResponseData responseData1 = orderFeginToShopping.reduceStock(requestData);
+            if (save > 0) {
+                ResponseData responseData1 = orderFeginToShopping.reduceStock(requestData);
+                if (responseData1.getCode() == 1000) {
+                    for (GdComdityparticularDTO dto : gdOrderDTORequestData.getData().getComdityparticularDTOS()) {
+                        gdOrdershopMapper.insertOrderShop(gdOrder.getOrderid(), dto.getComdityId(), dto.getStock());
+                    }
+                }
+            }
+            responseData.setCode(Consts.Result.SUCCESS.getCode());
         }
         return responseData;
     }

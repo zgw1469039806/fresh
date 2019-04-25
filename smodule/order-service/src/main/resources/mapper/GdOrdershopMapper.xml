@@ -4,14 +4,16 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="org.gd.order.entity.GdOrdershop">
-        <id column="orderid" property="orderid" />
-        <result column="comdityId" property="comdityId" />
-        <result column="num" property="num" />
+        <id column="orderid" property="orderid"/>
+        <result column="comdityId" property="comdityId"/>
+        <result column="num" property="num"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
         orderid, comdityId, num
     </sql>
-
+    <insert id="insertOrderShop" parameterType="Integer">
+        insert into gd_ordershop(orderid, comdityId, num) value(#{oid},#{cid},#{num})
+    </insert>
 </mapper>

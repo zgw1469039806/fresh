@@ -26,6 +26,6 @@ public interface GDOrderService {
     * @date: 2019/4/24 13:53
     */
     @PostMapping("/insertOrder")
-    public ResponseData<List> insertOrder(RequestData<GdOrderDTO> gdOrderDTORequestData);
+    ResponseData<List> insertOrder(RequestData<GdOrderDTO> gdOrderDTORequestData);
 
 }

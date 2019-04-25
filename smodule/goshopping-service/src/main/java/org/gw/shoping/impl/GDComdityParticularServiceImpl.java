@@ -77,7 +77,7 @@ public class GDComdityParticularServiceImpl implements GDComdityParticularServic
         for (GdComdityparticularDTO dto: requestData.getData()){
             gdComdityparticularMapper.reduceStock(dto.getComdityId(),dto.getStock());
         }
-        responseData.setMsg("修改成功");
+        responseData.setCode(1000);
         return responseData;
     }
 }
