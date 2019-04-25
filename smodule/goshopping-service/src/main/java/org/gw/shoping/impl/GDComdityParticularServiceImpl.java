@@ -1,5 +1,8 @@
 package org.gw.shoping.impl;
 
+
+import com.codingapi.txlcn.tc.annotation.LcnTransaction;
+import com.codingapi.txlcn.tc.annotation.TxTransaction;
 import org.fresh.gd.commons.consts.api.shoping.GDComdityParticularService;
 import org.fresh.gd.commons.consts.exceptions.BizException;
 import org.fresh.gd.commons.consts.pojo.RequestData;
@@ -68,6 +71,7 @@ public class GDComdityParticularServiceImpl implements GDComdityParticularServic
      * @auther: 郭家恒
      * @date: 2019/4/24 17:24
      */
+    @TxTransaction
     @Transactional
     @Override
     public ResponseData<Integer> reduceStock(@RequestBody RequestData<List<GdComdityparticularDTO>> requestData) {

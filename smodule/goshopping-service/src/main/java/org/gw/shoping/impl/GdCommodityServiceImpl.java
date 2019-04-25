@@ -1,7 +1,7 @@
 package org.gw.shoping.impl;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.codingapi.tx.annotation.TxTransaction;
+
 import org.fresh.gd.commons.consts.api.shoping.GdCommodityService;
 import org.fresh.gd.commons.consts.pojo.RequestData;
 import org.fresh.gd.commons.consts.pojo.ResponseData;

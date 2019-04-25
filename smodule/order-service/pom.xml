@@ -11,12 +11,35 @@
 
     <artifactId>order-service</artifactId>
     <dependencies>
+
+
+
+        <!-- 加入分布式事务基础依赖 -->
+        <dependency>
+            <groupId>com.codingapi.txlcn</groupId>
+            <artifactId>txlcn-tc</artifactId>
+            <version>5.0.1.RELEASE</version>
+        </dependency>
+
+        <!-- 加入分布式事务基础依赖 -->
+        <dependency>
+            <groupId>com.codingapi.txlcn</groupId>
+            <artifactId>txlcn-txmsg-netty</artifactId>
+            <version>5.0.1.RELEASE</version>
+        </dependency>
         <dependency>
             <groupId>org.gw.fr</groupId>
             <artifactId>commons</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>org.gw.fr</groupId>
+            <artifactId>commons</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+
     </dependencies>
 
 

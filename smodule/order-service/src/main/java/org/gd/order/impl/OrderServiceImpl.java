@@ -1,5 +1,8 @@
 package org.gd.order.impl;
 
+
+import com.codingapi.txlcn.tc.annotation.LcnTransaction;
+import com.codingapi.txlcn.tc.annotation.TxTransaction;
 import org.fresh.gd.commons.consts.api.order.GDOrderService;
 import org.fresh.gd.commons.consts.consts.Consts;
 import org.fresh.gd.commons.consts.pojo.RequestData;
@@ -45,6 +48,7 @@ public class OrderServiceImpl implements GDOrderService {
      * @auther: 郭家恒
      * @date: 2019/4/24 13:53
      */
+    @TxTransaction
     @Transactional
     @Override
     public ResponseData<List> insertOrder(@RequestBody RequestData<GdOrderDTO> gdOrderDTORequestData) {
@@ -67,6 +71,14 @@ public class OrderServiceImpl implements GDOrderService {
             }
             responseData.setCode(Consts.Result.SUCCESS.getCode());
         }
+        }
+        GdOrder gdOrder = new GdOrder();
+        BeanUtils.copyProperties(gdOrderDTORequestData.getData(), gdOrder);
+        int save = gdOrderMapper.insertOrder(gdOrder);
+        System.out.println("自增id为：" + gdOrder.getOrderid());
+        ResponseData responseData1 = orderFeginToShopping.reduceStock(requestData);
+        int i = 1 / 0;
+
         return responseData;
     }
 }
