@@ -27,7 +27,7 @@ public class GdAddVipLvDTO {
      */
     @NotEmpty
     @ApiModelProperty("会员折扣")
-    private Integer vipdiscount;
+    private Double vipdiscount;
 
     /**
      * 所需积分

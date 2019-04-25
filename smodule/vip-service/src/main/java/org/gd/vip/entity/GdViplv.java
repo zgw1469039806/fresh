@@ -31,7 +31,7 @@ public class GdViplv implements Serializable {
     /**
      * 会员折扣;1为9折，2为8
      */
-    private Integer vipdiscount;
+    private Double vipdiscount;
 
     /**
      * 所需积分
