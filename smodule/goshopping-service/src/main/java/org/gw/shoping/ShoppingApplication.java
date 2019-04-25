@@ -3,6 +3,7 @@ package org.gw.shoping;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
+import com.codingapi.txlcn.tc.config.EnableDistributedTransaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 
@@ -26,31 +27,13 @@ import javax.sql.DataSource;
  * @Author 张国伟  WeChat:17630376104
  * @Description 启动类
  */
+@EnableDistributedTransaction
 @EnableFeignClients
 @MapperScan("org.gw.shoping.mapper")
 @EnableDiscoveryClient
 @SpringBootApplication
 public class ShoppingApplication extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private Environment env;
-
-    @Bean
-    public DataSource dataSource() {
-        DruidDataSource dataSource = new DruidDataSource();
-        dataSource.setUrl(env.getProperty("spring.datasource.url"));
-        dataSource.setUsername(env.getProperty("spring.datasource.username"));//用户名
-        dataSource.setPassword(env.getProperty("spring.datasource.password"));//密码
-        dataSource.setInitialSize(10);
-        dataSource.setMaxActive(50);
-        dataSource.setMinIdle(0);
-        dataSource.setMaxWait(60000);
-        dataSource.setValidationQuery("SELECT 1");
-        dataSource.setTestOnBorrow(false);
-        dataSource.setTestWhileIdle(true);
-        dataSource.setPoolPreparedStatements(false);
-        return dataSource;
-    }
 
     /**
      * 功能描述

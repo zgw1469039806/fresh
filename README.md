@@ -56,3 +56,5 @@ utils MybatisPlusCodeGenerator 反向工程生成目录结构
 网关后期进行统一认证 目前暂不做处理
 7.请求参一律为 RequestData<T>
   返回参数一律为 ResponseData<T>
+8.txlcn-tm 分布式事务处理框架 LCN  服务端
+ 基于TCC  两阶段补偿机制处理分布式事务的最终一致性
