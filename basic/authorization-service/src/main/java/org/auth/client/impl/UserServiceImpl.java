@@ -1,5 +1,6 @@
 package org.auth.client.impl;
 
+import com.codingapi.tx.annotation.TxTransaction;
 import org.apache.commons.lang.StringUtils;
 import org.auth.client.entity.GdUser;
 import org.auth.client.fegin.ManageFeignService;
@@ -15,6 +16,7 @@ import org.fresh.gd.commons.consts.pojo.dto.oauth.UserDTO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -40,6 +42,8 @@ public class UserServiceImpl implements UserService {
     @Autowired
     ManageFeignService manageFeignService;
 
+    @TxTransaction(isStart = true)
+    @Transactional
     @Override
     public ResponseData<Integer> saveUser(@RequestBody RequestData<UserDTO> requestData) {
         ResponseData<Integer> responseData=new ResponseData<>();

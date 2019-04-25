@@ -45,7 +45,7 @@ public class GdComdityparticular implements Serializable {
     /**
      * 所属店铺ID
      */
-    private Integer ssdp;
+    private Integer storeid;
 
 
 }

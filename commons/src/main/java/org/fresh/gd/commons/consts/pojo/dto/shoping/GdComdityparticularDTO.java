@@ -27,6 +27,6 @@ public class GdComdityparticularDTO {
     private String corresponding;
 
     @ApiModelProperty("所属店铺ID")
-    private Integer ssdp;
+    private Integer storeid;
 
 }
