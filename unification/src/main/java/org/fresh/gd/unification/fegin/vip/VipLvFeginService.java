@@ -10,4 +10,5 @@ import org.springframework.cloud.netflix.feign.FeignClient;
  */
 @FeignClient("vip-service")
 public interface VipLvFeginService extends VipLvService {
+
 }
