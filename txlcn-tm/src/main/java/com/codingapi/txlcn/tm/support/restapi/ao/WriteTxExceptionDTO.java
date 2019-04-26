@@ -34,7 +34,6 @@ public class WriteTxExceptionDTO {
     private String modId;
     private Integer transactionState;
     private Short registrar;
-    private String remark;
 
     public WriteTxExceptionDTO(String groupId, String unitId, String modId, Integer transactionState) {
         this.groupId = groupId;

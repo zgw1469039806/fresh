@@ -47,7 +47,7 @@ public interface DTXContext {
     void resetTransactionState(int state) throws TransactionException;
 
     /**
-     * 获取该事务组事务单元列表。从FastStorage获取。
+     * 获取该事务组事务单元列表
      *
      * @return list
      * @throws TransactionException TransactionException

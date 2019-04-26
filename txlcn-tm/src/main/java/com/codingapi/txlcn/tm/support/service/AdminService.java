@@ -82,5 +82,4 @@ public interface AdminService {
      * @return AppMods
      */
     ListAppMods listAppMods(Integer page, Integer limit);
-
 }

@@ -44,11 +44,12 @@ public class CleanInvalidTMExecuteService implements RpcExecuteService {
 
     private final FastStorage fastStorage;
 
-    private static final TxLogger txLogger = TxLogger.newLogger(CleanInvalidTMExecuteService.class);
+    private final TxLogger txLogger;
 
     @Autowired
-    public CleanInvalidTMExecuteService(FastStorage fastStorage) {
+    public CleanInvalidTMExecuteService(FastStorage fastStorage, TxLogger txLogger) {
         this.fastStorage = fastStorage;
+        this.txLogger = txLogger;
     }
 
     @Override

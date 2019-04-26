@@ -53,7 +53,7 @@ public class ExceptionInfo {
     /**
      * 异常情况。-1 【未知】 0 【TxManager通知事务】， 1 【TxClient查询事务状态】 2 【事务发起方通知事务组】
      */
-    private short registrar;
+    private int registrar;
 
     /**
      * 异常状态 0 待处理 1已处理
@@ -64,11 +64,6 @@ public class ExceptionInfo {
      * 创建时间
      */
     private Date createTime;
-
-    /**
-     * 备注
-     */
-    private String remark;
 
     /**
      * 事务信息

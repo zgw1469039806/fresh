@@ -2,6 +2,7 @@ package org.gd.order.impl;
 
 
 import com.codingapi.txlcn.tc.annotation.LcnTransaction;
+import com.codingapi.txlcn.tc.annotation.TccTransaction;
 import com.codingapi.txlcn.tc.annotation.TxTransaction;
 import org.fresh.gd.commons.consts.api.order.GDOrderService;
 import org.fresh.gd.commons.consts.consts.Consts;
@@ -48,7 +49,7 @@ public class OrderServiceImpl implements GDOrderService {
      * @auther: 郭家恒
      * @date: 2019/4/24 13:53
      */
-    @TxTransaction
+    @LcnTransaction
     @Transactional
     @Override
     public ResponseData<List> insertOrder(@RequestBody RequestData<GdOrderDTO> gdOrderDTORequestData) {
@@ -61,24 +62,14 @@ public class OrderServiceImpl implements GDOrderService {
             GdOrder gdOrder = new GdOrder();
             BeanUtils.copyProperties(gdOrderDTORequestData.getData(), gdOrder);
             int save = gdOrderMapper.insertOrder(gdOrder);
-            if (save > 0) {
-                ResponseData responseData1 = orderFeginToShopping.reduceStock(requestData);
-                if (responseData1.getCode() == 1000) {
-                    for (GdComdityparticularDTO dto : gdOrderDTORequestData.getData().getComdityparticularDTOS()) {
-                        gdOrdershopMapper.insertOrderShop(gdOrder.getOrderid(), dto.getComdityId(), dto.getStock());
-                    }
+            ResponseData responseData1 = orderFeginToShopping.reduceStock(requestData);
+            if (responseData1.getCode() == 1000) {
+                for (GdComdityparticularDTO dto : gdOrderDTORequestData.getData().getComdityparticularDTOS()) {
+                    gdOrdershopMapper.insertOrderShop(gdOrder.getOrderid(), dto.getComdityId(), dto.getStock());
                 }
             }
             responseData.setCode(Consts.Result.SUCCESS.getCode());
         }
-        }
-        GdOrder gdOrder = new GdOrder();
-        BeanUtils.copyProperties(gdOrderDTORequestData.getData(), gdOrder);
-        int save = gdOrderMapper.insertOrder(gdOrder);
-        System.out.println("自增id为：" + gdOrder.getOrderid());
-        ResponseData responseData1 = orderFeginToShopping.reduceStock(requestData);
-        int i = 1 / 0;
-
         return responseData;
     }
 }

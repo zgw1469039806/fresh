@@ -1,9 +1,9 @@
 package com.codingapi.txlcn.tm.txmsg;
 
 import com.codingapi.txlcn.common.runner.TxLcnInitializer;
+import com.codingapi.txlcn.common.util.ApplicationInformation;
 import com.codingapi.txlcn.common.util.Transactions;
 import com.codingapi.txlcn.common.util.id.IdGenInit;
-import com.codingapi.txlcn.common.util.id.ModIdProvider;
 import com.codingapi.txlcn.logger.TxLogger;
 import com.codingapi.txlcn.tm.config.TxManagerConfig;
 import com.codingapi.txlcn.tm.support.service.ManagerService;
@@ -11,6 +11,8 @@ import com.codingapi.txlcn.txmsg.dto.RpcCmd;
 import com.codingapi.txlcn.txmsg.listener.HeartbeatListener;
 import com.codingapi.txlcn.txmsg.listener.RpcConnectionListener;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.web.ServerProperties;
+import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.stereotype.Component;
 
 /**
@@ -26,15 +28,20 @@ public class EnsureIdGenEngine implements RpcConnectionListener, HeartbeatListen
 
     private final ManagerService managerService;
 
-    private final TxLogger txLogger = TxLogger.newLogger(EnsureIdGenEngine.class);
+    private final TxLogger txLogger;
 
-    private final ModIdProvider modIdProvider;
+    private final ConfigurableEnvironment environment;
+
+    private final ServerProperties serverProperties;
 
     @Autowired
-    public EnsureIdGenEngine(ManagerService managerService, TxManagerConfig managerConfig, ModIdProvider modIdProvider) {
+    public EnsureIdGenEngine(ManagerService managerService, TxManagerConfig managerConfig, TxLogger txLogger,
+                             ConfigurableEnvironment environment, ServerProperties serverProperties) {
         this.managerService = managerService;
         this.managerConfig = managerConfig;
-        this.modIdProvider = modIdProvider;
+        this.txLogger = txLogger;
+        this.environment = environment;
+        this.serverProperties = serverProperties;
     }
 
     @Override
@@ -48,19 +55,18 @@ public class EnsureIdGenEngine implements RpcConnectionListener, HeartbeatListen
 
     @Override
     public void init() throws Exception {
-        managerConfig.applyMachineId(managerService.machineIdSync());
-        IdGenInit.applyDefaultIdGen(managerConfig.getSeqLen(), managerConfig.getMachineId());
+        IdGenInit.applyDefaultIdGen(managerConfig.getSeqLen(), managerService.machineIdSync());
 
-        Transactions.setApplicationIdWhenRunning(modIdProvider.modId());
+        Transactions.setApplicationIdWhenRunning(ApplicationInformation.modId(environment, serverProperties));
     }
 
     @Override
     public void onTmReceivedHeart(RpcCmd cmd) {
         try {
-            Long machineId = cmd.getMsg().loadBean(Long.class);
-            managerService.refreshMachines(machineId, managerConfig.getMachineId());
+            int machineId = cmd.getMsg().loadBean(Integer.class);
+            managerService.refreshMachineId(machineId);
         } catch (Exception e) {
-            e.printStackTrace();
+            txLogger.error("onTmReceivedHeart", e.getMessage());
         }
     }
 }

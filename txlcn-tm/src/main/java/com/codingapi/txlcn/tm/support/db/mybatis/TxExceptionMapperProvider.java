@@ -13,21 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.codingapi.txlcn.tm.support.restapi.vo;
+package com.codingapi.txlcn.tm.support.db.mybatis;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Description:
- * Date: 2018/12/29
+ * Date: 19-1-17 上午10:59
  *
  * @author ujued
  */
-@AllArgsConstructor
-@NoArgsConstructor
-@Data
-public class Token {
-    private String token;
+public class TxExceptionMapperProvider {
+
+    @SuppressWarnings("unchecked")
+    public String deleteByIdList(Map<String, Object> params) {
+        return "delete from t_tx_exception where id in (" +
+                ((List<Long>) params.get("list"))
+                        .stream()
+                        .map(Object::toString)
+                        .collect(Collectors.joining(", ")) +
+                ')';
+    }
 }
