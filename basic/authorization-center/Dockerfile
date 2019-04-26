@@ -1,6 +1,15 @@
 
-#来源那个镜像
-FROM nginx
-RUN echo '<h1>SpringCloud</h1>' /usr/share/nginx/index.html
-#作者
-MAINTAINER guowei.zhang
+# java 项目
+FROM java
+# 工作目录
+WORKDIR /app
+# 添加
+ADD target /app
+
+
+# 暴露端口
+EXPOSE 8111
+# 执行 jar
+ENTRYPOINT java -jar eureka-1.0-SNAPSHOT.jar
+
+

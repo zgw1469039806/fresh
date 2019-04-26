@@ -6,8 +6,10 @@ import org.fresh.gd.commons.consts.api.shoping.GdCommodityService;
 import org.fresh.gd.commons.consts.pojo.RequestData;
 import org.fresh.gd.commons.consts.pojo.ResponseData;
 import org.fresh.gd.commons.consts.pojo.dto.management.GdStoreDTO;
+import org.fresh.gd.commons.consts.pojo.dto.shoping.GdComditynameDTO;
 import org.fresh.gd.commons.consts.pojo.dto.shoping.GdCommodityDTO;
 import org.fresh.gd.commons.consts.pojo.dto.shoping.GdCommodityListDTO;
+import org.fresh.gd.commons.consts.pojo.dto.shoping.GdinventoryallDTO;
 import org.gw.shoping.fegin.ManageFeginService;
 import org.gw.shoping.mapper.GdCommodityMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.lang.reflect.Proxy;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -103,6 +106,45 @@ public class GdCommodityServiceImpl  implements GdCommodityService {
     public ResponseData<GdCommodityListDTO> selOne(Integer comdityId) {
         ResponseData<GdCommodityListDTO> responseData =new ResponseData<>();
         responseData.setData(gdCommodityMapper.selOne(comdityId));
+        return responseData;
+    }
+
+    /**
+     * 功能描述
+     * 货品详情信息
+     * @param requestData
+     * @return org.fresh.gd.commons.consts.pojo.ResponseData<org.fresh.gd.commons.consts.pojo.dto.shoping.GdinventoryallDTO>
+     * @author zgw
+     */
+    @Override
+    public ResponseData<List<GdinventoryallDTO>> nventoryall(@RequestBody RequestData<GdComditynameDTO> requestData)
+    {
+        RequestData<List<GdCommodityDTO>> listRequestData=new RequestData<>();
+        List<GdCommodityDTO>  list= new ArrayList<>();
+        ResponseData<List<GdinventoryallDTO>> responseData=new ResponseData<>();
+        GdComditynameDTO gdComditynameDTO=requestData.getData();
+
+        List<GdinventoryallDTO> nventoryallmap = gdCommodityMapper.nventoryallmap(gdComditynameDTO);
+        for (GdinventoryallDTO dto:nventoryallmap){
+            GdCommodityDTO commodityDTO = new GdCommodityDTO();
+            commodityDTO.setStoreid(dto.getStoreid());
+            list.add(commodityDTO);
+        }
+        listRequestData.setData(list);
+        ResponseData<List<GdStoreDTO>> listResponseData = manageFeginService.selByssmd(listRequestData);
+        for (GdinventoryallDTO commodity:nventoryallmap)
+        {
+            for (GdStoreDTO store:listResponseData.getData())
+            {
+                if(commodity.getStoreid().equals(store.getStoreid()))
+                {
+                    commodity.setStoreName(store.getStorename());
+                    break;
+                }
+            }
+        }
+        responseData.setData(nventoryallmap);
+
         return responseData;
     }
 

@@ -12,6 +12,7 @@
     <artifactId>unification</artifactId>
 
     <dependencies>
+
         <dependency>
             <groupId>com.netflix.hystrix</groupId>
             <artifactId>hystrix-javanica</artifactId>
