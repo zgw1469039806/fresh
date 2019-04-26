@@ -4,14 +4,10 @@ import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.fresh.gd.commons.consts.pojo.RequestData;
 import org.fresh.gd.commons.consts.pojo.ResponseData;
-import org.fresh.gd.commons.consts.pojo.dto.shoping.GdSupplierDTO;
 import org.fresh.gd.commons.consts.pojo.dto.vip.GdAddVipLvDTO;
 import org.fresh.gd.unification.fegin.vip.VipLvFeginService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @Auther: 夏乾航 email:xqh151@163.com
@@ -21,19 +17,33 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Api(description = "会员等级管理")
 @Slf4j
-@RestController
 @RequestMapping("/VipLvController")
+@RestController
 public class VipLvController {
 
     @Autowired
     VipLvFeginService vipLvFeginService;
 
 
-    @RequestMapping(name = "/addVipLv",method = RequestMethod.POST)
+    @PostMapping("/addVipLv")
     public ResponseData<Integer> addVipLv(@RequestBody RequestData<GdAddVipLvDTO> requestData){
-        System.out.println(requestData);
         return vipLvFeginService.addVipLv(requestData);
     }
 
+    @PostMapping("/delVipLv")
+    public ResponseData<Integer> delVipLv(@RequestBody RequestData<Integer> requestData){
+        System.out.println(requestData.getData());
+        return vipLvFeginService.delVipLv(requestData);
+    }
+
+    @PostMapping("/updVipLv")
+    public ResponseData<Integer> updVipLv(@RequestBody RequestData<GdAddVipLvDTO> dtoRequestData){
+        return vipLvFeginService.updVipLv(dtoRequestData);
+    }
+
+    @PostMapping("/selVipLvById")
+    public ResponseData<GdAddVipLvDTO> selVipLvById(@RequestBody RequestData<Integer> requestData){
+        return vipLvFeginService.selVipLvById(requestData);
+    }
 
 }
