@@ -63,4 +63,6 @@ public interface GdWxUserService {
      */
     @PostMapping("/wxbindMember")
     ResponseData<Integer> bindMember(RequestData<UserDTO> requestData);
+
+
 }

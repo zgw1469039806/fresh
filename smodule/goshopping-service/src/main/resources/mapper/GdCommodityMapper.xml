@@ -44,4 +44,23 @@
     <select id="selOne" resultType="org.fresh.gd.commons.consts.pojo.dto.shoping.GdCommodityListDTO">
         select * from gd_commodity c,gd_images i where c.comdityId=i.comdityId and c.comdityId=#{comdityId}
     </select>
+
+
+    <select id="wsSelAll" resultType="org.fresh.gd.commons.consts.pojo.dto.shoping.GdCommodityListDTO">
+        select * from gd_commodity c,gd_images i,
+        <where>
+            and c.comdityId=i.comdityId and c.`comditytypeId`=t.`comditytypeId`
+            <if test="typeid !=null and typeid !='' ">
+                and c.comditytypeId=#{type}
+            </if>
+
+            <if test="typeName !=null and typeName='' ">
+                AND t.typename LIKE '%#{typeName}%'
+            </if>
+
+            <if test="proName !=null and proName==''">
+                and c.comdityname like '%#{comdityname}%'
+            </if>
+        </where>
+    </select>
 </mapper>

@@ -32,22 +32,50 @@ public interface GdCommodityMapper extends BaseMapper<GdCommodity> {
      * @author zgw
      */
     @Select("select * from gd_commodity")
-     List<GdCommodityDTO> selShopAllUser();
+    List<GdCommodityDTO> selShopAllUser();
 
     /**
      * 功能描述
      * Admin管理 商品信息 带分页
+     *
      * @param page
      * @return java.util.List<org.fresh.gd.commons.consts.pojo.dto.shoping.GdCommodityDTO>
      * @author zgw
      */
 
     List<GdCommodityDTO> selShopAllAdmin(Page<GdCommodityDTO> page, @Param("comdityname") String comdityname, @Param
-            ("storeid") Integer storeid,@Param("")Integer comditytypeId);
+            ("storeid") Integer storeid, @Param("") Integer comditytypeId);
 
-
+    /**
+     * 功能描述:
+     * 微信客户端首页活动标题及显示商品4条商品
+     *
+     * @param: [参数暂定]
+     * @return: java.util.List<org.fresh.gd.commons.consts.pojo.dto.shoping.GdCommodityListDTO>
+     * @auther: 贾轶飞
+     * @date: 2019/4/26 15:05
+     */
     List<GdCommodityListDTO> selheadlineAll();
 
+    /**
+     * 功能描述:
+     * 单个商品描述
+     *
+     * @param: [comdityId]商品id
+     * @return: org.fresh.gd.commons.consts.pojo.dto.shoping.GdCommodityListDTO
+     * @auther: 贾轶飞
+     * @date: 2019/4/26 15:08
+     */
     GdCommodityListDTO selOne(@Param("comdityId") Integer comdityId);
+
+
+    /** 功能描述:
+    *客户端显示全部页面所有商品类型id查询
+    * @param: [typeid]商品的类型id
+    * @return: java.util.List<org.fresh.gd.commons.consts.pojo.dto.shoping.GdCommodityListDTO>
+    * @auther: 贾轶飞
+    * @date: 2019/4/26 15:10
+    */
+//    List<GdCommodityListDTO> wsSelAll(@Param("typeid")String typeid);
 
 }
