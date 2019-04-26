@@ -27,5 +27,14 @@ public interface VipLvService {
     @PostMapping("/addVipLv")
     ResponseData<Integer> addVipLv(RequestData<GdAddVipLvDTO> dtoRequestData);
 
+    @PostMapping("/delVipLv")
+    ResponseData<Integer> delVipLv(RequestData<Integer> requestData);
+
+    @PostMapping("/updVipLv")
+    ResponseData<Integer> updVipLv(RequestData<GdAddVipLvDTO> dtoRequestData);
+
+    @PostMapping("/selVipLvById")
+    ResponseData<GdAddVipLvDTO> selVipLvById(RequestData<Integer> requestData);
+
 
 }
