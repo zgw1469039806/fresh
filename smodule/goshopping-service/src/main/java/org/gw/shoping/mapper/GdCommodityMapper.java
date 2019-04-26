@@ -5,8 +5,10 @@ import javafx.scene.control.Pagination;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.fresh.gd.commons.consts.pojo.dto.shoping.GdComditynameDTO;
 import org.fresh.gd.commons.consts.pojo.dto.shoping.GdCommodityDTO;
 import org.fresh.gd.commons.consts.pojo.dto.shoping.GdCommodityListDTO;
+import org.fresh.gd.commons.consts.pojo.dto.shoping.GdinventoryallDTO;
 import org.gw.shoping.entity.GdCommodity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
@@ -41,7 +43,6 @@ public interface GdCommodityMapper extends BaseMapper<GdCommodity> {
      * @return java.util.List<org.fresh.gd.commons.consts.pojo.dto.shoping.GdCommodityDTO>
      * @author zgw
      */
-
     List<GdCommodityDTO> selShopAllAdmin(Page<GdCommodityDTO> page, @Param("comdityname") String comdityname, @Param
             ("storeid") Integer storeid,@Param("")Integer comditytypeId);
 
@@ -49,5 +50,9 @@ public interface GdCommodityMapper extends BaseMapper<GdCommodity> {
     List<GdCommodityListDTO> selheadlineAll();
 
     GdCommodityListDTO selOne(@Param("comdityId") Integer comdityId);
+
+
+
+    List<GdinventoryallDTO> nventoryallmap(GdComditynameDTO gdComditynameDTO);
 
 }

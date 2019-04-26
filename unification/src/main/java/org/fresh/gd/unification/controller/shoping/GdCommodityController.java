@@ -6,7 +6,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.fresh.gd.commons.consts.exceptions.BizException;
 import org.fresh.gd.commons.consts.pojo.RequestData;
 import org.fresh.gd.commons.consts.pojo.ResponseData;
+import org.fresh.gd.commons.consts.pojo.dto.shoping.GdComditynameDTO;
 import org.fresh.gd.commons.consts.pojo.dto.shoping.GdCommodityDTO;
+import org.fresh.gd.commons.consts.pojo.dto.shoping.GdinventoryallDTO;
 import org.fresh.gd.unification.fegin.shoping.GdCommodityFeignService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -45,6 +47,12 @@ public class GdCommodityController {
             throw new BizException("请求错误");
         }
         return gdCommodityFeignService.selPageShop(gdCommodityDTORequestData);
+    }
+
+    @PostMapping("/nventoryall")
+    public ResponseData<List<GdinventoryallDTO>> nventoryall(@RequestBody RequestData<GdComditynameDTO> requestData)
+    {
+      return   gdCommodityFeignService.nventoryall(requestData);
     }
 
 

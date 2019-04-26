@@ -35,7 +35,7 @@
          </where>
 
     </select>
-    
+
     <select id="selheadlineAll" resultType="org.fresh.gd.commons.consts.pojo.dto.shoping.GdCommodityListDTO">
         select * from gd_commodity c,gd_images i where c.comdityId=i.comdityId LIMIT 4
 
@@ -43,5 +43,21 @@
 
     <select id="selOne" resultType="org.fresh.gd.commons.consts.pojo.dto.shoping.GdCommodityListDTO">
         select * from gd_commodity c,gd_images i where c.comdityId=i.comdityId and c.comdityId=#{comdityId}
+    </select>
+
+
+
+    <select id="nventoryallmap" resultType="org.fresh.gd.commons.consts.pojo.dto.shoping.GdinventoryallDTO" parameterType="org.fresh.gd.commons.consts.pojo.dto.shoping.GdComditynameDTO">
+select g.comdityId, g.comdityname, g.comditydw, c.stock, g.comditydescribe, g.comdityprice, e.typename,c.isnodiscount,c.storeid
+from gd_commodity g
+       inner join gd_comdityparticular c on g.comdityId = c.comdityId
+       inner join gd_comditytype e on g.comditytypeId = e.comditytypeId
+       <if test="comdityname!=null and comdityname !=''">
+           and g.comdityname=#{comdityname}
+       </if>
+       <if test="storeid!=null and storeid !=0">
+           and c.storeid=#{storeid}
+       </if>
+
     </select>
 </mapper>
