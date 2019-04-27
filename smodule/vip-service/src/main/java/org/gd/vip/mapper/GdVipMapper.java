@@ -3,6 +3,7 @@ package org.gd.vip.mapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.fresh.gd.commons.consts.pojo.dto.user.UserAndVipDTO;
 import org.fresh.gd.commons.consts.pojo.dto.vip.GdAddVipDTO;
 import org.gd.vip.entity.GdVip;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
@@ -19,6 +20,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 public interface GdVipMapper extends BaseMapper<GdVip> {
 
     @Select("select * from gd_vip where userId = #{userId}")
-    GdAddVipDTO selevtOne(@Param("userId") Integer userid);
+    UserAndVipDTO selevtOne(@Param("userId") Integer userid);
 
 }
