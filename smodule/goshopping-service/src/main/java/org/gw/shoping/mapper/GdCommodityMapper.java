@@ -32,22 +32,34 @@ public interface GdCommodityMapper extends BaseMapper<GdCommodity> {
      * @author zgw
      */
     @Select("select * from gd_commodity")
-     List<GdCommodityDTO> selShopAllUser();
+    List<GdCommodityDTO> selShopAllUser();
 
     /**
      * 功能描述
      * Admin管理 商品信息 带分页
+     *
      * @param page
      * @return java.util.List<org.fresh.gd.commons.consts.pojo.dto.shoping.GdCommodityDTO>
      * @author zgw
      */
 
     List<GdCommodityDTO> selShopAllAdmin(Page<GdCommodityDTO> page, @Param("comdityname") String comdityname, @Param
-            ("storeid") Integer storeid,@Param("")Integer comditytypeId);
+            ("storeid") Integer storeid, @Param("") Integer comditytypeId);
 
 
     List<GdCommodityListDTO> selheadlineAll();
 
     GdCommodityListDTO selOne(@Param("comdityId") Integer comdityId);
+
+    /**
+     * 功能描述:
+     * 根据商品分类查询商品
+     *
+     * @param: [tid]
+     * @return: java.util.List<org.gw.shoping.entity.GdCommodity>
+     * @auther: 郭家恒
+     * @date: 2019/4/26 15:12
+     */
+    List<GdCommodity> QueryComByType(@Param("tid") Integer tid);
 
 }

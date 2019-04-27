@@ -50,6 +50,6 @@ public interface GdReplenishService {
      * @author zgw
      */
     @PostMapping("/selGdShopAll")
-    ResponseData<List<GdShopAllDTO>> selGdShopAll(RequestData<ReplenishInDTO> replenishInDTORequestData);
+    ResponseData<List<GdReplenishDTO>> selGdShopAll(RequestData<ReplenishInDTO> replenishInDTORequestData);
 
 }
