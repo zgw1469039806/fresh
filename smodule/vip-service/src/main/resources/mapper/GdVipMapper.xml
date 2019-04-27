@@ -19,4 +19,6 @@
         vipId, userId, viplv, vipintegral, vipbalance, vipStartTime, vipreport, vipeportTime
     </sql>
 
+
+
 </mapper>

@@ -6,8 +6,11 @@ import org.fresh.gd.commons.consts.pojo.dto.oauth.UserDTO;
 
 
 import org.fresh.gd.commons.consts.pojo.dto.oauth.WXUserDTO;
+import org.fresh.gd.commons.consts.pojo.dto.user.RoleAndUserDTO;
+import org.fresh.gd.commons.consts.pojo.dto.user.UserAndVipDTO;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -49,7 +52,7 @@ public interface GdWxUserService {
      * @date: 2019/4/24 14:41
      */
     @GetMapping("/wxselUser")
-    ResponseData<UserDTO> userinfo(String useraccount);
+    ResponseData<UserDTO> userinfo( String useraccount);
 
 
 
@@ -62,7 +65,7 @@ public interface GdWxUserService {
      * @date: 2019/4/24 15:32
      */
     @PostMapping("/wxbindMember")
-    ResponseData<Integer> bindMember(RequestData<UserDTO> requestData);
+    ResponseData<Integer> bindMember(RequestData<UserAndVipDTO> requestData);
 
 
 }
