@@ -2,6 +2,7 @@ package org.auth.client.impl;
 
 import org.apache.ibatis.annotations.Insert;
 import org.auth.client.entity.GdUser;
+import org.auth.client.fegin.WxVipFeginService;
 import org.auth.client.mapper.GdUserMapper;
 import org.auth.client.utils.HttpClientUtil;
 import org.auth.client.utils.JsonUtils;
@@ -12,6 +13,9 @@ import org.fresh.gd.commons.consts.pojo.ResponseData;
 import org.fresh.gd.commons.consts.pojo.dto.oauth.GdPositionDTO;
 import org.fresh.gd.commons.consts.pojo.dto.oauth.UserDTO;
 import org.fresh.gd.commons.consts.pojo.dto.oauth.WXUserDTO;
+import org.fresh.gd.commons.consts.pojo.dto.user.RoleAndUserDTO;
+import org.fresh.gd.commons.consts.pojo.dto.user.UserAndVipDTO;
+import org.fresh.gd.commons.consts.pojo.dto.vip.GdAddVipDTO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,6 +35,10 @@ public class WxUserServiceImpl implements GdWxUserService {
     @Autowired
     GdUserMapper gdUserMapper;
 
+    @Autowired
+    WxVipFeginService wxVipFeginService;
+
+
     /**
      * 功能描述:微信用户第一次登陆在数据库创建用户记录
      *
@@ -45,15 +53,23 @@ public class WxUserServiceImpl implements GdWxUserService {
         ResponseData<Integer> responseData = new ResponseData<>();
 
         WXUserDTO userDTO = requestData.getData();
-        GdUser gdUser = new GdUser();
-        BeanUtils.copyProperties(userDTO, gdUser);
-        Integer wxusersave = gdUserMapper.wxsaveUser(gdUser);
-        if (wxusersave > 0) {
-            responseData.setMsg(Consts.Result.SUCCESS.getMsg());
+        Integer user = gdUserMapper.wxUsercount(userDTO.getUseraccount());
+        if (user == 0) {
+            GdUser gdUser = new GdUser();
+            BeanUtils.copyProperties(userDTO, gdUser);
+            Integer wxusersave = gdUserMapper.wxsaveUser(gdUser);
+            if (wxusersave > 0) {
+                responseData.setMsg(Consts.Result.SUCCESS.getMsg());
+                return responseData;
+            }
+            responseData.setMsg(Consts.Result.BIZ_ERROR.getMsg());
+            return responseData;
+        } else {
+
+            responseData.setMsg("用户已存在");
             return responseData;
         }
-        responseData.setMsg(Consts.Result.BIZ_ERROR.getMsg());
-        return responseData;
+
     }
 
 
@@ -96,33 +112,48 @@ public class WxUserServiceImpl implements GdWxUserService {
     public ResponseData<UserDTO> userinfo(String useraccount) {
 
         ResponseData<UserDTO> responseData = new ResponseData<>();
-        UserDTO userDTO=gdUserMapper.sellwxUserAcc(useraccount);
+        UserDTO userDTO = gdUserMapper.sellwxUserAcc(useraccount);
         responseData.setData(userDTO);
 
         return responseData;
     }
 
-    /** 功能描述: 用户绑定会员
-    *
-    * @param: [requestData]
-    * @return: org.fresh.gd.commons.consts.pojo.ResponseData<java.lang.Integer>
-    * @auther: 贾轶飞
-    * @date: 2019/4/24 15:35
-    */
+    /**
+     * 功能描述: 用户绑定会员
+     *
+     * @param: [requestData]
+     * @return: org.fresh.gd.commons.consts.pojo.ResponseData<java.lang.Integer>
+     * @auther: 贾轶飞
+     * @date: 2019/4/24 15:35
+     */
     @Override
-    public ResponseData<Integer> bindMember(RequestData<UserDTO> requestData) {
+    public ResponseData<Integer> bindMember(@RequestBody RequestData<UserAndVipDTO> requestData) {
 
+        GdUser gu = gdUserMapper.selUserAcc(requestData.getData().getUseraccount());
+        UserAndVipDTO uad = new UserAndVipDTO();
+        uad.setUserId(gu.getUserId());
+        requestData.setData(uad);
         ResponseData<Integer> responseData = new ResponseData<>();
-        UserDTO userDTO = requestData.getData();
-        GdUser gdUser = new GdUser();
-        BeanUtils.copyProperties(userDTO, gdUser);
-        Integer wxusersave = gdUserMapper.wxsaveUser(gdUser);
-        if (wxusersave > 0) {
-            responseData.setMsg(Consts.Result.SUCCESS.getMsg());
+        ResponseData<UserAndVipDTO> responseData1 = wxVipFeginService.selectOne(requestData);
+
+        if (responseData1.getData().getVipId() == null) {
+            UserAndVipDTO userDTO = requestData.getData();
+
+            GdUser gdUser = new GdUser();
+            BeanUtils.copyProperties(userDTO, gdUser);
+            Integer wxusersave = gdUserMapper.wxsaveUser(gdUser);
+            if (wxusersave > 0) {
+                responseData.setMsg(Consts.Result.SUCCESS.getMsg());
+                return responseData;
+            }
+            responseData.setMsg(Consts.Result.BIZ_ERROR.getMsg());
+            return responseData;
+        } else {
+
+            responseData.setMsg("该会员卡号已被绑定");
             return responseData;
         }
-        responseData.setMsg(Consts.Result.BIZ_ERROR.getMsg());
-        return responseData;
+
     }
 
 

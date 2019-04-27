@@ -21,6 +21,7 @@
         <module name="messagecenter" />
         <module name="order-service" />
         <module name="orderservice" />
+        <module name="txlcn-tm" />
         <module name="unification" />
         <module name="vip-service" />
         <module name="vipservice" />

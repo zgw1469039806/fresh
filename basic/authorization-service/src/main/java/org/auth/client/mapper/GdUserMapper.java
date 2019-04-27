@@ -19,7 +19,7 @@ import java.util.List;
 public interface GdUserMapper extends BaseMapper<GdUser> {
 
     @Insert("INSERT INTO gd_user(username,useraccount,password,phone,isnoVip,isnoYg,takedelivery) VALUES(#{username},#{useraccount},#{password},#{phone},#{isnoVip},#{isnoYg},#{takedelivery})")
-    @Options(useGeneratedKeys=true, keyProperty="userId", keyColumn="userId")
+    @Options(useGeneratedKeys = true, keyProperty = "userId", keyColumn = "userId")
     Integer saveUserYg(GdUser gdUser);
 
     @Select("select * from gd_user where useraccount=#{useraccount}")
@@ -31,10 +31,20 @@ public interface GdUserMapper extends BaseMapper<GdUser> {
     List<UserDTO> selYgByMd(@Param("username") String username);
 
 
-
     @Insert("INSERT INTO gd_user(username,useraccount,password) VALUES(#{username},#{useraccount},#{password})")
     Integer wxsaveUser(GdUser gdUser);
 
 
     Integer wxupdateUser(GdUser gdUser);
+
+    /**
+     * 功能描述: 查询当前用户条数
+     *
+     * @param: [useraccount]
+     * @return: java.lang.Integer
+     * @auther: 贾轶飞
+     * @date: 2019/4/26 11:27
+     */
+    @Select("select count(*) from gd_user where useraccount=#{useraccount}")
+    Integer wxUsercount(@Param("useraccount") String useraccount);
 }

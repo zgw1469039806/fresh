@@ -3,7 +3,7 @@ package org.gw.shoping.rabbitmq;
 import lombok.extern.slf4j.Slf4j;
 import org.fresh.gd.commons.consts.consts.Consts;
 import org.gw.shoping.controller.UserVo;
-//import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 public class MQReceiver
 {
 
-//   @RabbitListener(queues = MQConfig.SHOP_QUEUE)
+   @RabbitListener(queues = MQConfig.SHOP_QUEUE)
    public void receive(String message)
    {
        System.err.println("------"+message);

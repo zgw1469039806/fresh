@@ -3,8 +3,10 @@ package org.fresh.gd.commons.consts.api.shoping;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.fresh.gd.commons.consts.pojo.RequestData;
 import org.fresh.gd.commons.consts.pojo.ResponseData;
+import org.fresh.gd.commons.consts.pojo.dto.shoping.GdComditynameDTO;
 import org.fresh.gd.commons.consts.pojo.dto.shoping.GdCommodityDTO;
 import org.fresh.gd.commons.consts.pojo.dto.shoping.GdCommodityListDTO;
+import org.fresh.gd.commons.consts.pojo.dto.shoping.GdinventoryallDTO;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,11 +43,11 @@ public interface GdCommodityService {
     @PostMapping("/selPageShop")
     ResponseData<Page<GdCommodityDTO>> selPageShop(RequestData<GdCommodityDTO> gdCommodityDTORequestData);
 
-    
+
     /**
-     *  
+     *
      * @Author: JYF on 2019/4/24 8:55
-     * @param: 
+     * @param:
      * @return: ResponseData<List<GdCommodityListDTO>>
      * @Description: 查询主页显示的商品信息
      *
@@ -54,13 +56,23 @@ public interface GdCommodityService {
     ResponseData<List<GdCommodityListDTO>> selheadlineAll();
 
     /**
-     *  
+     *
      * @Author: JYF on 2019/4/24 8:57
      * @param: comdityId 商品ID
-     * @return: 
+     * @return:
      * @Description:
      *
      */
     @GetMapping("/selOne")
     ResponseData<GdCommodityListDTO> selOne(Integer comdityId);
+
+
+    /**
+    * 功能描述
+    * 货品详情信息
+    * @author zgw
+    * @return org.fresh.gd.commons.consts.pojo.ResponseData<org.fresh.gd.commons.consts.pojo.dto.shoping.GdinventoryallDTO>
+    */
+    @PostMapping("/nventoryall")
+    ResponseData<List<GdinventoryallDTO>> nventoryall(RequestData<GdComditynameDTO> requestData);
 }

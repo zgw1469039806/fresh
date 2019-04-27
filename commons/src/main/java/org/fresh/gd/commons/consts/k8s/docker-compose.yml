@@ -1,0 +1,4 @@
+eureka:
+  image: eurekatowimage
+  ports:
+    - 8888:8888

@@ -12,7 +12,11 @@
     <artifactId>goshopping-service</artifactId>
 
     <dependencies>
-
+        <!--solr搜索引擎-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-solr</artifactId>
+        </dependency>
 
         <!-- 加入分布式事务基础依赖 -->
         <dependency>
@@ -27,10 +31,10 @@
             <artifactId>txlcn-txmsg-netty</artifactId>
             <version>5.0.1.RELEASE</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-amqp</artifactId>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.boot</groupId>-->
+            <!--<artifactId>spring-boot-starter-amqp</artifactId>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>org.gw.fr</groupId>
             <artifactId>unification</artifactId>

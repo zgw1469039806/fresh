@@ -51,19 +51,19 @@ public class TestController {
 //    }
 
 
-    /**
-    * 功能描述 进入队列
-    * @author zgw
-    * @return java.lang.String
-    */
-    @RequestMapping("/Theteam")
-    public String Theteam()
-    {
-        UserVo userVo=new UserVo();
-        userVo.setUsername("张牟牟");
-        userVo.setGoodsId(1);
+//    /**
+//    * 功能描述 进入队列
+//    * @author zgw
+//    * @return java.lang.String
+//    */
+//    @RequestMapping("/Theteam")
+//    public String Theteam()
+//    {
+//        UserVo userVo=new UserVo();
+//        userVo.setUsername("张牟牟");
+//        userVo.setGoodsId(1);
 //        mqSender.Enoughtobuy(userVo);
-        System.out.println("12331");
-        return "排队中";
-    }
+//        System.out.println("12331");
+//        return "排队中";
+//    }
 }

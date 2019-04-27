@@ -3,9 +3,9 @@ package org.gw.shoping.rabbitmq;
 import lombok.extern.slf4j.Slf4j;
 import org.fresh.gd.commons.consts.consts.Consts;
 import org.gw.shoping.controller.UserVo;
-//import org.springframework.amqp.core.AmqpTemplate;
-//import org.springframework.amqp.core.Message;
-//import org.springframework.amqp.core.MessageProperties;
+import org.springframework.amqp.core.AmqpTemplate;
+import org.springframework.amqp.core.Message;
+import org.springframework.amqp.core.MessageProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,14 +18,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class MQSender {
 
-//    @Autowired
-//    AmqpTemplate amqpTemplate;
+    @Autowired
+    AmqpTemplate amqpTemplate;
 //
     public void send(Object message)
     {
         String msg= message.toString();
         log.info("send message:"+msg );
-//        amqpTemplate.convertAndSend(MQConfig.Queue,msg);
+        amqpTemplate.convertAndSend(MQConfig.Queue,msg);
     }
 //
 //
@@ -55,9 +55,9 @@ public class MQSender {
 //        amqpTemplate.convertAndSend(MQConfig.HEADER_EXCHANGE,msg);
 //    }
 
-//    public void Enoughtobuy(UserVo userVo) {
-//        String msg= Consts.beanToString(userVo);
-//        log.info("user:----"+msg);
-//        amqpTemplate.convertAndSend(MQConfig.SHOP_QUEUE,msg);
-//    }
+    public void Enoughtobuy(UserVo userVo) {
+        String msg= Consts.beanToString(userVo);
+        log.info("user:----"+msg);
+        amqpTemplate.convertAndSend(MQConfig.SHOP_QUEUE,msg);
+    }
 }
