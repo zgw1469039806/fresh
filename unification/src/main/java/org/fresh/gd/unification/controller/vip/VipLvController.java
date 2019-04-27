@@ -9,6 +9,8 @@ import org.fresh.gd.unification.fegin.vip.VipLvFeginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * @Auther: 夏乾航 email:xqh151@163.com
  * @Date: 2019/4/24 17:21
@@ -44,6 +46,11 @@ public class VipLvController {
     @PostMapping("/selVipLvById")
     public ResponseData<GdAddVipLvDTO> selVipLvById(@RequestBody RequestData<Integer> requestData){
         return vipLvFeginService.selVipLvById(requestData);
+    }
+
+    @GetMapping("/selAllVipLv")
+    public ResponseData<List<GdAddVipLvDTO>> selAllVipLv(){
+        return vipLvFeginService.selAllVipLv();
     }
 
 }

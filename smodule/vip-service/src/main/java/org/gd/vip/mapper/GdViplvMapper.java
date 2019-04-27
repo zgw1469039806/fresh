@@ -5,6 +5,8 @@ import org.fresh.gd.commons.consts.pojo.dto.vip.GdAddVipLvDTO;
 import org.gd.vip.entity.GdViplv;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
+import java.util.List;
+
 /**
  * <p>
  * 会员等级表 Mapper 接口
@@ -62,5 +64,18 @@ public interface GdViplvMapper extends BaseMapper<GdViplv> {
     */
     @Update("update gd_viplv set vipdiscount = #{vipdiscount} , vipintegration = #{vipintegration} where viplv = #{viplv}")
     Integer updVipLv(GdAddVipLvDTO gdAddVipLvDTO);
+
+
+    /**
+    *
+    * 功能描述:
+    *   查询全部
+    * @param: []
+    * @return: java.util.List<org.fresh.gd.commons.consts.pojo.dto.vip.GdAddVipLvDTO>
+    * @auther: Mr.Xia
+    * @date: 2019/4/27 9:13
+    */
+    @Select("select * from gd_viplv")
+    List<GdAddVipLvDTO> selAllVipLv();
 
 }

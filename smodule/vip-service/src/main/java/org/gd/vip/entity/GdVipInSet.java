@@ -20,10 +20,10 @@ public class GdVipInSet implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-    *会员积分设定编号
+    *会员规则所属店铺
     */
-    @TableId("vipinsetid")
-    private Integer vipinsetid;
+    @TableId("storeid")
+    private Integer storeid;
 
     /**
      *  客户每消费多少元
@@ -35,8 +35,4 @@ public class GdVipInSet implements Serializable {
      */
     private Integer vipinsetgetin;
 
-    /**
-     *  规则所属店铺
-     */
-    private Integer storeid;
 }

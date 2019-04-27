@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  * @Auther: 夏乾航 email:xqh151@163.com
  * @Date: 2019/4/24 16:55
@@ -68,4 +70,14 @@ public class VipLvServiceImpl implements VipLvService {
         responseData.setData(gdAddVipLvDTO);
         return responseData;
     }
+
+
+    @Override
+    public ResponseData<List<GdAddVipLvDTO>> selAllVipLv() {
+        ResponseData<List<GdAddVipLvDTO>> responseData = new ResponseData<>();
+        responseData.setData(gdViplvMapper.selAllVipLv());
+        return responseData;
+    }
+
+
 }

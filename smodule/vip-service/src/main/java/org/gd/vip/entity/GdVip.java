@@ -26,7 +26,7 @@ public class GdVip implements Serializable {
      * 会员ID;会员ID
      */
     @TableId("vipId")
-    private Integer vipId;
+    private String vipId;
 
     /**
      * 用户ID
