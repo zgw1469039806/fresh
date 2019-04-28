@@ -48,6 +48,11 @@
              #{comm.storeid}
          </foreach>
     </select>
-
+    <select id="QueryById" resultType="org.fresh.gd.commons.consts.pojo.dto.management.GdStoreDTO" parameterType="list">
+        select * from gd_store where storeid in
+        <foreach collection="list" open="(" item="comm" separator="," close=")">
+            #{comm}
+        </foreach>
+    </select>
 
 </mapper>

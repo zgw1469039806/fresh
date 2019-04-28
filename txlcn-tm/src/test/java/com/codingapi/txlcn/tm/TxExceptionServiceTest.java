@@ -32,7 +32,7 @@ public class TxExceptionServiceTest {
         w.setRegistrar((short) 0);
         w.setGroupId("14141414");
         w.setModId("41414141");
-        w.setRemark("Test");
+    //    w.setRemark("Test");
         w.setTransactionState(1);
         w.setUnitId("2019");
         txExceptionService.writeTxException(w);

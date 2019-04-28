@@ -39,4 +39,11 @@ public interface GdStoreMapper extends BaseMapper<GdStore> {
 
     List<GdStoreDTO> selSSDPById(List<GdCommodityDTO> list);
 
+    /**
+     * 根据门店ID查询
+     * @param list
+     * @return
+     */
+    List<GdStoreDTO> QueryById(List<Integer> list);
+
 }
