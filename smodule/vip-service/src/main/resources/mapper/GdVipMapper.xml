@@ -12,6 +12,7 @@
         <result column="vipStartTime" property="vipStartTime" />
         <result column="vipreport" property="vipreport" />
         <result column="vipeportTime" property="vipeportTime" />
+        <result column="vipphone" property="vipphone" />
     </resultMap>
 
     <!-- 通用查询结果列 -->

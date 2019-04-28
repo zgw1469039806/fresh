@@ -13,34 +13,23 @@ import lombok.Data;
 @ApiModel("新增vip数据模型")
 @Data
 public class GdAddVipDTO {
-    /**
-     * 会员ID;
-     */
-    @ApiModelProperty("会员ID")
-    private Integer vipId;
 
     /**
-     * 用户ID
+     *   会员姓名
      */
-    @ApiModelProperty("用户ID")
-    private Integer userId;
-
-    /**
-     *   会员名称
-     */
-    @ApiModelProperty("会员名称")
+    @ApiModelProperty("会员姓名")
     private String vipName;
 
     /**
      * 会员等级
      */
-    @ApiModelProperty("会员等级")
+    @ApiModelProperty("会员初始等级")
     private Integer viplv;
 
     /**
      * 会员积分
      */
-    @ApiModelProperty("会员积分")
+    @ApiModelProperty("会员初始积分")
     private String vipintegral;
 
     /**
@@ -49,21 +38,11 @@ public class GdAddVipDTO {
     @ApiModelProperty("会员余额")
     private String vipbalance;
 
-    /**
-     * 开卡时间
-     */
-    @ApiModelProperty("开卡时间")
-    private String vipStartTime;
+
 
     /**
-     * 是否挂失;0为没挂失，1为挂失
+     * 会员手机号
      */
-    @ApiModelProperty("是否挂失")
-    private Integer vipreport;
-
-    /**
-     * 挂失时间
-     */
-    @ApiModelProperty("挂失时间")
-    private String vipeportTime;
+    @ApiModelProperty("会员手机号")
+    private String vipphone;
 }

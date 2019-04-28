@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/VipService")
 public interface VipService {
     /** 功能描述:
-    *通过
+    *      根据会员卡号查询会员信息
     * @param: [requestData]
     * @return: org.fresh.gd.commons.consts.pojo.ResponseData<org.fresh.gd.commons.consts.pojo.dto.user.UserAndVipDTO>
     * @auther: 贾轶飞
@@ -24,4 +24,16 @@ public interface VipService {
     */
     @PostMapping("/vipSelectOne")
     ResponseData<UserAndVipDTO> selectOne(RequestData<UserAndVipDTO> requestData);
+
+    /**
+    *
+    * 功能描述:
+    *   新增会员
+    * @param: [dtogdAddVipDTO]
+    * @return: org.fresh.gd.commons.consts.pojo.ResponseData<java.lang.Integer>
+    * @auther: Mr.Xia
+    * @date: 2019/4/28 13:47
+    */
+    @PostMapping("/addVip")
+    ResponseData<Integer> addVip(RequestData<GdAddVipDTO > dtogdAddVipDTO);
 }

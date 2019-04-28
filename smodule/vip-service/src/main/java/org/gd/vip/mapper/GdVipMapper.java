@@ -1,5 +1,6 @@
 package org.gd.vip.mapper;
 
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -21,5 +22,12 @@ public interface GdVipMapper extends BaseMapper<GdVip> {
 
     @Select("select * from gd_vip where userId = #{userId}")
     UserAndVipDTO selevtOne(@Param("userId") Integer userid);
+
+    @Insert("insert into gd_vip(vipId,userId,vipName,viplv,vipintegral,vipbalance,vipStartTime,vipreport,vipeportTime,vipphone) values(#{vipId},#{userId},#{vipName},#{viplv},#{vipintegral},#{vipbalance},#{vipStartTime},#{vipreport},#{vipeportTime},#{vipphone})")
+    Integer addVip(GdVip gdVip);
+
+
+
+
 
 }
