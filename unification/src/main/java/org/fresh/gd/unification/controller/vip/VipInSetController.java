@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @Slf4j
-@Api("会员积分增加规则设定")
+@Api(description = "会员积分增加规则设定")
 @RequestMapping("/VipInSetController")
 @RestController
 public class VipInSetController {

@@ -4,16 +4,16 @@
 
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="org.gd.vip.entity.GdVipInSet">
+    <!--<resultMap id="BaseResultMap" type="org.gd.vip.entity.GdVipInSet">
         <id column="storeid" property="storeid" />
         <result column="vipinsetmoney" property="vipinsetmoney" />
         <result column="vipinsetgetin" property="vipinsetgetin" />
-    </resultMap>
+    </resultMap>-->
 
     <!-- 通用查询结果列 -->
-    <sql id="Base_Column_List">
+    <!--<sql id="Base_Column_List">
         storeid, vipinsetmoney, vipinsetgetin,
-    </sql>
+    </sql>-->
 
 
 </mapper>

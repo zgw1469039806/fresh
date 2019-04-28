@@ -71,5 +71,13 @@ public class GdVip implements Serializable {
     @TableField("vipeportTime")
     private String vipeportTime;
 
+    /**
+     * 会员手机号
+     */
+    @TableField("vipphone")
+    private String vipphone;
+
+
+
 
 }
