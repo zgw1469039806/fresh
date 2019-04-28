@@ -1,11 +1,8 @@
 package org.fresh.gd.commons.consts.api.shoping;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import feign.RequestLine;
 import org.fresh.gd.commons.consts.pojo.RequestData;
 import org.fresh.gd.commons.consts.pojo.ResponseData;
 import org.fresh.gd.commons.consts.pojo.dto.shoping.GdComditytypeDTO;
-import org.fresh.gd.commons.consts.pojo.dto.shoping.GdCommodityDTO;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -54,5 +51,14 @@ public interface GdComditytypeService {
     ResponseData<Integer> updateType(RequestData<GdComditytypeDTO> dtoRequestData);
 
 
+    /** 功能描述:
+    * 根据分id删除分类
+    * @param: [requestData]
+    * @return: org.fresh.gd.commons.consts.pojo.ResponseData<java.lang.Integer>
+    * @auther: 郭家恒
+    * @date: 2019/4/26 15:24
+    */
+    @PostMapping("/delType")
+    ResponseData<Integer> delType(RequestData<Integer> requestData);
 
 }

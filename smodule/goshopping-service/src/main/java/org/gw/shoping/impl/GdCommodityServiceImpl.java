@@ -27,27 +27,26 @@ import java.util.List;
  * @Description 商品实现
  */
 @RestController
-public class GdCommodityServiceImpl  implements GdCommodityService {
+public class GdCommodityServiceImpl implements GdCommodityService {
 
     @Autowired
     GdCommodityMapper gdCommodityMapper;
 
     @Autowired
     ManageFeginService manageFeginService;
+
     /**
      * 功能描述
      * 查询所有商品
      *
-     * @return org.fresh.gd.commons.consts.pojo.ResponseData<java.util.List < org.fresh.gd.commons.consts.pojo.dto.shoping.GdCommodityDTO>>
+     * @return org.fresh.gd.commons.consts.pojo.ResponseData<java.util.List   <   org.fresh.gd.commons.consts.pojo.dto.shoping.GdCommodityDTO>>
      * @author zgw
      */
     @Override
     public ResponseData<List<GdCommodityDTO>> selShopingAll()
 
     {
-
-
-        ResponseData<List<GdCommodityDTO>> responseData=new ResponseData<>();
+        ResponseData<List<GdCommodityDTO>> responseData = new ResponseData<>();
 
         List<GdCommodityDTO> gdCommodityDTOS = gdCommodityMapper.selShopAllUser();
 
@@ -60,30 +59,25 @@ public class GdCommodityServiceImpl  implements GdCommodityService {
      * 功能描述
      * 查询商品信息 商品详情带分页
      *
-     * @return org.fresh.gd.commons.consts.pojo.ResponseData<com.baomidou.mybatisplus.extension.plugins.pagination.Page < org.fresh.gd.commons.consts.pojo.dto.shoping.GdCommodityDTO>>
+     * @return org.fresh.gd.commons.consts.pojo.ResponseData<com.baomidou.mybatisplus.extension.plugins.pagination.Page   <   org.fresh.gd.commons.consts.pojo.dto.shoping.GdCommodityDTO>>
      * @author zgw
      */
     @Override
-    public ResponseData<Page<GdCommodityDTO>> selPageShop(@RequestBody RequestData<GdCommodityDTO> gdCommodityDTORequestData)
-    {
-      RequestData<List<GdCommodityDTO>> listRequestData=new RequestData<>();
+    public ResponseData<Page<GdCommodityDTO>> selPageShop(@RequestBody RequestData<GdCommodityDTO> gdCommodityDTORequestData) {
+        RequestData<List<GdCommodityDTO>> listRequestData = new RequestData<>();
 
-        ResponseData<Page<GdCommodityDTO>> responseData=new ResponseData<>();
-        GdCommodityDTO gdCommodityDTO=gdCommodityDTORequestData.getData();
-        Page<GdCommodityDTO> page=new Page<>(gdCommodityDTO.getPageNo(),6);
-        List<GdCommodityDTO> gdCommodityDTOS = gdCommodityMapper.selShopAllAdmin(page, gdCommodityDTO.getComdityname(), gdCommodityDTO.getStoreid(),gdCommodityDTO.getComditytypeId());
-        if(gdCommodityDTOS==null)
-        {
+        ResponseData<Page<GdCommodityDTO>> responseData = new ResponseData<>();
+        GdCommodityDTO gdCommodityDTO = gdCommodityDTORequestData.getData();
+        Page<GdCommodityDTO> page = new Page<>(gdCommodityDTO.getPageNo(), 6);
+        List<GdCommodityDTO> gdCommodityDTOS = gdCommodityMapper.selShopAllAdmin(page, gdCommodityDTO.getComdityname(), gdCommodityDTO.getStoreid(), gdCommodityDTO.getComditytypeId());
+        if (gdCommodityDTOS == null) {
             return responseData;
         }
         listRequestData.setData(gdCommodityDTOS);
         ResponseData<List<GdStoreDTO>> listResponseData = manageFeginService.selByssmd(listRequestData);
-        for (GdCommodityDTO commodity:gdCommodityDTOS)
-        {
-            for (GdStoreDTO store:listResponseData.getData())
-            {
-                if(commodity.getStoreid().equals(store.getStoreid()))
-                {
+        for (GdCommodityDTO commodity : gdCommodityDTOS) {
+            for (GdStoreDTO store : listResponseData.getData()) {
+                if (commodity.getStoreid().equals(store.getStoreid())) {
                     commodity.setSsmdName(store.getStorename());
                     break;
                 }
@@ -96,15 +90,15 @@ public class GdCommodityServiceImpl  implements GdCommodityService {
 
     @Override
     public ResponseData<List<GdCommodityListDTO>> selheadlineAll() {
-        ResponseData<List<GdCommodityListDTO>> responseData= new ResponseData<>();
-        responseData.setData( gdCommodityMapper.selheadlineAll());
+        ResponseData<List<GdCommodityListDTO>> responseData = new ResponseData<>();
+        responseData.setData(gdCommodityMapper.selheadlineAll());
 
         return responseData;
     }
 
     @Override
     public ResponseData<GdCommodityListDTO> selOne(Integer comdityId) {
-        ResponseData<GdCommodityListDTO> responseData =new ResponseData<>();
+        ResponseData<GdCommodityListDTO> responseData = new ResponseData<>();
         responseData.setData(gdCommodityMapper.selOne(comdityId));
         return responseData;
     }

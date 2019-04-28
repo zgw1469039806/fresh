@@ -56,4 +56,12 @@ public class GdComditytypeController {
         responseData.setCode(Consts.Result.ERROR_PARAM.getCode());
         return responseData;
     }
+
+    @PostMapping("/delType")
+    public ResponseData<Integer> delType(@RequestBody RequestData<Integer> requestData)
+    {
+        ResponseData<Integer> responseData=new ResponseData<>();
+        responseData = gdComditytypeFeignService.delType(requestData);
+        return responseData;
+    }
 }

@@ -12,5 +12,7 @@
     <sql id="Base_Column_List">
         comditytypeId, typename
     </sql>
-
+    <delete id="delType" parameterType="Integer">
+        delete from goshopping.gd_comditytype where comditytypeId = #{tid}
+    </delete>
 </mapper>

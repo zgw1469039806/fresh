@@ -73,4 +73,16 @@ public interface ManageService {
      */
     @RequestMapping(value = "/selByssmd", method = RequestMethod.POST)
     ResponseData<List<GdStoreDTO>> selByssmd(RequestData<List<GdCommodityDTO>> gdCommodityDTOList);
+
+    /** 功能描述:
+    * 根据门店ID集合查询
+    * @param: [list]
+    * @return: org.fresh.gd.commons.consts.pojo.ResponseData<java.util.List<org.fresh.gd.commons.consts.pojo.dto.management.GdStoreDTO>>
+    * @auther: 郭家恒
+    * @date: 2019/4/27 17:21
+    */
+
+    @RequestMapping(value = "/QueryByid", method = RequestMethod.POST)
+    ResponseData<List<GdStoreDTO>> QueryByid(List<Integer> list);
+
 }

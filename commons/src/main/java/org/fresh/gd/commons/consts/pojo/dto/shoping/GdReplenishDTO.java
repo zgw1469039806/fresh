@@ -41,6 +41,12 @@ public class GdReplenishDTO {
     private Integer storeid;
 
     /**
+     * 店铺名称
+     */
+    @ApiModelProperty("店铺名称")
+    private String storename;
+
+    /**
      * 提供商id
      */
     @ApiModelProperty("提供商id")
@@ -58,7 +64,27 @@ public class GdReplenishDTO {
     @ApiModelProperty("进货编号")
     private String receiptNo;
 
-    @ApiModelProperty("商品list")
+    /**
+     * 进货详细list
+     */
+    @ApiModelProperty("进货详细list")
     private List<GdPurchaseDTO> list;
 
+    /**
+     * 备注
+     */
+    @ApiModelProperty("备注")
+    private String remarks;
+
+    /**
+     * 供应商编码
+     */
+    @ApiModelProperty("供应商编码")
+    private String supplierBM;
+
+    /**
+     * 供应商名称
+     */
+    @ApiModelProperty("供应商名称")
+    private String supplierName;
 }

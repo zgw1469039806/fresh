@@ -115,5 +115,21 @@ public class ManageServiceImpl implements ManageService {
         return listResponseData;
     }
 
-
+    /**
+     * 功能描述:
+     * 根据门店ID集合查询
+     *
+     * @param list
+     * @param: [list]
+     * @return: org.fresh.gd.commons.consts.pojo.ResponseData<java.util.List < org.fresh.gd.commons.consts.pojo.dto.management.GdStoreDTO>>
+     * @auther: 郭家恒
+     * @date: 2019/4/27 17:21
+     */
+    @Override
+    public ResponseData<List<GdStoreDTO>> QueryByid(List<Integer> list) {
+        System.out.println("拿到的ID:"+list);
+        ResponseData<List<GdStoreDTO>> listResponseData=new ResponseData<>();
+        listResponseData.setData(gdStoreMapper.QueryById(list));
+        return listResponseData;
+    }
 }

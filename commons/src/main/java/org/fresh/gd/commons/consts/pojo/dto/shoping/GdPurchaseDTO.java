@@ -53,4 +53,10 @@ public class GdPurchaseDTO {
      */
     @ApiModelProperty("小计")
     private String subtotal;
+
+    /**
+     * 商品名称
+     */
+    @ApiModelProperty("商品名称")
+    private String comdityname;
 }

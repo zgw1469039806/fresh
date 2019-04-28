@@ -12,11 +12,10 @@ import lombok.Data;
 @ApiModel("综合查询进货条件")
 @Data
 public class ReplenishInDTO {
-
-   @ApiModelProperty("进货编号")
-   private Integer receiptNo;
-   @ApiModelProperty("开始时间")
-      private String startTime;
-   @ApiModelProperty("结束时间")
-   private String endTime;
+    @ApiModelProperty("进货编号")
+    private String receiptNo;
+    @ApiModelProperty("开始时间")
+    private String startTime;
+    @ApiModelProperty("结束时间")
+    private String endTime;
 }
