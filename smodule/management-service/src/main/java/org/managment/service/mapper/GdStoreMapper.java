@@ -39,4 +39,22 @@ public interface GdStoreMapper extends BaseMapper<GdStore> {
 
     List<GdStoreDTO> selSSDPById(List<GdCommodityDTO> list);
 
+    /**
+     * 根据门店ID查询
+     *
+     * @param list
+     * @return
+     */
+    List<GdStoreDTO> QueryById(List<Integer> list);
+
+    /** 功能描述:
+    * 查询所有
+    * @param: []
+    * @return: java.util.List<org.fresh.gd.commons.consts.pojo.dto.management.GdStoreDTO>
+    * @auther: 郭家恒
+    * @date: 2019/4/28 14:08
+    */
+
+    @Select("select * from gd_store")
+    List<GdStoreDTO> QueryAll();
 }

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
@@ -56,8 +57,11 @@ public class GdSupplierServiceImpl  implements GdSupplierService {
         return responseData;
     }
 
-
-
-
-
+    @Override
+    public ResponseData<List<GdSupplierDTO>> QuerySypplier() {
+        List<GdSupplierDTO> supplierDTOS = gdSupplierMapper.QueryAll();
+        ResponseData<List<GdSupplierDTO>> responseData = new ResponseData<>();
+        responseData.setData(supplierDTOS);
+        return responseData;
+    }
 }

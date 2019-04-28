@@ -30,24 +30,22 @@ import java.util.List;
 public class GdReplenishController {
 
     @Autowired
-    GdReplenishFeginService  gdReplenishFeginService;
+    GdReplenishFeginService gdReplenishFeginService;
 
     @PostMapping("/savegdReplen")
-    public ResponseData<Integer> savegdReplen(@RequestBody RequestData<GdReplenishDTO> requestData, Principal principal)
-    {
-           requestData.getData().setUsername(principal.getName());
-           return gdReplenishFeginService.saveGdReplenish(requestData);
+    public ResponseData<Integer> savegdReplen(@RequestBody RequestData<GdReplenishDTO> requestData, Principal principal) {
+        requestData.getData().setUsername(principal.getName());
+        return gdReplenishFeginService.saveGdReplenish(requestData);
     }
 
     @PostMapping("/selReAndPuAll")
-    public ResponseData<List<GdReplenishAndPurchaseDTO>> selReAndPuAll()
-    {
+    public ResponseData<List<GdReplenishAndPurchaseDTO>> selReAndPuAll() {
         return gdReplenishFeginService.selReAndPuAll();
     }
 
     @PostMapping("/selGdShopAll")
-    public ResponseData<List<GdShopAllDTO>> selGdShopAll(@RequestBody RequestData<ReplenishInDTO> replenishInDTORequestData)
-    {
-          return gdReplenishFeginService.selGdShopAll(replenishInDTORequestData);
+    public ResponseData<List<GdReplenishDTO>> selGdShopAll(@RequestBody RequestData<ReplenishInDTO> replenishInDTORequestData) {
+        return gdReplenishFeginService.selGdShopAll(replenishInDTORequestData);
     }
+
 }

@@ -7,6 +7,7 @@ import org.fresh.gd.commons.consts.exceptions.BizException;
 import org.fresh.gd.commons.consts.pojo.RequestData;
 import org.fresh.gd.commons.consts.pojo.ResponseData;
 import org.fresh.gd.commons.consts.pojo.dto.shoping.GdComditytypeDTO;
+import org.fresh.gd.commons.consts.pojo.dto.shoping.GdCommodityDTO;
 import org.gw.shoping.entity.GdCommodity;
 import org.gw.shoping.mapper.GdComditytypeMapper;
 import org.gw.shoping.mapper.GdCommodityMapper;
@@ -93,7 +94,7 @@ public class GdComditytypeServiceImpl implements GdComditytypeService {
     @Override
     public ResponseData<Integer> delType(@RequestBody RequestData<Integer> requestData) {
         ResponseData<Integer> responseData = new ResponseData<>();
-        List<GdCommodity> list = gdCommodityMapper.QueryComByType(requestData.getData());
+        List<GdCommodityDTO> list = gdCommodityMapper.QueryComByType(requestData.getData());
         if (list.size() == 0) {
             int del = gdComditytypeMapper.delType(requestData.getData());
             if (del > 0) {

@@ -6,6 +6,8 @@ import org.fresh.gd.commons.consts.pojo.dto.shoping.GdSupplierDTO;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 /**
  * @DATA 2019-04-22 10:21
  * @Author 张国伟  WeChat:17630376104
@@ -25,4 +27,6 @@ public interface GdSupplierService {
     @PostMapping("/saveSupplier")
     ResponseData<Integer> saveSupplier(RequestData<GdSupplierDTO> requestData);
 
+    @PostMapping("/QuerySypplier")
+    ResponseData<List<GdSupplierDTO>> QuerySypplier();
 }
