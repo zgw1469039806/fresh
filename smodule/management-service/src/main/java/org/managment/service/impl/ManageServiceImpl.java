@@ -85,8 +85,6 @@ public class ManageServiceImpl implements ManageService {
         }
         return responseData;
     }
-
-
     @Override
     public ResponseData<List<GdStoreDTO>> selByYg(@RequestBody RequestData<List<UserDTO>> requestData) {
         ResponseData<List<GdStoreDTO>> responseData = new ResponseData<>();
@@ -95,7 +93,6 @@ public class ManageServiceImpl implements ManageService {
         responseData.setData(gdStoreDTOS);
         return responseData;
     }
-
     /**
      * 功能描述
      * 根据商品门店ID集合
@@ -110,7 +107,6 @@ public class ManageServiceImpl implements ManageService {
         listResponseData.setData(gdStoreMapper.selSSDPById(gdCommodityDTOList.getData()));
         return listResponseData;
     }
-
     /**
      * 功能描述:
      * 根据门店ID集合查询

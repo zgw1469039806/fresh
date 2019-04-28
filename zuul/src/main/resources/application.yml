@@ -7,3 +7,30 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8888/eureka/
+security:
+  basic:
+    enabled: false
+zuul:
+  routes:
+    goshopping:  #路由 名字
+      path: /gs/**
+      serviceId: goshopping-service
+    authorization:
+      path: /as/**
+      serviceId: authorization-service
+    order:
+      path: /os/**
+      serviceId: order-service
+    vip:
+      path: /vs/**
+      serviceId: vip-service
+  ratelimit:
+    enabled: true
+    default-policy:
+        limit: 10
+        refresh-interval: 60
+        type: origin
+
+
+
+

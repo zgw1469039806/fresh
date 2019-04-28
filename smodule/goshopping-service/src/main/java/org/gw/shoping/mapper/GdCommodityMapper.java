@@ -89,7 +89,7 @@ public interface GdCommodityMapper extends BaseMapper<GdCommodity> {
     */
 //    List<GdCommodityListDTO> wsSelAll(@Param("typeid")String typeid);
 
-
+    List<GdinventoryallDTO> nventoryallmap(GdComditynameDTO gdComditynameDTO);
 
     List<GdinventoryallDTO> nventoryallmap(GdComditynameDTO gdComditynameDTO);
 }

@@ -12,6 +12,16 @@
     <artifactId>zuul</artifactId>
 <dependencies>
     <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-thymeleaf</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>com.marcosbarbero.cloud</groupId>
+        <artifactId>spring-cloud-zuul-ratelimit</artifactId>
+        <version>1.5.0.RELEASE</version>
+    </dependency>
+    <dependency>
+
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
         <version>1.4.0.RELEASE</version>

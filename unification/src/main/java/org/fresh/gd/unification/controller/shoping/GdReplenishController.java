@@ -6,7 +6,6 @@ import org.fresh.gd.commons.consts.pojo.RequestData;
 import org.fresh.gd.commons.consts.pojo.ResponseData;
 import org.fresh.gd.commons.consts.pojo.dto.shoping.GdReplenishAndPurchaseDTO;
 import org.fresh.gd.commons.consts.pojo.dto.shoping.GdReplenishDTO;
-import org.fresh.gd.commons.consts.pojo.dto.shoping.GdShopAllDTO;
 import org.fresh.gd.commons.consts.pojo.dto.shoping.ReplenishInDTO;
 import org.fresh.gd.unification.fegin.shoping.GdReplenishFeginService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +44,6 @@ public class GdReplenishController {
 
     @PostMapping("/selGdShopAll")
     public ResponseData<List<GdReplenishDTO>> selGdShopAll(@RequestBody RequestData<ReplenishInDTO> replenishInDTORequestData) {
-        return gdReplenishFeginService.selGdShopAll(replenishInDTORequestData);
+          return gdReplenishFeginService.selGdShopAll(replenishInDTORequestData);
     }
-
 }

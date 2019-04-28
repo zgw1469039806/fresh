@@ -19,9 +19,9 @@ import java.util.List;
 public class LoginController {
 
     @RequestMapping("/")
-    public String allReq(Authentication authentication, HttpServletResponse reps) {
+    public String allReq(Authentication authentication, HttpServletResponse response) {
 
-        return "redirect:http://localhost:8080/#/base";
+        return "redirect:http://localhost:8081/#/base";
 
     }
 }
