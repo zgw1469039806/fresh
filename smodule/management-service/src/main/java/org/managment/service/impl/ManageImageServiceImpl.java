@@ -25,10 +25,8 @@ public class ManageImageServiceImpl implements ManageImageService {
     @Autowired
     GdStoreimageMapper gdStoreimageMapper;
 
-
     @Autowired
     ManageServiceImpl manageService;
-
 
     @Override
     public ResponseData<Integer> inserImagesStore(ManageStoreDTO manageStoreDTO)
@@ -53,12 +51,11 @@ public class ManageImageServiceImpl implements ManageImageService {
         return responseData;
     }
 
-
     @Transactional
     @Override
     public ResponseData<Integer> delByIdImages(@RequestBody GdStoreDTO gdStoreDTO)
     {
-        if (gdStoreDTO.getStoreid()==null || gdStoreDTO.getStoreid()==0)
+        if (gdStoreDTO.getStoreid()==null || gdStoreDTO.getStoreid()== 0 )
         {
             throw new BizException("业务错误");
         }
