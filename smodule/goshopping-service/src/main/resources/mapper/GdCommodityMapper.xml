@@ -49,7 +49,6 @@
         select * from goshopping.gd_commodity where comditytypeId = #{tid}
     </select>
 
-
     <select id="nventoryallmap" resultType="org.fresh.gd.commons.consts.pojo.dto.shoping.GdinventoryallDTO"
             parameterType="org.fresh.gd.commons.consts.pojo.dto.shoping.GdComditynameDTO">
         select g.comdityId, g.comdityname, g.comditydw, c.stock, g.comditydescribe, g.comdityprice,
@@ -83,5 +82,13 @@
                 and c.comdityname like '%#{comdityname}%'
             </if>
         </where>
+    </select>
+
+    <select id="selGdActivAndShopLike" resultType="org.fresh.gd.commons.consts.pojo.dto.shoping.GdActivitiesAndShopDTO">
+        select * from gd_activities g
+        inner join gd_commodity c
+        inner join gd_comditytype e
+        on g.activityId=c.activityId and e.comditytypeId=c.comditytypeId
+        where c.comdityname LIKE CONCAT('%',#{comdityname},'%')
     </select>
 </mapper>

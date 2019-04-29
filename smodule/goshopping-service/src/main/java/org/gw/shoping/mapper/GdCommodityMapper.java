@@ -4,12 +4,10 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
-import org.fresh.gd.commons.consts.pojo.dto.shoping.GdComditynameDTO;
-import org.fresh.gd.commons.consts.pojo.dto.shoping.GdCommodityDTO;
-import org.fresh.gd.commons.consts.pojo.dto.shoping.GdCommodityListDTO;
-import org.fresh.gd.commons.consts.pojo.dto.shoping.GdinventoryallDTO;
+import org.fresh.gd.commons.consts.pojo.dto.shoping.*;
 import org.gw.shoping.entity.GdCommodity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.springframework.security.access.method.P;
 
 import java.util.List;
 
@@ -77,7 +75,7 @@ public interface GdCommodityMapper extends BaseMapper<GdCommodity> {
      * @auther: 郭家恒
      * @date: 2019/4/26 15:12
      */
-    List<GdCommodityDTO> QueryComByType(@Param("tid") Integer tid);
+    List<GdCommodity> QueryComByType(@Param("tid") Integer tid);
 
 
     /** 功能描述:
@@ -90,5 +88,6 @@ public interface GdCommodityMapper extends BaseMapper<GdCommodity> {
 //    List<GdCommodityListDTO> wsSelAll(@Param("typeid")String typeid);
 
     List<GdinventoryallDTO> nventoryallmap(GdComditynameDTO gdComditynameDTO);
+
 
 }
