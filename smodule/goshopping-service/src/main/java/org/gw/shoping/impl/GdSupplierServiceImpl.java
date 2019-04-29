@@ -22,7 +22,7 @@ import java.util.UUID;
  * @Description
  */
 @RestController
-public class GdSupplierServiceImpl  implements GdSupplierService {
+public class GdSupplierServiceImpl implements GdSupplierService {
 
     @Autowired
     GdSupplierMapper gdSupplierMapper;
@@ -37,19 +37,17 @@ public class GdSupplierServiceImpl  implements GdSupplierService {
      */
     @Override
     public ResponseData<Integer> saveSupplier(@RequestBody RequestData<GdSupplierDTO> requestData) {
-        ResponseData<Integer>responseData=new ResponseData<>();
+        ResponseData<Integer> responseData = new ResponseData<>();
 
-        GdSupplierDTO gdSupplierDTO=requestData.getData();
-        GdSupplierDTO gdSupplier= gdSupplierMapper.selByName(gdSupplierDTO.getSupplierName());
-        if (gdSupplier!=null)
-        {
+        GdSupplierDTO gdSupplierDTO = requestData.getData();
+        GdSupplierDTO gdSupplier = gdSupplierMapper.selByName(gdSupplierDTO.getSupplierName());
+        if (gdSupplier != null) {
             throw new BizException("供应商名字不能重复");
         }
 
         gdSupplierDTO.setSupplierBM(Consts.getStringRandom(8).toUpperCase());
         Integer saveSupplier = gdSupplierMapper.saveSupplier(gdSupplierDTO);
-        if (saveSupplier>0)
-        {
+        if (saveSupplier > 0) {
             return responseData;
         }
         responseData.setCode(Consts.Result.ERROR_PARAM.getCode());
@@ -57,9 +55,19 @@ public class GdSupplierServiceImpl  implements GdSupplierService {
         return responseData;
     }
 
+    /**
+     * 功能描述:
+     * 查询所有供应商
+     *
+     * @param: []
+     * @return: org.fresh.gd.commons.consts.pojo.ResponseData<java.util.List   <   org.fresh.gd.commons.consts.pojo.dto.shoping.GdSupplierDTO>>
+     * @auther: 郭家恒
+     * @date: 2019/4/29 7:40
+     */
     @Override
     public ResponseData<List<GdSupplierDTO>> QuerySypplier() {
         List<GdSupplierDTO> supplierDTOS = gdSupplierMapper.QueryAll();
+        System.out.println(supplierDTOS);
         ResponseData<List<GdSupplierDTO>> responseData = new ResponseData<>();
         responseData.setData(supplierDTOS);
         return responseData;

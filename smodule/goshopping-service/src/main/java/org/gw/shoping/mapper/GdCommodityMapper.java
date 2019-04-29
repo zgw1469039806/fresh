@@ -91,5 +91,4 @@ public interface GdCommodityMapper extends BaseMapper<GdCommodity> {
 
     List<GdinventoryallDTO> nventoryallmap(GdComditynameDTO gdComditynameDTO);
 
-    List<GdinventoryallDTO> nventoryallmap(GdComditynameDTO gdComditynameDTO);
 }
