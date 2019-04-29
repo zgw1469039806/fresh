@@ -20,6 +20,32 @@
         vipId, userId, viplv, vipintegral, vipbalance, vipStartTime, vipreport, vipeportTime
     </sql>
 
+    <select id="selPageListVip" parameterType="org.fresh.gd.commons.consts.pojo.dto.vip.SelPageVipDTO" resultType="org.fresh.gd.commons.consts.pojo.dto.vip.VipPageDTO">
+        select * from gd_vip where 1 = 1
+        <if test="vipName != null and vipName != ''">
+            and vipName like CONCAT('%',#{vipName},'%')
+        </if>
+        <if test="viplv != null and viplv != '' and viplv != 0">
+            and viplv = #{viplv}
+        </if>
+        limit #{pageNo},#{pageSize}
+
+    </select>
+
+    <select id="selPageCountVip" resultType="integer">
+        select count(1) from gd_vip
+        <where>
+            1 == 1
+            <if test="vipName != null and vipName != ''">
+                --                and vipName like CONCAT('%',CONCAT(#{vipName},'%'))
+                and vipName like CONCAT('%',#{vipName},'%')
+            </if>
+            <if test="viplv != null and viplv != '' and viplv != 0">
+                and viplv = #{viplv}
+            </if>
+        </where>
+    </select>
+
 
 
 </mapper>
