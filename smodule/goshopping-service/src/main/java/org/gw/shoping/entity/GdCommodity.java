@@ -55,4 +55,9 @@ public class GdCommodity implements Serializable {
     private String comdityprice;
 
 
+    /**
+     * 活动id
+     */
+    @TableField("activityId")
+    private Integer activityId;
 }
