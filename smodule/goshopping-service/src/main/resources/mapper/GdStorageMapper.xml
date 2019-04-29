@@ -4,10 +4,10 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="org.gw.shoping.entity.GdStorage">
-        <id column="storageid" property="storageid" />
-        <result column="replenishId" property="replenishId" />
-        <result column="storageTime" property="storageTime" />
-        <result column="storageuserid" property="storageuserid" />
+        <id column="storageid" property="storageid"/>
+        <result column="replenishId" property="replenishId"/>
+        <result column="storageTime" property="storageTime"/>
+        <result column="storageuserid" property="storageuserid"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->
@@ -15,4 +15,7 @@
         storageid, replenishId, storageTime, storageuserid
     </sql>
 
+    <insert id="saveStorage" parameterType="org.fresh.gd.commons.consts.pojo.dto.shoping.GdStorageDTO">
+        insert into goshopping.gd_storage(replenishId, storageTime, storageuserid) value(#{replenishId},#{storageTime},#{storageuserid});
+    </insert>
 </mapper>

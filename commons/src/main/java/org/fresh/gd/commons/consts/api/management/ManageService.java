@@ -81,8 +81,9 @@ public interface ManageService {
     * @auther: 郭家恒
     * @date: 2019/4/27 17:21
     */
-
     @RequestMapping(value = "/QueryByid", method = RequestMethod.POST)
-    ResponseData<List<GdStoreDTO>> QueryByid(List<Integer> list);
+    ResponseData<List<GdStoreDTO>> QueryByid(RequestData<List<Integer>> list);
 
+    @RequestMapping(value = "/QueryAll",method = RequestMethod.POST)
+    ResponseData<List<GdStoreDTO>> QueryAll();
 }

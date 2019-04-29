@@ -53,4 +53,8 @@
     <select id="QueryPurByreId" parameterType="Integer" resultType="org.fresh.gd.commons.consts.pojo.dto.shoping.GdPurchaseDTO">
         select pu.*,co.comdityname from goshopping.gd_purchase pu,goshopping.gd_commodity co where co.comdityId = pu.shopId and replenishId =#{reid}
     </select>
+
+    <update id="updPurById" parameterType="String">
+        update goshopping.gd_replenish set isnostorage = 1 where  receiptNo = #{receiptNo}
+    </update>
 </mapper>

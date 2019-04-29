@@ -4,12 +4,10 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
-import org.fresh.gd.commons.consts.pojo.dto.shoping.GdComditynameDTO;
-import org.fresh.gd.commons.consts.pojo.dto.shoping.GdCommodityDTO;
-import org.fresh.gd.commons.consts.pojo.dto.shoping.GdCommodityListDTO;
-import org.fresh.gd.commons.consts.pojo.dto.shoping.GdinventoryallDTO;
+import org.fresh.gd.commons.consts.pojo.dto.shoping.*;
 import org.gw.shoping.entity.GdCommodity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.springframework.security.access.method.P;
 
 import java.util.List;
 
