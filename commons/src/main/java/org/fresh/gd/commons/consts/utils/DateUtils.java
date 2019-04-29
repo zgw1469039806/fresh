@@ -46,6 +46,17 @@ public class DateUtils {
         return LocalDateTime.now();
     }
 
+
+    /**
+     * 功能描述
+     * 获取当前时间
+     * @return java.lang.String
+     * @author zgw
+     */
+    public static String getDateFormatFullDe() {
+        return getCurDateTime(DATE_FORMAT_SHORT);
+    }
+
     /**
      * 根据时间格式返回对应的String类型的时间
      *
@@ -114,9 +125,6 @@ public class DateUtils {
     }
 
 
-
-
-
     /**
      * 得到当前日期的前N天时间 yyyymmdd
      *
@@ -144,7 +152,7 @@ public class DateUtils {
     public static String afterNMonthDate(String theDate, int month, String format) {
 
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(format);
-        return LocalDateTime.parse(theDate,dateTimeFormatter)
+        return LocalDateTime.parse(theDate, dateTimeFormatter)
                 .plusMonths(month)
                 .format(dateTimeFormatter);
 
@@ -162,7 +170,7 @@ public class DateUtils {
     public static String afterNDaysDate(String theDate, Integer nDayNum, String format) {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(format);
 
-        return LocalDateTime.parse(theDate,dateTimeFormatter)
+        return LocalDateTime.parse(theDate, dateTimeFormatter)
                 .plusDays(nDayNum)
                 .format(dateTimeFormatter);
     }
@@ -177,7 +185,7 @@ public class DateUtils {
      */
     public static String afterNHoursDate(String theDate, Integer nHourNum, String format) {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(format);
-        return LocalDateTime.parse(theDate,dateTimeFormatter)
+        return LocalDateTime.parse(theDate, dateTimeFormatter)
                 .plusHours(nHourNum)
                 .format(dateTimeFormatter);
     }
@@ -192,13 +200,14 @@ public class DateUtils {
      */
     public static String afterNMinsDate(String theDate, Integer nMinNum, String format) {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(format);
-        return LocalDateTime.parse(theDate,dateTimeFormatter)
+        return LocalDateTime.parse(theDate, dateTimeFormatter)
                 .plusMinutes(nMinNum)
                 .format(dateTimeFormatter);
     }
 
     /**
      * 得到N秒后的日期
+     *
      * @param theDate
      * @param nSecNum
      * @param format
@@ -206,11 +215,10 @@ public class DateUtils {
      */
     public static String afterNSecondsDate(String theDate, Integer nSecNum, String format) {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(format);
-        return LocalDateTime.parse(theDate,dateTimeFormatter)
+        return LocalDateTime.parse(theDate, dateTimeFormatter)
                 .plusSeconds(nSecNum)
                 .format(dateTimeFormatter);
     }
-
 
 
     /*
