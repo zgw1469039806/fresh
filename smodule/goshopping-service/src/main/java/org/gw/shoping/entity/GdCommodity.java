@@ -53,8 +53,6 @@ public class GdCommodity implements Serializable {
      * 商品单价
      */
     private String comdityprice;
-
-
     /**
      * 活动id
      */

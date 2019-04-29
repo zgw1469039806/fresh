@@ -32,7 +32,6 @@ public interface GDComdityParticularService {
     * @auther: 郭家恒
     * @date: 2019/4/24 17:24
     */
-
     @PostMapping("/reduceStock")
     ResponseData<Integer> reduceStock(RequestData<List<GdComdityparticularDTO>> requestData);
 }

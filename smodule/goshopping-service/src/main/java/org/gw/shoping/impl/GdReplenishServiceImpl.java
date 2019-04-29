@@ -111,7 +111,7 @@ public class GdReplenishServiceImpl implements GdReplenishService {
         ResponseData<List<GdStoreDTO>> responseData1 = manageFeginService.QueryByid(mdid);
         for (GdReplenishDTO purdto : gdShopAllDTOS) {
             for (GdStoreDTO dto : responseData1.getData()) {
-                if (purdto.getStoreid() == dto.getStoreid()) {
+                if (purdto.getStoreid().equals(dto.getStoreid()) ) {
                     purdto.setStorename(dto.getStorename());
                 }
             }
