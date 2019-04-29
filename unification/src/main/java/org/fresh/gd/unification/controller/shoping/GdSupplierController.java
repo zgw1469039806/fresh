@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  * @DATA 2019-04-22 10:40
  * @Author 张国伟  WeChat:17630376104
@@ -31,5 +33,11 @@ public class GdSupplierController {
     public ResponseData<Integer> integerResponseData(@RequestBody RequestData<GdSupplierDTO> requestData)
     {
         return gdSupplierFeignService.saveSupplier(requestData);
+    }
+
+    @PostMapping("/QueryAll")
+    public ResponseData<List<GdSupplierDTO>> QueryAll()
+    {
+        return gdSupplierFeignService.QuerySypplier();
     }
 }

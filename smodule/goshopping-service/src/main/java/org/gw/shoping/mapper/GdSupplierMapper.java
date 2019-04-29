@@ -9,6 +9,8 @@ import org.gw.shoping.entity.GdSupplier;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.springframework.security.access.method.P;
 
+import java.util.List;
+
 /**
  * <p>
  *  Mapper 接口
@@ -26,4 +28,13 @@ public interface GdSupplierMapper extends BaseMapper<GdSupplier> {
     @Select("select * from gd_supplier where supplierName=#{supplierName}")
     GdSupplierDTO selByName(@Param("supplierName") String supplierName);
 
+    /** 功能描述:
+    * 查询全部
+    * @param: []
+    * @return: org.fresh.gd.commons.consts.pojo.dto.shoping.GdSupplierDTO
+    * @auther: 郭家恒
+    * @date: 2019/4/28 13:50
+    */
+
+    List<GdSupplierDTO> QueryAll();
 }

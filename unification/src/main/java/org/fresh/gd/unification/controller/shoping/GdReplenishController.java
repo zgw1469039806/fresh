@@ -6,7 +6,6 @@ import org.fresh.gd.commons.consts.pojo.RequestData;
 import org.fresh.gd.commons.consts.pojo.ResponseData;
 import org.fresh.gd.commons.consts.pojo.dto.shoping.GdReplenishAndPurchaseDTO;
 import org.fresh.gd.commons.consts.pojo.dto.shoping.GdReplenishDTO;
-import org.fresh.gd.commons.consts.pojo.dto.shoping.GdShopAllDTO;
 import org.fresh.gd.commons.consts.pojo.dto.shoping.ReplenishInDTO;
 import org.fresh.gd.unification.fegin.shoping.GdReplenishFeginService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,24 +29,21 @@ import java.util.List;
 public class GdReplenishController {
 
     @Autowired
-    GdReplenishFeginService  gdReplenishFeginService;
+    GdReplenishFeginService gdReplenishFeginService;
 
     @PostMapping("/savegdReplen")
-    public ResponseData<Integer> savegdReplen(@RequestBody RequestData<GdReplenishDTO> requestData, Principal principal)
-    {
-           requestData.getData().setUsername(principal.getName());
-           return gdReplenishFeginService.saveGdReplenish(requestData);
+    public ResponseData<Integer> savegdReplen(@RequestBody RequestData<GdReplenishDTO> requestData, Principal principal) {
+        requestData.getData().setUsername(principal.getName());
+        return gdReplenishFeginService.saveGdReplenish(requestData);
     }
 
     @PostMapping("/selReAndPuAll")
-    public ResponseData<List<GdReplenishAndPurchaseDTO>> selReAndPuAll()
-    {
+    public ResponseData<List<GdReplenishAndPurchaseDTO>> selReAndPuAll() {
         return gdReplenishFeginService.selReAndPuAll();
     }
 
     @PostMapping("/selGdShopAll")
-    public ResponseData<List<GdReplenishDTO>> selGdShopAll(@RequestBody RequestData<ReplenishInDTO> replenishInDTORequestData)
-    {
+    public ResponseData<List<GdReplenishDTO>> selGdShopAll(@RequestBody RequestData<ReplenishInDTO> replenishInDTORequestData) {
           return gdReplenishFeginService.selGdShopAll(replenishInDTORequestData);
     }
 }

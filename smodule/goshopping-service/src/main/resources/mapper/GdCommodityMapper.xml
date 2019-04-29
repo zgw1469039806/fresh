@@ -45,7 +45,7 @@
         select * from gd_commodity c,gd_images i where c.comdityId=i.comdityId and c.comdityId=#{comdityId}
     </select>
 
-    <select id="QueryComByType" resultType="org.gw.shoping.entity.GdCommodity" parameterType="Integer">
+    <select id="QueryComByType" resultType="org.fresh.gd.commons.consts.pojo.dto.shoping.GdCommodityDTO" parameterType="Integer">
         select * from goshopping.gd_commodity where comditytypeId = #{tid}
     </select>
 

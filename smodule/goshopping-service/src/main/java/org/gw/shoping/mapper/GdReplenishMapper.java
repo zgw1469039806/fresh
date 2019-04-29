@@ -29,6 +29,7 @@ public interface GdReplenishMapper extends BaseMapper<GdReplenish> {
     /**
      * 功能描述:
      * 查询进货表
+     *
      * @param: [replenishInDTO]
      * @return: java.util.List<org.fresh.gd.commons.consts.pojo.dto.shoping.GdShopAllDTO>
      * @auther: 郭家恒
@@ -36,12 +37,25 @@ public interface GdReplenishMapper extends BaseMapper<GdReplenish> {
      */
     List<GdReplenishDTO> selGdShopAllByBh(ReplenishInDTO replenishInDTO);
 
-    /** 功能描述:
-    * 根据订单ID去查询订单详细
-    * @param: [list]
-    * @return: java.util.List<org.gw.shoping.entity.GdPurchase>
-    * @auther: 郭家恒
-    * @date: 2019/4/27 11:33
-    */
+    /**
+     * 功能描述:
+     * 根据订单ID去查询订单详细
+     *
+     * @param: [list]
+     * @return: java.util.List<org.gw.shoping.entity.GdPurchase>
+     * @auther: 郭家恒
+     * @date: 2019/4/27 11:33
+     */
     List<GdPurchaseDTO> QueryPurByreId(@Param("reid") Integer reid);
+
+    /**
+     * 功能描述:
+     * 根据单号修改商品
+     *
+     * @param: []
+     * @return: java.util.List<java.lang.Integer>
+     * @auther: 郭家恒
+     * @date: 2019/4/29 15:29
+     */
+    List<Integer> updPurById(@Param("receiptNo") String rno);
 }

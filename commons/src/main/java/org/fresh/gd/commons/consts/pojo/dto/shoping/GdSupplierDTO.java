@@ -13,6 +13,11 @@ import lombok.Data;
 @ApiModel("提供商数据模型")
 @Data
 public class GdSupplierDTO {
+    /**
+     * 供应商编号
+     */
+    @ApiModelProperty("供应商编号")
+    private Integer supplierId;
 
     /**
      * 编码

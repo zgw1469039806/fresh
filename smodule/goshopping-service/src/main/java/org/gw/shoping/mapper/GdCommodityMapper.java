@@ -78,26 +78,16 @@ public interface GdCommodityMapper extends BaseMapper<GdCommodity> {
     List<GdCommodity> QueryComByType(@Param("tid") Integer tid);
 
 
-    /**
-     * 功能描述:
-     * 客户端显示全部页面所有商品类型id查询
-     *
-     * @param: [typeid]商品的类型id
-     * @return: java.util.List<org.fresh.gd.commons.consts.pojo.dto.shoping.GdCommodityListDTO>
-     * @auther: 贾轶飞
-     * @date: 2019/4/26 15:10
-     */
+    /** 功能描述:
+    *客户端显示全部页面所有商品类型id查询
+    * @param: [typeid]商品的类型id
+    * @return: java.util.List<org.fresh.gd.commons.consts.pojo.dto.shoping.GdCommodityListDTO>
+    * @auther: 贾轶飞
+    * @date: 2019/4/26 15:10
+    */
 //    List<GdCommodityListDTO> wsSelAll(@Param("typeid")String typeid);
 
     List<GdinventoryallDTO> nventoryallmap(GdComditynameDTO gdComditynameDTO);
-
-    @Select("select * from gd_commodity g,gd_activities a where g.activityId=a.activityId and g.activityId=#{activityId}")
-    List<GdActivitiesAndShopDTO> selGdActivAndShop(@Param("activityId") Integer activityId);
-
-
-    List<GdActivitiesAndShopDTO> selGdActivAndShopLike(@Param("comdityname") String comdityname);
-
-
 
 
 }

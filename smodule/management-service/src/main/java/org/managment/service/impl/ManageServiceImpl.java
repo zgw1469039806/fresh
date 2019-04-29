@@ -1,7 +1,5 @@
 package org.managment.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.apache.commons.lang.StringUtils;
 import org.fresh.gd.commons.consts.api.management.ManageService;
 import org.fresh.gd.commons.consts.consts.Consts;
@@ -15,12 +13,9 @@ import org.fresh.gd.commons.consts.pojo.dto.oauth.UserDTO;
 import org.fresh.gd.commons.consts.pojo.dto.shoping.GdCommodityDTO;
 import org.managment.service.entity.GdStore;
 import org.managment.service.mapper.GdStoreMapper;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -92,7 +87,7 @@ public class ManageServiceImpl implements ManageService {
     }
     @Override
     public ResponseData<List<GdStoreDTO>> selByYg(@RequestBody RequestData<List<UserDTO>> requestData) {
-        ResponseData<List<GdStoreDTO>> responseData=new ResponseData<>();
+        ResponseData<List<GdStoreDTO>> responseData = new ResponseData<>();
         List<UserDTO> data = requestData.getData();
         List<GdStoreDTO> gdStoreDTOS = gdStoreMapper.selStoreAndImageByList(data);
         responseData.setData(gdStoreDTOS);
@@ -101,14 +96,15 @@ public class ManageServiceImpl implements ManageService {
     /**
      * 功能描述
      * 根据商品门店ID集合
+     *
      * @param gdCommodityDTOList
-     * @return org.fresh.gd.commons.consts.pojo.ResponseData<java.util.List < org.fresh.gd.commons.consts.pojo.dto.management.GdStoreDTO>>
+     * @return org.fresh.gd.commons.consts.pojo.ResponseData<java.util.List                               <                               org.fresh.gd.commons.consts.pojo.dto.management.GdStoreDTO>>
      * @author zgw
      */
     @Override
     public ResponseData<List<GdStoreDTO>> selByssmd(@RequestBody RequestData<List<GdCommodityDTO>> gdCommodityDTOList) {
-        ResponseData<List<GdStoreDTO>> listResponseData=new ResponseData<>();
-        listResponseData.setData(gdStoreMapper.selSSDPById(gdCommodityDTOList.getData())) ;
+        ResponseData<List<GdStoreDTO>> listResponseData = new ResponseData<>();
+        listResponseData.setData(gdStoreMapper.selSSDPById(gdCommodityDTOList.getData()));
         return listResponseData;
     }
     /**
@@ -122,10 +118,26 @@ public class ManageServiceImpl implements ManageService {
      * @date: 2019/4/27 17:21
      */
     @Override
-    public ResponseData<List<GdStoreDTO>> QueryByid(List<Integer> list) {
-        System.out.println("拿到的ID:"+list);
-        ResponseData<List<GdStoreDTO>> listResponseData=new ResponseData<>();
-        listResponseData.setData(gdStoreMapper.QueryById(list));
+    public ResponseData<List<GdStoreDTO>> QueryByid(@RequestBody RequestData<List<Integer>> list) {
+        System.out.println("拿到的ID:" + list);
+        ResponseData<List<GdStoreDTO>> listResponseData = new ResponseData<>();
+        listResponseData.setData(gdStoreMapper.QueryById(list.getData()));
         return listResponseData;
+    }
+
+    /**
+     * 功能描述:
+     * 查询所有门店
+     *
+     * @param: []
+     * @return: org.fresh.gd.commons.consts.pojo.ResponseData<java.util.List               <               org.fresh.gd.commons.consts.pojo.dto.management.GdStoreDTO>>
+     * @auther: 郭家恒
+     * @date: 2019/4/28 14:07
+     */
+    @Override
+    public ResponseData<List<GdStoreDTO>> QueryAll() {
+        ResponseData<List<GdStoreDTO>> responseData = new ResponseData<>();
+        responseData.setData(gdStoreMapper.QueryAll());
+        return responseData;
     }
 }

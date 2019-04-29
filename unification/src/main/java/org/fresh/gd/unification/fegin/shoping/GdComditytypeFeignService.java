@@ -9,7 +9,6 @@ import org.springframework.cloud.netflix.feign.FeignClient;
  * @Description
  */
 @FeignClient("goshopping-service")
-public interface GdComditytypeFeignService  extends GdComditytypeService {
-
+public interface GdComditytypeFeignService extends GdComditytypeService {
 
 }
