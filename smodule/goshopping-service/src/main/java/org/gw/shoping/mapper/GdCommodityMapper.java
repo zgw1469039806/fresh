@@ -75,7 +75,7 @@ public interface GdCommodityMapper extends BaseMapper<GdCommodity> {
      * @auther: 郭家恒
      * @date: 2019/4/26 15:12
      */
-    List<GdCommodity> QueryComByType(@Param("tid") Integer tid);
+    List<GdCommodityDTO> QueryComByType(@Param("tid") Integer tid);
 
 
     /** 功能描述:
