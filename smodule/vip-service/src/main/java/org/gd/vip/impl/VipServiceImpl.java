@@ -6,16 +6,19 @@ import org.fresh.gd.commons.consts.pojo.RequestData;
 import org.fresh.gd.commons.consts.pojo.ResponseData;
 import org.fresh.gd.commons.consts.pojo.dto.user.UserAndVipDTO;
 import org.fresh.gd.commons.consts.pojo.dto.vip.GdAddVipDTO;
+import org.fresh.gd.commons.consts.pojo.dto.vip.SelPageVipDTO;
+import org.fresh.gd.commons.consts.pojo.dto.vip.VipPageDTO;
+import org.fresh.gd.commons.consts.utils.PageBean;
 import org.fresh.gd.commons.consts.utils.VeDate;
 import org.gd.vip.entity.GdVip;
 import org.gd.vip.mapper.GdVipMapper;
-import org.gd.vip.mapper.GdViplvMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -67,5 +70,61 @@ public class VipServiceImpl implements VipService {
         }
         responseData.setCode(Consts.Result.BIZ_ERROR.getCode());
         return responseData;
+    }
+
+    /**
+     * 功能描述:
+     * 分页显示会员信息
+     *
+     * @param pageVipdto
+     * @param: [pageVipdto]
+     * @return: org.fresh.gd.commons.consts.pojo.ResponseData<org.fresh.gd.commons.consts.utils.PageBean < org.fresh.gd.commons.consts.pojo.dto.vip.VipPageDTO>>
+     * @auther: Mr.Xia
+     * @date: 2019/4/29 15:43
+     */
+    @Override
+    public ResponseData<PageBean<VipPageDTO>> selPageListVip(@RequestBody RequestData<SelPageVipDTO> pageVipdto) {
+        ResponseData<PageBean<VipPageDTO>> responseData = new ResponseData<>();
+        //传过来的参数
+        SelPageVipDTO selPageVipDTO = pageVipdto.getData();
+        selPageVipDTO.setPageNo(selPageVipDTO.getPageNo() - 1);
+
+        //查到的vip列表数据
+        List<VipPageDTO> vipPageDTO = gdVipMapper.selPageListVip(selPageVipDTO);
+
+        //查询总数
+        Integer count = this.selPageCountVip(selPageVipDTO.getVipName(),selPageVipDTO.getViplv());
+
+        //计算总页数
+        Integer countPage = 0;
+        if(count % selPageVipDTO.getPageSize() == 0){
+            countPage = count / selPageVipDTO.getPageSize();
+        }else{
+            countPage = count / selPageVipDTO.getPageSize() + 1;
+        }
+
+
+        PageBean<VipPageDTO> pageDTOPageBean = new PageBean<>();
+        pageDTOPageBean.setTotalCount(count);
+        pageDTOPageBean.setList(vipPageDTO);
+        pageDTOPageBean.setTotalPage(countPage);
+        pageDTOPageBean.setCurrPage(selPageVipDTO.getPageNo());
+        pageDTOPageBean.setPageSize(selPageVipDTO.getPageSize());
+
+        responseData.setData(pageDTOPageBean);
+
+        return responseData;
+    }
+
+    /**
+     * 功能描述:
+     * 条件查询vip总数
+     *
+     * @auther: Mr.Xia
+     * @date: 2019/4/29 16:05
+     */
+    @Override
+    public Integer selPageCountVip(String vipName , Integer Viplv) {
+        return gdVipMapper.selPageCountVip(vipName, Viplv);
     }
 }

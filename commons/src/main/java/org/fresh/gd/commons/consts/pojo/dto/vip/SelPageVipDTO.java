@@ -13,7 +13,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 @ApiModel("参数DTO-分页查询会员")
 @Data
-public class SelVipDTO {
+public class SelPageVipDTO {
 
     /**
     *
@@ -28,7 +28,7 @@ public class SelVipDTO {
     private String vipName;
 
     @ApiModelProperty("会员等级")
-    private Integer vipLv;
+    private Integer viplv;
 
     @NotEmpty
     @ApiModelProperty("从第几页开始")
