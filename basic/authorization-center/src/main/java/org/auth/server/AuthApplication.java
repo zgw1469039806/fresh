@@ -30,12 +30,7 @@ import java.util.Arrays;
 @SpringBootApplication
 @EnableAuthorizationServer
 public class AuthApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(AuthApplication.class, args);
     }
-
-
-
-
 }

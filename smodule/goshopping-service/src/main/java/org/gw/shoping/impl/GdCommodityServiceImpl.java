@@ -98,7 +98,7 @@ public class GdCommodityServiceImpl implements GdCommodityService {
     }
 
     @Override
-    public ResponseData<GdCommodityListDTO> selOne(Integer comdityId) {
+    public ResponseData<GdCommodityListDTO> selOne(@RequestBody Integer comdityId) {
         ResponseData<GdCommodityListDTO> responseData = new ResponseData<>();
         responseData.setData(gdCommodityMapper.selOne(comdityId));
         return responseData;

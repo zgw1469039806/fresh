@@ -6,6 +6,7 @@ import com.codingapi.txlcn.tc.annotation.TccTransaction;
 import com.codingapi.txlcn.tc.annotation.TxTransaction;
 import org.apache.commons.lang.StringUtils;
 import org.fresh.gd.commons.consts.api.order.GDOrderService;
+import org.fresh.gd.commons.consts.api.shoping.GdCommodityService;
 import org.fresh.gd.commons.consts.api.shoping.GdSupplierService;
 import org.fresh.gd.commons.consts.consts.Consts;
 import org.fresh.gd.commons.consts.exceptions.BizException;
@@ -14,8 +15,10 @@ import org.fresh.gd.commons.consts.pojo.ResponseData;
 import org.fresh.gd.commons.consts.pojo.dto.order.GdOrderDTO;
 import org.fresh.gd.commons.consts.pojo.dto.shoping.GdComdityparticularDTO;
 import org.fresh.gd.commons.consts.pojo.dto.shoping.GdCommodityDTO;
+import org.fresh.gd.commons.consts.pojo.dto.shoping.GdCommodityListDTO;
 import org.gd.order.entity.GdOrder;
 import org.gd.order.entity.GdShoppingcart;
+import org.gd.order.fegin.OrderFeginToGoods;
 import org.gd.order.fegin.OrderFeginToShopping;
 import org.gd.order.mapper.GdOrderMapper;
 import org.gd.order.mapper.GdOrdershopMapper;
@@ -26,6 +29,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -44,6 +48,9 @@ public class OrderServiceImpl implements GDOrderService {
 
     @Autowired
     private OrderFeginToShopping orderFeginToShopping;
+
+    @Autowired
+    private OrderFeginToGoods gdCommodityService;
 
     @Autowired
     private GdShoppingcartMapper gdShoppingcartMapper;
@@ -90,18 +97,26 @@ public class OrderServiceImpl implements GDOrderService {
      * @author zgw
      */
     @Override
-    public ResponseData<List<GdCommodityDTO>> selGwcByShopId(String requestData)
+    public ResponseData<List<ResponseData<GdCommodityListDTO>>> selGwcByShopId(@RequestBody String
+                                                                                           requestData)
     {
-        ResponseData<List<GdCommodityDTO>> responseData=new ResponseData<>();
+
+        ResponseData<List<ResponseData<GdCommodityListDTO>>> responseData=new ResponseData<>();
         if (StringUtils.isEmpty(requestData))
         {
             throw new BizException("用于ID为空");
         }
-        GdShoppingcart gdShoppingcart = gdShoppingcartMapper.selGwcByUserId(requestData);
+        List<ResponseData<GdCommodityListDTO>> listDTOS=new ArrayList<>();
+        List<GdShoppingcart> gdShoppingcart = gdShoppingcartMapper.queryCart(requestData);;
+        for (GdShoppingcart gdShop: gdShoppingcart) {
 
-        gdShoppingcart.getUserid();
+
+
+            listDTOS.add(gdCommodityService.selOne(gdShop.getComdityId())) ;
+        }
+        responseData.setData(listDTOS);
 
         // TODO: 调用商品服务根据ID查询商品  返回商品结合
-        return null;
+        return responseData;
     }
 }

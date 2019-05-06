@@ -24,11 +24,6 @@ import javax.sql.DataSource;
 @SpringBootApplication
 @MapperScan("org.auth.client.mapper")
 public class ClientApplication {
-
-
-
-
-
     public static void main(String[] args) {
         SpringApplication.run(ClientApplication.class,args);
     }

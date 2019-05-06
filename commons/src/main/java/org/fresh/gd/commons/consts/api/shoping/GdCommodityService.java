@@ -62,7 +62,7 @@ public interface GdCommodityService {
      * @return:
      * @Description:
      */
-    @GetMapping("/selOne")
+    @PostMapping("/selOne")
     ResponseData<GdCommodityListDTO> selOne(Integer comdityId);
 
 

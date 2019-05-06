@@ -68,4 +68,11 @@ public class GdCommodityListDTO {
      */
     @ApiModelProperty("商品单价")
     private String comdityprice;
+
+    /**
+     * 商品数
+     */
+    @ApiModelProperty("商品数")
+    private Integer num;
+
 }

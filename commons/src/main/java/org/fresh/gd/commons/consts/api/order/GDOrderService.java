@@ -3,6 +3,8 @@ package org.fresh.gd.commons.consts.api.order;
 import org.fresh.gd.commons.consts.pojo.RequestData;
 import org.fresh.gd.commons.consts.pojo.ResponseData;
 import org.fresh.gd.commons.consts.pojo.dto.order.GdOrderDTO;
+import org.fresh.gd.commons.consts.pojo.dto.shoping.GdCommodityDTO;
+import org.fresh.gd.commons.consts.pojo.dto.shoping.GdCommodityListDTO;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,4 +30,6 @@ public interface GDOrderService {
     @PostMapping("/insertOrder")
     ResponseData<List> insertOrder(RequestData<GdOrderDTO> gdOrderDTORequestData);
 
+    @PostMapping("/selGwcByShopId")
+    ResponseData<List<ResponseData<GdCommodityListDTO>>> selGwcByShopId(String requestData);
 }

@@ -84,4 +84,6 @@ public interface GdComditytypeService {
     @GetMapping("/selGdActivAndShopLike")
     ResponseData<List<GdActivitiesAndShopDTO>> selGdActivAndShopLike(String requestData);
 
+
+
 }
