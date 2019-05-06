@@ -21,8 +21,8 @@
 
     <select id="selYgByMd" parameterType="String" resultType="org.fresh.gd.commons.consts.pojo.dto.oauth.UserDTO">
         select * from gd_user where isnoYg>0
-        <if test="username!=null and username != '' ">
-            and username=#{username}
+        <if test="useraccount!=null and useraccount != '' ">
+            and useraccount=#{useraccount}
         </if>
 
     </select>

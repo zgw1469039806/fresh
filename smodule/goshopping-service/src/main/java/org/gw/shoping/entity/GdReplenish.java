@@ -50,6 +50,7 @@ public class GdReplenish implements Serializable {
     /**
      * 提供商id
      */
+    @TableField("supplierID")
     private Integer supplierID;
 
     /**
@@ -60,8 +61,8 @@ public class GdReplenish implements Serializable {
     /**
      * 进货编号
      */
+    @TableField("receiptNo")
     private String receiptNo;
-
 
 
 }

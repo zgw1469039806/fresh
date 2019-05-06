@@ -15,11 +15,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * 商品详情实现
+ *
  * @DATA 2019/4/24 14:22
  * @Author 郭家恒
  * @Description TODO
@@ -44,14 +46,14 @@ public class GDComdityParticularServiceImpl implements GDComdityParticularServic
         ResponseData<List> responseData = new ResponseData<>();
         List<Integer> comdityIds = new ArrayList<>();
         List<GdComdityparticular> errorlist = new ArrayList<>();
-        for (GdComdityparticularDTO dto: requestData.getData()){
+        for (GdComdityparticularDTO dto : requestData.getData()) {
             comdityIds.add(dto.getComdityId());
         }
         List<GdComdityparticular> comdityparticulars = gdComdityparticularMapper.QueryStock(comdityIds);
         responseData.setMsg("库存充足!");
-        for (GdComdityparticularDTO dto: requestData.getData()){
-            for (GdComdityparticular comdityparticular:comdityparticulars){
-                if (dto.getStock()>comdityparticular.getStock()){
+        for (GdComdityparticularDTO dto : requestData.getData()) {
+            for (GdComdityparticular comdityparticular : comdityparticulars) {
+                if (dto.getStock() > comdityparticular.getStock()) {
                     errorlist.add(comdityparticular);
                     responseData.setMsg("库存不足!");
                 }
@@ -79,8 +81,8 @@ public class GDComdityParticularServiceImpl implements GDComdityParticularServic
         ResponseData<Integer> responseData = new ResponseData<>();
         List<Integer> comdityIds = new ArrayList<>();
         List<GdComdityparticular> errorlist = new ArrayList<>();
-        for (GdComdityparticularDTO dto: requestData.getData()){
-            gdComdityparticularMapper.reduceStock(dto.getComdityId(),dto.getStock());
+        for (GdComdityparticularDTO dto : requestData.getData()) {
+            gdComdityparticularMapper.reduceStock(dto.getComdityId(), dto.getStock(), 0);
         }
         responseData.setCode(1000);
         return responseData;

@@ -18,4 +18,8 @@
     <insert id="saveStorage" parameterType="org.fresh.gd.commons.consts.pojo.dto.shoping.GdStorageDTO">
         insert into goshopping.gd_storage(replenishId, storageTime, storageuserid) value(#{replenishId},#{storageTime},#{storageuserid});
     </insert>
+
+    <delete id="delStorageByRid" parameterType="Integer">
+        delete from goshopping.gd_storage where replenishId = #{rid}
+    </delete>
 </mapper>

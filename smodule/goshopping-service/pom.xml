@@ -13,10 +13,10 @@
 
     <dependencies>
         <!--solr搜索引擎-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-solr</artifactId>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.boot</groupId>-->
+            <!--<artifactId>spring-boot-starter-data-solr</artifactId>-->
+        <!--</dependency>-->
 
         <!-- 加入分布式事务基础依赖 -->
         <dependency>
