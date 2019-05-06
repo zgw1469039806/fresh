@@ -8,6 +8,7 @@ import org.fresh.gd.commons.consts.pojo.dto.user.UserAndVipDTO;
 import org.fresh.gd.commons.consts.pojo.dto.vip.GdAddVipDTO;
 import org.fresh.gd.commons.consts.pojo.dto.vip.SelPageVipDTO;
 import org.fresh.gd.commons.consts.pojo.dto.vip.VipPageDTO;
+import org.fresh.gd.commons.consts.pojo.dto.vip.VipUpdDTO;
 import org.fresh.gd.commons.consts.utils.PageBean;
 import org.fresh.gd.commons.consts.utils.VeDate;
 import org.gd.vip.entity.GdVip;
@@ -32,7 +33,7 @@ public class VipServiceImpl implements VipService {
 
     @Override
     public ResponseData<UserAndVipDTO> selectOne(@RequestBody RequestData<UserAndVipDTO> requestData) {
-        ResponseData<UserAndVipDTO> responseData=new ResponseData<>();
+        ResponseData<UserAndVipDTO> responseData = new ResponseData<>();
         responseData.setData(gdVipMapper.selevtOne(requestData.getData().getUserId()));
 
         return responseData;
@@ -41,6 +42,7 @@ public class VipServiceImpl implements VipService {
     /**
      * 功能描述:
      * 新增会员
+     *
      * @param dtogdAddVipDTO
      * @return: org.fresh.gd.commons.consts.pojo.ResponseData<java.lang.Integer>
      * @auther: Mr.Xia
@@ -65,7 +67,7 @@ public class VipServiceImpl implements VipService {
         vip.setVipreport(0);
         vip.setVipStartTime(VeDate.getStringDate());
         Integer in = gdVipMapper.addVip(vip);
-        if( in > 0 ){
+        if (in > 0) {
             return responseData;
         }
         responseData.setCode(Consts.Result.BIZ_ERROR.getCode());
@@ -78,7 +80,7 @@ public class VipServiceImpl implements VipService {
      *
      * @param pageVipdto
      * @param: [pageVipdto]
-     * @return: org.fresh.gd.commons.consts.pojo.ResponseData<org.fresh.gd.commons.consts.utils.PageBean < org.fresh.gd.commons.consts.pojo.dto.vip.VipPageDTO>>
+     * @return: org.fresh.gd.commons.consts.pojo.ResponseData<org.fresh.gd.commons.consts.utils.PageBean   <   org.fresh.gd.commons.consts.pojo.dto.vip.VipPageDTO>>
      * @auther: Mr.Xia
      * @date: 2019/4/29 15:43
      */
@@ -87,19 +89,24 @@ public class VipServiceImpl implements VipService {
         ResponseData<PageBean<VipPageDTO>> responseData = new ResponseData<>();
         //传过来的参数
         SelPageVipDTO selPageVipDTO = pageVipdto.getData();
-        selPageVipDTO.setPageNo(selPageVipDTO.getPageNo() - 1);
 
+        if (selPageVipDTO.getPageNo() == 0) {
+            responseData.setCode(Consts.Result.ERROR_PARAM.getCode());
+            return responseData;
+        }
+
+        selPageVipDTO.setPageNo(selPageVipDTO.getPageNo() - 1);
         //查到的vip列表数据
         List<VipPageDTO> vipPageDTO = gdVipMapper.selPageListVip(selPageVipDTO);
 
         //查询总数
-        Integer count = this.selPageCountVip(selPageVipDTO.getVipName(),selPageVipDTO.getViplv());
+        Integer count = this.selPageCountVip(selPageVipDTO.getVipName(), selPageVipDTO.getViplv());
 
         //计算总页数
         Integer countPage = 0;
-        if(count % selPageVipDTO.getPageSize() == 0){
+        if (count % selPageVipDTO.getPageSize() == 0) {
             countPage = count / selPageVipDTO.getPageSize();
-        }else{
+        } else {
             countPage = count / selPageVipDTO.getPageSize() + 1;
         }
 
@@ -124,7 +131,70 @@ public class VipServiceImpl implements VipService {
      * @date: 2019/4/29 16:05
      */
     @Override
-    public Integer selPageCountVip(String vipName , Integer Viplv) {
-        return gdVipMapper.selPageCountVip(vipName, Viplv);
+    public Integer selPageCountVip(String vipName, Integer viplv) {
+        return gdVipMapper.selPageCountVip(vipName, viplv);
+    }
+
+    /**
+     * 功能描述:
+     * 根据会员编号删除会员
+     *
+     * @param vipId
+     * @param: [vipId]
+     * @return: java.lang.Integer
+     * @auther: Mr.Xia
+     * @date: 2019/5/6 8:43
+     */
+    @Override
+    public ResponseData<String> delVipById(@RequestBody RequestData<String> vipId) {
+        ResponseData<String> responseData = new ResponseData<>();
+        Integer i = gdVipMapper.delVipById(vipId.getData());
+
+        if (i > 0) {
+            responseData.setMsg("删除成功！");
+            return responseData;
+        }
+
+        responseData.setCode(Consts.Result.BIZ_ERROR.getCode());
+        return responseData;
+    }
+
+    /**
+     * 功能描述:
+     * 根据会员编号查询会员
+     *
+     * @param vipId
+     * @param: [vipId]
+     * @return: org.fresh.gd.commons.consts.pojo.ResponseData<org.fresh.gd.commons.consts.pojo.dto.vip.VipPageDTO>
+     * @auther: Mr.Xia
+     * @date: 2019/5/6 9:35
+     */
+    @Override
+    public ResponseData<VipPageDTO> selOneVipById(@RequestBody RequestData<String> vipId) {
+        ResponseData<VipPageDTO> responseData = new ResponseData<>();
+        responseData.setData(gdVipMapper.selOneVipById(vipId.getData()));
+        return responseData;
+    }
+
+    /**
+     * 功能描述:
+     * 修改会员
+     *
+     * @param vipUpdDTORequestData
+     * @param: [vipUpdDTORequestData]
+     * @return: org.fresh.gd.commons.consts.pojo.ResponseData<java.lang.Integer>
+     * @auther: Mr.Xia
+     * @date: 2019/5/6 10:15
+     */
+    @Override
+    public ResponseData<Integer> updOneVip(@RequestBody RequestData<VipUpdDTO> vipUpdDTORequestData) {
+        ResponseData<Integer> responseData = new ResponseData<>();
+        Integer i = gdVipMapper.updOneVip(vipUpdDTORequestData.getData());
+        if (i > 0) {
+            responseData.setMsg("修改成功");
+            return responseData;
+        }
+        responseData.setCode(Consts.Result.BIZ_ERROR.getCode());
+        return responseData;
     }
 }

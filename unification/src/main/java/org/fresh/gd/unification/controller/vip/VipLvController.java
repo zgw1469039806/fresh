@@ -19,7 +19,7 @@ import java.util.List;
 
 @Api(description = "会员等级管理")
 @Slf4j
-@RequestMapping("/VipLvController")
+@RequestMapping("/vipLvController")
 @RestController
 public class VipLvController {
 
@@ -29,27 +29,31 @@ public class VipLvController {
 
     @PostMapping("/addVipLv")
     public ResponseData<Integer> addVipLv(@RequestBody RequestData<GdAddVipLvDTO> requestData){
+        log.info("添加会员等级-vipLvController");
         return vipLvFeginService.addVipLv(requestData);
     }
 
     @PostMapping("/delVipLv")
     public ResponseData<Integer> delVipLv(@RequestBody RequestData<Integer> requestData){
-        System.out.println(requestData.getData());
+        log.info("删除vip等级-vipLvController");
         return vipLvFeginService.delVipLv(requestData);
     }
 
     @PostMapping("/updVipLv")
-    public ResponseData<Integer> updVipLv(@RequestBody RequestData<GdAddVipLvDTO> dtoRequestData){
-        return vipLvFeginService.updVipLv(dtoRequestData);
+    public ResponseData<Integer> updVipLv(@RequestBody RequestData<GdAddVipLvDTO> requestData){
+        log.info("修改vip等级-vipLvController"+requestData.getData());
+        return vipLvFeginService.updVipLv(requestData);
     }
 
     @PostMapping("/selVipLvById")
     public ResponseData<GdAddVipLvDTO> selVipLvById(@RequestBody RequestData<Integer> requestData){
+        log.info("查询一个会员等级-vipLvController");
         return vipLvFeginService.selVipLvById(requestData);
     }
 
     @GetMapping("/selAllVipLv")
     public ResponseData<List<GdAddVipLvDTO>> selAllVipLv(){
+        log.info("查询全部-vipLvController");
         return vipLvFeginService.selAllVipLv();
     }
 

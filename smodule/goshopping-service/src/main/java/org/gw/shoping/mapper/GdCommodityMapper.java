@@ -90,4 +90,10 @@ public interface GdCommodityMapper extends BaseMapper<GdCommodity> {
     List<GdinventoryallDTO> nventoryallmap(GdComditynameDTO gdComditynameDTO);
 
 
+    @Select("select * from gd_commodity g,gd_activities a where g.activityId=a.activityId and g.activityId=#{activityId}")
+    List<GdActivitiesAndShopDTO> selGdActivAndShop(@Param("activityId") Integer activityId);
+
+
+    List<GdActivitiesAndShopDTO> selGdActivAndShopLike(@Param("comdityname") String comdityname);
+
 }

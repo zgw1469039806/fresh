@@ -4,15 +4,15 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="org.gd.vip.entity.GdVip">
-        <id column="vipId" property="vipId" />
-        <result column="userId" property="userId" />
-        <result column="viplv" property="viplv" />
-        <result column="vipintegral" property="vipintegral" />
-        <result column="vipbalance" property="vipbalance" />
-        <result column="vipStartTime" property="vipStartTime" />
-        <result column="vipreport" property="vipreport" />
-        <result column="vipeportTime" property="vipeportTime" />
-        <result column="vipphone" property="vipphone" />
+        <id column="vipId" property="vipId"/>
+        <result column="userId" property="userId"/>
+        <result column="viplv" property="viplv"/>
+        <result column="vipintegral" property="vipintegral"/>
+        <result column="vipbalance" property="vipbalance"/>
+        <result column="vipStartTime" property="vipStartTime"/>
+        <result column="vipreport" property="vipreport"/>
+        <result column="vipeportTime" property="vipeportTime"/>
+        <result column="vipphone" property="vipphone"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->
@@ -20,7 +20,8 @@
         vipId, userId, viplv, vipintegral, vipbalance, vipStartTime, vipreport, vipeportTime
     </sql>
 
-    <select id="selPageListVip" parameterType="org.fresh.gd.commons.consts.pojo.dto.vip.SelPageVipDTO" resultType="org.fresh.gd.commons.consts.pojo.dto.vip.VipPageDTO">
+    <select id="selPageListVip" parameterType="org.fresh.gd.commons.consts.pojo.dto.vip.SelPageVipDTO"
+            resultType="org.fresh.gd.commons.consts.pojo.dto.vip.VipPageDTO">
         select * from gd_vip where 1 = 1
         <if test="vipName != null and vipName != ''">
             and vipName like CONCAT('%',#{vipName},'%')
@@ -33,19 +34,14 @@
     </select>
 
     <select id="selPageCountVip" resultType="integer">
-        select count(1) from gd_vip
-        <where>
-            1 == 1
-            <if test="vipName != null and vipName != ''">
-                --                and vipName like CONCAT('%',CONCAT(#{vipName},'%'))
-                and vipName like CONCAT('%',#{vipName},'%')
-            </if>
-            <if test="viplv != null and viplv != '' and viplv != 0">
-                and viplv = #{viplv}
-            </if>
-        </where>
+        select count(1) from gd_vip where 1 = 1
+        <if test="vipName != null and vipName != ''">
+            and vipName like CONCAT('%',#{vipName},'%')
+        </if>
+        <if test="viplv != null and viplv != '' and viplv != 0">
+            and viplv = #{viplv}
+        </if>
     </select>
-
 
 
 </mapper>
