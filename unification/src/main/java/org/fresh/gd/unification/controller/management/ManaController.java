@@ -1,12 +1,9 @@
 package org.fresh.gd.unification.controller.management;
 
-import feign.RequestLine;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
-import org.fresh.gd.commons.consts.pojo.RequestData;
 import org.fresh.gd.commons.consts.pojo.ResponseData;
 import org.fresh.gd.commons.consts.pojo.dto.management.GdStoreDTO;
-import org.fresh.gd.commons.consts.pojo.dto.management.ManageStoreDTO;
 import org.fresh.gd.commons.consts.utils.OSSClientUtil;
 import org.fresh.gd.unification.fegin.management.ManaFeginService;
 
@@ -31,8 +28,7 @@ public class ManaController {
 
 
     @PostMapping("/imageAdd")
-    public ResponseData<Integer> imageAdd(@RequestBody GdStoreDTO requestData, MultipartFile multipartFile)
-    {
+    public ResponseData<Integer> imageAdd(@RequestBody GdStoreDTO requestData, MultipartFile multipartFile) {
         OSSClientUtil ossClient = new OSSClientUtil();
         try {
             if (multipartFile == null || multipartFile.getSize() <= 0) {
@@ -41,7 +37,6 @@ public class ManaController {
             String name = ossClient.uploadImg2Oss(multipartFile);
             String imgUrl = ossClient.getImgUrl(name);
             requestData.setStoreImagesUri(imgUrl);
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -49,15 +44,14 @@ public class ManaController {
     }
 
     @PostMapping("/selStorAndImage")
-    public ResponseData<List<GdStoreDTO>> selStorAndImage(@RequestBody GdStoreDTO manageStoreDTO)
-    {
-
-        ResponseData<List<GdStoreDTO>> listResponseData=manaFeginService.selStroreByName(manageStoreDTO);
+    public ResponseData<List<GdStoreDTO>> selStorAndImage(@RequestBody GdStoreDTO manageStoreDTO) {
+        ResponseData<List<GdStoreDTO>> listResponseData = manaFeginService.selStroreByName(manageStoreDTO);
         List<GdStoreDTO> data = listResponseData.getData();
-
         return listResponseData;
     }
 
-
-
+    @PostMapping("/GdStoreQueryAll")
+    public ResponseData<List<GdStoreDTO>> QueryAll() {
+        return manaFeginService.QueryAll();
+    }
 }

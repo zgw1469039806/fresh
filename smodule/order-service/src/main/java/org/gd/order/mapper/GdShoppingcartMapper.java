@@ -19,6 +19,9 @@ import java.util.List;
 @Mapper
 public interface GdShoppingcartMapper extends BaseMapper<GdShoppingcart> {
 
+    @Select("select * from gd_shoppingcart where userid=#{userid}")
+    GdShoppingcart selGwcByUserId(@Param("userid")String userid);
+
 
     /** 功能描述:
     * 根据用户查询当前用户购物车信息

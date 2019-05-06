@@ -14,4 +14,7 @@
         supplierId, supplierBM, supplierName
     </sql>
 
+    <select id="QueryAll" resultType="org.fresh.gd.commons.consts.pojo.dto.shoping.GdSupplierDTO">
+        select * from goshopping.gd_supplier
+    </select>
 </mapper>

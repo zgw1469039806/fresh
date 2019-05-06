@@ -6,7 +6,9 @@ import org.fresh.gd.commons.consts.consts.Consts;
 import org.fresh.gd.commons.consts.exceptions.BizException;
 import org.fresh.gd.commons.consts.pojo.RequestData;
 import org.fresh.gd.commons.consts.pojo.ResponseData;
+import org.fresh.gd.commons.consts.pojo.dto.shoping.GdActivitiesAndShopDTO;
 import org.fresh.gd.commons.consts.pojo.dto.shoping.GdComditytypeDTO;
+import org.fresh.gd.commons.consts.pojo.dto.shoping.GdCommodityDTO;
 import org.gw.shoping.entity.GdCommodity;
 import org.gw.shoping.mapper.GdComditytypeMapper;
 import org.gw.shoping.mapper.GdCommodityMapper;
@@ -101,7 +103,7 @@ public class GdComditytypeServiceImpl implements GdComditytypeService {
     @Override
     public ResponseData<Integer> delType(@RequestBody RequestData<Integer> requestData) {
         ResponseData<Integer> responseData = new ResponseData<>();
-        List<GdCommodity> list = gdCommodityMapper.QueryComByType(requestData.getData());
+        List<GdCommodityDTO> list = gdCommodityMapper.QueryComByType(requestData.getData());
         if (list.size() == 0) {
             int del = gdComditytypeMapper.delType(requestData.getData());
             if (del > 0) {
@@ -110,6 +112,45 @@ public class GdComditytypeServiceImpl implements GdComditytypeService {
         } else {
             responseData.setMsg("分类下有商品");
         }
+        return responseData;
+    }
+
+    /**
+     * 功能描述
+     * 根据活动ID 查询商品
+     *
+     * @param requestData
+     * @return org.fresh.gd.commons.consts.pojo.ResponseData<java.util.List < org.fresh.gd.commons.consts.pojo.dto.shoping.GdActivitiesAndShopDTO>>
+     * @author zgw
+     */
+    @Override
+    public ResponseData<List<GdActivitiesAndShopDTO>> selActAndShop(Integer requestData) {
+        ResponseData<List<GdActivitiesAndShopDTO>> responseData=new ResponseData<>();
+
+        if (requestData==0 || requestData == null)
+        {
+            throw new BizException("活动ID不能为空");
+        }
+
+
+        List<GdActivitiesAndShopDTO> gdActivitiesAndShopDTOS = gdCommodityMapper.selGdActivAndShop(requestData);
+        responseData.setData(gdActivitiesAndShopDTOS);
+        return responseData;
+    }
+
+    @Override
+    public ResponseData<List<GdActivitiesAndShopDTO>> selGdActivAndShopLike(String requestData)
+    {
+        ResponseData<List<GdActivitiesAndShopDTO>> responseData=new ResponseData<>();
+
+        if (StringUtils.isEmpty(requestData))
+        {
+            throw new BizException("商品名称不能为空");
+        }
+
+        List<GdActivitiesAndShopDTO> gdActivitiesAndShopDTOS = gdCommodityMapper.selGdActivAndShopLike(requestData);
+        responseData.setData(gdActivitiesAndShopDTOS);
+
         return responseData;
     }
 }

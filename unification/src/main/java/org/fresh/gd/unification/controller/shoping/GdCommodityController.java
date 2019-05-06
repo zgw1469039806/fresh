@@ -31,8 +31,7 @@ public class GdCommodityController {
 
 
     @GetMapping("/selShopAll")
-    public ResponseData<List<GdCommodityDTO>> selShopAll()
-    {
+    public ResponseData<List<GdCommodityDTO>> selShopAll() {
 
         ResponseData<List<GdCommodityDTO>> responseData = gdCommodityFeignService.selShopingAll();
 
@@ -40,21 +39,29 @@ public class GdCommodityController {
     }
 
     @PostMapping("/selByPage")
-    public ResponseData<Page<GdCommodityDTO>> selByPage(@RequestBody RequestData<GdCommodityDTO> gdCommodityDTORequestData)
-    {
-        if (gdCommodityDTORequestData.getData()==null)
-        {
+    public ResponseData<Page<GdCommodityDTO>> selByPage(@RequestBody RequestData<GdCommodityDTO> gdCommodityDTORequestData) {
+        if (gdCommodityDTORequestData.getData() == null) {
             throw new BizException("请求错误");
         }
         return gdCommodityFeignService.selPageShop(gdCommodityDTORequestData);
     }
 
     @PostMapping("/nventoryall")
-    public ResponseData<List<GdinventoryallDTO>> nventoryall(@RequestBody RequestData<GdComditynameDTO> requestData)
-    {
-      return   gdCommodityFeignService.nventoryall(requestData);
+    public ResponseData<List<GdinventoryallDTO>> nventoryall(@RequestBody RequestData<GdComditynameDTO> requestData) {
+        return gdCommodityFeignService.nventoryall(requestData);
     }
 
-
-
+    /**
+     * 功能描述:
+     * 根据分类查询商品
+     *
+     * @param: [requestData]
+     * @return: org.fresh.gd.commons.consts.pojo.ResponseData<java.util.List   <   org.fresh.gd.commons.consts.pojo.dto.shoping.GdCommodityDTO>>
+     * @auther: 郭家恒
+     * @date: 2019/4/28 15:25
+     */
+    @PostMapping("/QueryByType")
+    public ResponseData<List<GdCommodityDTO>> QueryByType(@RequestBody RequestData<Integer> requestData) {
+        return gdCommodityFeignService.QueryComByType(requestData);
+    }
 }
