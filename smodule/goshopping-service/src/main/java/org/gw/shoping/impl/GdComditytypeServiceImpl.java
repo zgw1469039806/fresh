@@ -34,7 +34,7 @@ public class GdComditytypeServiceImpl implements GdComditytypeService {
      * 功能描述
      * 查询所有商品分类
      *
-     * @return org.fresh.gd.commons.consts.pojo.ResponseData<java.util.List               <               org.fresh.gd.commons.consts.pojo.dto.shoping.GdComditytypeDTO>>
+     * @return org.fresh.gd.commons.consts.pojo.ResponseData<java.util.List                               <                               org.fresh.gd.commons.consts.pojo.dto.shoping.GdComditytypeDTO>>
      * @author zgw
      */
     @Override
@@ -90,6 +90,14 @@ public class GdComditytypeServiceImpl implements GdComditytypeService {
         return responseData;
     }
 
+    /**
+     * 功能描述:
+     *
+     * @param: [requestData]
+     * @return: org.fresh.gd.commons.consts.pojo.ResponseData<java.lang.Integer>
+     * @auther: 国家哼
+     * @date: 2019/4/29 14:35
+     */
     @Override
     public ResponseData<Integer> delType(@RequestBody RequestData<Integer> requestData) {
         ResponseData<Integer> responseData = new ResponseData<>();
