@@ -28,7 +28,7 @@ public interface GdUserMapper extends BaseMapper<GdUser> {
     @Select("select * from gd_user where useraccount=#{useraccount}")
     UserDTO sellwxUserAcc(@Param("useraccount") String useraccount);
 
-    List<UserDTO> selYgByMd(@Param("username") String username);
+    List<UserDTO> selYgByMd(@Param("useraccount") String useraccount);
 
 
     @Insert("INSERT INTO gd_user(username,useraccount,password) VALUES(#{username},#{useraccount},#{password})")
