@@ -32,12 +32,13 @@ public interface GdComdityparticularMapper extends BaseMapper<GdComdityparticula
 
     /**
      * 功能描述:
-     * 减少库存
+     * 更改库存
      *
-     * @param: [list]
+     * @param: [cid, stock, type]
+     * cid: 商品ID stock:数量 type: 要做的操作(0-减少库存 1-增加库存 2-修改库存)
      * @return: java.lang.Integer
      * @auther: 郭家恒
-     * @date: 2019/4/24 17:26
+     * @date: 2019/5/6 8:16
      */
-    Integer reduceStock(@Param("cid") Integer cid, @Param("stock") Integer stock);
+    Integer reduceStock(@Param("cid") Integer cid, @Param("stock") Integer stock, @Param("type") Integer type);
 }

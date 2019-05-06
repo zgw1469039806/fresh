@@ -26,4 +26,8 @@
 
     </insert>
 
+    <delete id="deletePurById" parameterType="Integer">
+        delete from goshopping.gd_purchase where replenishId = #{rid}
+    </delete>
+
 </mapper>
