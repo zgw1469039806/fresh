@@ -4,11 +4,11 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="org.gw.shoping.entity.GdComdityparticular">
-        <id column="comdityId" property="comdityId" />
-        <result column="isnodiscount" property="isnodiscount" />
-        <result column="stock" property="stock" />
-        <result column="corresponding" property="corresponding" />
-        <result column="ssdp" property="ssdp" />
+        <id column="comdityId" property="comdityId"/>
+        <result column="isnodiscount" property="isnodiscount"/>
+        <result column="stock" property="stock"/>
+        <result column="corresponding" property="corresponding"/>
+        <result column="ssdp" property="ssdp"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->
@@ -21,9 +21,22 @@
         <foreach collection="list" open="(" item="item" separator="," close=")">
             #{item}
         </foreach>
+        for update;
     </select>
 
     <update id="reduceStock" parameterType="Integer">
-        update goshopping.gd_comdityparticular set stock=stock-#{stock} where comdityId=#{cid};
+        update goshopping.gd_comdityparticular
+        <set>
+            <if test="type == 0">
+                stock=stock-#{stock}
+            </if>
+            <if test="type == 1">
+                stock=stock+#{stock}
+            </if>
+            <if test="type == 2">
+                stock=#{stock}
+            </if>
+        </set>
+        where comdityId=#{cid};
     </update>
 </mapper>

@@ -45,7 +45,10 @@
                 and pu.replenishTime &lt;= #{endTime}
             </if>
             <if test="receiptNo != null and receiptNo != ''">
-                and pu.receiptNo=#{receiptNo};
+                and pu.receiptNo=#{receiptNo}
+            </if>
+            <if test="isnostorage != null and isnostorage != ''">
+                and pu.isnostorage=#{isnostorage}
             </if>
             and pu.supplierID = su.supplierId
         </where>
@@ -55,6 +58,6 @@
     </select>
 
     <update id="updPurById" parameterType="String">
-        update goshopping.gd_replenish set isnostorage = 1 where  receiptNo = #{receiptNo}
+        update goshopping.gd_replenish set isnostorage = 1 where receiptNo = #{receiptNo}
     </update>
 </mapper>

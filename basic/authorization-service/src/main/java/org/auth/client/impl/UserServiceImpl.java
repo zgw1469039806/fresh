@@ -42,12 +42,12 @@ public class UserServiceImpl implements UserService {
     @Autowired
     ManageFeignService manageFeignService;
 
-    @TxTransaction(isStart = true)
     @Transactional
     @Override
     public ResponseData<Integer> saveUser(@RequestBody RequestData<UserDTO> requestData) {
         ResponseData<Integer> responseData=new ResponseData<>();
         UserDTO userDTO=requestData.getData();
+        System.err.println("----"+userDTO);
         GdUser gdUserTwo = gdUserMapper.selUserAcc(userDTO.getUseraccount());
 
         if (gdUserTwo!=null)
@@ -56,15 +56,12 @@ public class UserServiceImpl implements UserService {
         }
         if (StringUtils.isEmpty(userDTO.getPhone()))
         {
-            throw  new BizException("手机号不能为空");
+            throw new BizException("手机号不能为空");
         }
-        userDTO.setPassword(passwordEncoder.encode(userDTO.getPassword()));
+        userDTO.setPassword(passwordEncoder.encode("123456"));
         GdUser gdUser=new GdUser();
         BeanUtils.copyProperties(userDTO,gdUser);
         Integer usersave = gdUserMapper.saveUserYg(gdUser);
-        System.err.println("---------------------------"+gdUser.getUserId());
-
-
         if (usersave>0)
         {
             GdPositionDTO gdPositionDTO=new GdPositionDTO();
@@ -93,7 +90,7 @@ public class UserServiceImpl implements UserService {
         ResponseData<List<UserDTO>> listResponseData=new ResponseData<>();
 
 
-        List<UserDTO> userDTOS = gdUserMapper.selYgByMd(requestData.getData().getUsername());
+        List<UserDTO> userDTOS = gdUserMapper.selYgByMd(requestData.getData().getUseraccount());
 
         listRequestData.setData(userDTOS);
         ResponseData<List<GdStoreDTO>> gdStoreDTOResponseData = manageFeignService.selByYg(listRequestData);
@@ -104,8 +101,8 @@ public class UserServiceImpl implements UserService {
           for (GdStoreDTO gdStoreDTO:data)
           {
             if (userDTO.getIsnoYg().equals(gdStoreDTO.getStoreid().toString())){
-                System.out.println(gdStoreDTO.getStorename());
                 userDTO.setGdStoreName(gdStoreDTO.getStorename());
+                userDTO.setStoreaddress(gdStoreDTO.getStoreaddress());
                 break;
             }
           }
